@@ -43,6 +43,15 @@ urlpatterns = patterns('',
     # Calendar
     url(r'^calendar/', include('calendarium.urls')),
 
+    # Django-Messages
+    url(r'^messages/', include('django_messages.urls'), name="messages"),
+
+
+
+    # url(r'^inbox/$',
+    #     inbox,
+    #     {'template_name': 'beta.html'}, name='messages_inbox')
+
 )
 
 if settings.DEBUG:

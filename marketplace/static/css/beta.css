@@ -258,7 +258,7 @@ input[type=submit] {
     width: 70%;
     /*background-color: orange;*/
     display: inline-block;
-    margin-top: -4rem;
+    /*margin-top: 2rem;*/
     padding: 0 .5rem;
 
 }
