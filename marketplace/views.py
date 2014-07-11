@@ -87,35 +87,32 @@ def join_class(request, classroom_id):
     try:
         new_student = Learner.objects.get(name=request.user)
     except Learner.DoesNotExist:
-        new_student = Learner.objects.create(name=request.user, hangout=request.user)
+        new_student = Learner.objects.create(name=request.user, hangout=request.user.email) # Changed to request.user.email. If it doesn't work, change it back to request.user
     classroom1.student.add(new_student)
 
     return render(request, "join_class.html", classroom_data1)
 
 
-# def join_class(request, classroom_id):
-#     classroom = Classroom.objects.get(id=classroom_id)
-#     classroom_data = {'classroom': classroom}
+
+
+
+# def edit_profile(request):
+#     if request.method == "POST":
+#         form = EditSkillsForm(request.POST)
+#         if form.is_valid():
+#             skill_1 = form.cleaned_data['skill_1']
+#             # skill_2 = form.cleaned_data['skill_2']
+#             # skill_3 = form.cleaned_data['skill_3']
+#             user = request.user
+#             # Get or Create
+#             Skill.objects.get_or_create(name=skill_1, user=user)
+#             return redirect("beta")
+#     else:
+#         form = EditSkillsForm
 #
-
-
-def edit_profile(request):
-    if request.method == "POST":
-        form = EditSkillsForm(request.POST)
-        if form.is_valid():
-            skill_1 = form.cleaned_data['skill_1']
-            # skill_2 = form.cleaned_data['skill_2']
-            # skill_3 = form.cleaned_data['skill_3']
-            user = request.user
-            # Get or Create
-            Skill.objects.get_or_create(name=skill_1, user=user)
-            return redirect("beta")
-    else:
-        form = EditSkillsForm
-
-    edit_skills = Skill.objects.all()
-    data = {"edit_skills_form": form, "edit_skills": edit_skills}
-    return render(request, "registration/edit_profile.html")
+#     edit_skills = Skill.objects.all()
+#     data = {"edit_skills_form": form, "edit_skills": edit_skills}
+#     return render(request, "registration/edit_profile.html")
 
 
 
