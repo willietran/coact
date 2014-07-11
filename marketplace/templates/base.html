@@ -8,13 +8,8 @@
     <title>{% block title %}{% endblock %}</title>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
-{#    <!-- Bootstrap -->#}
-{#    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
-{#    <!-- Optional theme -->#}
-{#    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">#}
-{#    <!-- Latest compiled and minified JavaScript -->#}
-{#    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>#}
     <link rel="stylesheet" type="text/css" href={% block css %}{% endblock %}>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"
 </head>
 <body>
 <!--
@@ -34,7 +29,7 @@
                 <li><a href="#" id="Settings">{{ user.username }}</a></li>
                 <li><a href="{% url 'create_class' %}" id="Create Class">Create Class</a></li>
                 <li><a href="{% url 'logout' %}" id="Logout">Logout</a></li>
-{#                <li><a href="{% url 'messages' %}" id="messages">Messages</a></li>#}
+                <li><a href="{% url 'messages_inbox' %}" id="messages">Messages</a></li>
             </ul>
         </div>
     {% else %}
@@ -49,11 +44,11 @@
     </div>
 </div>
 <hr>
-
+<div class="block-content">
 {% block content %}
 
 {% endblock %}
-
+</div>
 {% block sidebar %}{% endblock %}
 
 

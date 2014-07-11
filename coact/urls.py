@@ -44,7 +44,7 @@ urlpatterns = patterns('',
     url(r'^calendar/', include('calendarium.urls')),
 
     # Django-Messages
-    url(r'^messages/', include('django_messages.urls'), name="messages"),
+    url(r'^messages/', include('django_messages.urls')),
 
 
 

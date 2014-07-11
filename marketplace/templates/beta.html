@@ -56,7 +56,7 @@ Learn to code by creating apps | Coact
                 <p class="short-description">{{ class.short_description }}</p>
             </div>
             <div class="cost">
-                <a href="{% url 'class_details' class.id %}" class="cost-button"><strong>${{ class.cost }}</strong> for 1 hour</a>
+                <a href="{% url 'class_details' class.id %}" class="cost-button">${{ class.cost }} <div class="one-hour"> for 1 hour</div></a>
             </div>
         </div>
         {% endfor %}

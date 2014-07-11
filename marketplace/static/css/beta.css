@@ -9,59 +9,59 @@ body {
 ******************************
 */
 
-.navbar-container {
-    background-color: rgba(249, 253, 255, 0.60);
-    width: 100%;
-    margin: .5rem 6rem .5rem 6rem auto;
-    display: inline-block;
-    max-height: 3rem;
-}
+/*.navbar-container {*/
+    /*background-color: rgba(249, 253, 255, 0.60);*/
+    /*width: 100%;*/
+    /*margin: .5rem 6rem .5rem 6rem auto;*/
+    /*display: inline-block;*/
+    /*max-height: 3rem;*/
+/*}*/
 
-.navbar-pullright {
-    width: 100%;
-}
+/*.navbar-pullright {*/
+    /*width: 100%;*/
+/*}*/
 
-.navbar-buttons {
+/*.navbar-buttons {*/
     /*background-color: blue;*/
-    display: inline-block;
-    max-height: 3rem;
-    width: 25%;
-    float: right;
-    margin-top: 1%;
-}
+    /*display: inline-block;*/
+    /*max-height: 3rem;*/
+    /*width: 25%;*/
+    /*float: right;*/
+    /*margin-top: 1%;*/
+/*}*/
 
-a {
-    text-decoration: none;
-    color: #6b6b6b;
-}
+/*a {*/
+    /*text-decoration: none;*/
+    /*color: #6b6b6b;*/
+/*}*/
 
-.navbar-buttons ul li {
-    list-style-type: none;
-    display: inline-block;
+/*.navbar-buttons ul li {*/
+    /*list-style-type: none;*/
+    /*display: inline-block;*/
     /*background-color: olive;*/
-    padding: .75rem;
-    font-size: 1rem;
-    margin-top: -2.3rem;
-}
+    /*padding: .75rem;*/
+    /*font-size: 1rem;*/
+    /*margin-top: -2.3rem;*/
+/*}*/
 
-.navbar-company {
-    width: 20%;
-    max-height: 3rem;
+/*.navbar-company {*/
+    /*width: 20%;*/
+    /*max-height: 3rem;*/
     /*background-color: purple;*/
-    display: inline-block;
-    padding: .9rem;
-    margin-left: 1rem;
-}
+    /*display: inline-block;*/
+    /*padding: .9rem;*/
+    /*margin-left: 1rem;*/
+/*}*/
 
-hr {
-    margin: 0;
+/*hr {*/
+    /*margin: 0;*/
     /*height: 0;*/
     /*clear: both;*/
     /*border: solid #ddd;*/
     /*border-width: 1px 0 0;*/
     /*border-top: 1px solid #ddd;*/
     /*border-bottom: 1px solid #fff;*/
-}
+/*}*/
 
 
 /*
@@ -150,7 +150,8 @@ input[type=submit] {
 */
 
 .classes-section{
-    background-color: rgb(245, 255, 237);
+    /*background-color: rgb(245, 255, 237);*/
+    background-color: rgb(255, 244, 224);
     /*background-color: orange;*/
     padding-top: .1%;
 }
@@ -180,7 +181,7 @@ input[type=submit] {
 .class1 {
     position: relative;
     /*background-color: red;*/
-    background-color: rgb(250, 248, 255);
+    background-color: rgb(255, 255, 255);
     height: 70%;
     margin-bottom: 1rem;
     /*padding: 1.5rem 2.5rem;*/
@@ -197,18 +198,11 @@ input[type=submit] {
 .image {
     position: relative;
     display: inline-block;
-    /*background-color: cadetblue;*/
     width: 20%;
-    /*margin-top: -20%;*/
 }
 
 .profile {
-    /*position: relative;*/
-    /*display: inline-block;*/
-    /*margin-left: -20%;*/
-    /*margin-bottom: -30%;*/
     width: 100%;
-    /*height: 100%;*/
 
 }
 
@@ -219,9 +213,7 @@ input[type=submit] {
     font-family: 'Bitter' serif;
     color: rgb(0, 0, 0);
     overflow: hidden;
-    /*background-color: red;*/
     width: 80%;
-    /*text-shadow: 0 2px 3px rgba(0,0,0,1);*/
 
 
 }
@@ -256,10 +248,9 @@ input[type=submit] {
 .details {
     position: relative;
     width: 70%;
-    /*background-color: orange;*/
     display: inline-block;
-    /*margin-top: 2rem;*/
     padding: 0 .5rem;
+    top: -2rem;
 
 }
 
@@ -279,11 +270,18 @@ input[type=submit] {
     margin-top: -5.5rem;
     margin-right: 1.5rem;
     margin-left: auto;
+
 }
 
 .cost-button {
     font-size: 1rem;
+    color: #000000;
+}
 
+.one-hour {
+    display: inline-block;
+    font-size: .75rem;
+    color: rgb(164, 164, 164)
 }
 
 footer {

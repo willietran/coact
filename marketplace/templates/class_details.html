@@ -29,20 +29,22 @@ Details | Coact
             </ul>
         </div>
     </div>
-    <input type="button" value="Schedule A Lesson">
-    <a href="{% url 'join_class' classroom.id %}" id="join_class">Join This Class</a>
-    <input type="button" value="Send A Message">
-    <div class="calendar">
-        {% url "calendar_current_month" %}
+{#    <input type="button" value="Schedule A Lesson">#}
+    <div class="contact-teacher">
+        <a href="{% url 'join_class' classroom.id %}" id="join_class">Join This Class</a>
+        <a href="{% url 'messages_compose_to' classroom.teacher %}">Send A Message</a>
     </div>
     <div class="social-proof">
         <p>Social Proof text</p>
     </div>
-    <input type="button" value="Schedule A Lesson">
-    <input type="button" value="Send A Message">
+{#    <input type="button" value="Schedule A Lesson">#}
+    <div class="contact-teacher2">
+        <a href="{% url 'join_class' classroom.id %}" id="join_class">Join This Class</a>
+        <a href="{% url 'messages_compose_to' classroom.teacher %}">Send A Message</a>
+    </div>
 </div>
 <div class="screenshot">
-    <p>Image placeholder</p>
+    <img src="{{ classroom.screenshot.url }}" class="classroom-screenshot" alt="class screenshot" height="400" width="700">
 </div>
 <div class="about">
     <h1>{{ classroom.title }}</h1>
