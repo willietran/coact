@@ -1,0 +1,47 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block content %}
+{#<div class="top-container">#}
+{#    <div class="class-joined">#}
+{#        <h1>You just joined {{ classroom.title }}!</h1>#}
+{#        <p>Your teacher is {{ classroom.teacher }}. Click below to send him a message or schedule a time to talk</p>#}
+{#    </div>#}
+{#    <div class="schedule-buttons">#}
+{#        <input type="button" value="Schedule A Lesson">#}
+{#        <input type="button" value="Send A Message">#}
+{#    </div>#}
+{#</div>#}
+{#<div class="available-classes">#}
+{#<!--#}
+{#******************************#}
+{#    AVAILABLE CLASSES(TBD)#}
+{#******************************#}
+{#-->#}
+{#    <div class="helper">#}
+{#        <h1>Other Available Projects</h1>#}
+{#    </div>#}
+{#    <div class="main-container">#}
+{#        {% for class in classroom %}#}
+{#        <div class="class1">#}
+{#            <div class="image">#}
+{#                <img class="profile" src="#" alt="Profile picture">#}
+{#            </div>#}
+{#            <div class="details">#}
+{#                <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>#}
+{#                <h3 class="teacher">by: {{ class.teacher }}</h3>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#</div>#}
+{% endblock %}

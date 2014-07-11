@@ -1,0 +1,32 @@
+body {
+	font-family: avenir, helvetica, sans-serif;
+	text-align: left;
+}
+
+ul li {
+	display: inline-block;
+	text-decoration: none;
+	list-style-type: none;
+	text-align: center;
+}
+
+footer {
+	text-align: center;
+    padding: 4rem 2rem;
+}
+
+.header-h1 {
+	text-align: center;
+    font-size: 3rem;
+}
+
+.body-h1{
+    padding-left: 4rem;
+    font-size: 4rem;
+}
+
+.body-text {
+    padding: .1rem 4rem;
+    width: 60%;
+    font-size: 1.25rem;
+}

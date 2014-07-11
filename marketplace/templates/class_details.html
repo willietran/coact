@@ -1,0 +1,44 @@
+{% extends 'base_template.html' %}
+
+{% block title %}
+Details | Coact
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="sidebar-container">
+    <div class="teacher-container">
+        <h1>{{ classroom.teacher }}</h1>
+{#        <div class="teacher-ratings">#}
+{#            <p>Stars</p>#}
+{#        </div>#}
+        <div class="experience">
+            <ul class="experience">
+                <li>{{ classroom.teacher. }}</li>
+{#                <li>{{ skillset.name_2 }}</li>#}
+{#                <li>{{ skillset.name_3 }}</li>#}
+            </ul>
+        </div>
+    </div>
+    <input type="button" value="Schedule A Lesson">
+    <a href="{% url 'join_class' classroom.id %}" id="join_class">Join This Class</a>
+    <input type="button" value="Send A Message">
+    <div class="social-proof">
+        <p>Social Proof text</p>
+    </div>
+    <input type="button" value="Schedule A Lesson">
+    <input type="button" value="Send A Message">
+</div>
+<div class="screenshot">
+    <p>Image placeholder</p>
+</div>
+<div class="about">
+    <h1>{{ classroom.title }}</h1>
+    <p>{{ classroom.description }}</p>
+</div>
+{% endblock %}

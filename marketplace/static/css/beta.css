@@ -1,0 +1,292 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+/*
+******************************
+       NAVIGATION BAR
+******************************
+*/
+
+.navbar-container {
+    background-color: rgba(249, 253, 255, 0.60);
+    width: 100%;
+    margin: .5rem 6rem .5rem 6rem auto;
+    display: inline-block;
+    max-height: 3rem;
+}
+
+.navbar-pullright {
+    width: 100%;
+}
+
+.navbar-buttons {
+    /*background-color: blue;*/
+    display: inline-block;
+    max-height: 3rem;
+    width: 25%;
+    float: right;
+    margin-top: 1%;
+}
+
+a {
+    text-decoration: none;
+    color: #6b6b6b;
+}
+
+.navbar-buttons ul li {
+    list-style-type: none;
+    display: inline-block;
+    /*background-color: olive;*/
+    padding: .75rem;
+    font-size: 1rem;
+    margin-top: -2.3rem;
+}
+
+.navbar-company {
+    width: 20%;
+    max-height: 3rem;
+    /*background-color: purple;*/
+    display: inline-block;
+    padding: .9rem;
+    margin-left: 1rem;
+}
+
+hr {
+    margin: 0;
+    /*height: 0;*/
+    /*clear: both;*/
+    /*border: solid #ddd;*/
+    /*border-width: 1px 0 0;*/
+    /*border-top: 1px solid #ddd;*/
+    /*border-bottom: 1px solid #fff;*/
+}
+
+
+/*
+******************************
+         JUMBOTRON
+******************************
+*/
+
+.jumbotron-image {
+    overflow: hidden;
+    background-color: orange;
+    max-height: 10%;
+    display: inline-block;
+    width: 100%;
+    height: 25rem;
+    background: url(../img/computer%20and%20desk.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.jumbotron-text {
+    display: inline-block;
+    color: #ffffff;
+    /*background-color: black;*/
+    position: inherit;
+    margin-top: 7.5%;
+    margin-left: 15%;
+    text-shadow: 0 2px 3px rgba(0,0,0,1);
+    line-height: 1rem;
+}
+
+.jumbotron-text h1 {
+    font-weight: 200;
+    font-size: 3rem;
+    font-family: 'Bitter', serif;
+}
+
+.jumbotron-text p {
+    font-size: 1.25rem;
+    font-weight: 100rem;
+}
+
+#wrapper-form{
+    position: relative;
+    background: rgba(0,0,0,0.5);
+    width: 40%;
+    margin-left: 15%;
+    border-radius: 3px;
+    padding: 0;
+}
+
+#search {
+	position: relative;
+    border: 0;
+	padding: .8rem;
+	font-size: 1rem;
+    margin: 1%;
+	border-radius: 5px;
+    height: 3rem;
+	width: 80%;
+	max-width: 100%;
+}
+
+#submit {
+    position: relative;
+    padding-left: .5rem;
+    height: 3rem;
+    border-radius: 5px;
+    background-color: rgb(0, 199, 255);
+    font-size: 1rem;
+    width: 17%;
+    margin-right: 1%;
+    margin-left: -1%;
+    font-family: 'Roboto' sans-serif;
+}
+
+input[type=submit] {
+    color: rgb(226, 226, 226);
+    background-color: aqua;
+    margin-left: 0;
+}
+
+/*
+******************************
+       AVAILABLE CLASSES
+******************************
+*/
+
+.classes-section{
+    background-color: rgb(245, 255, 237);
+    /*background-color: orange;*/
+    padding-top: .1%;
+}
+
+.helper {
+    position: relative;
+    /*background-color: orange;*/
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    color: #6b6b6b
+}
+
+.helper h1 {
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.main-container {
+    position: relative;
+    margin-left: 15%;
+    /*background-color: blue;*/
+    margin-right: 15%;
+    margin-top: 2.5%;
+}
+
+.class1 {
+    position: relative;
+    /*background-color: red;*/
+    background-color: rgb(250, 248, 255);
+    height: 70%;
+    margin-bottom: 1rem;
+    /*padding: 1.5rem 2.5rem;*/
+    -webkit-box-shadow: 0 0 5px #888888;
+}
+
+.class1:hover {
+    -webkit-box-shadow: 0 0 30px #888888;
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+    transition: 1s ease;
+}
+
+.image {
+    position: relative;
+    display: inline-block;
+    background-color: cadetblue;
+    width: 20%;
+    /*margin-top: -20%;*/
+}
+
+.profile {
+    /*position: relative;*/
+    /*display: inline-block;*/
+    /*margin-left: -20%;*/
+    /*margin-bottom: -30%;*/
+    width: 100%;
+    /*height: 100%;*/
+
+}
+
+.class-name {
+    display: inline-block;
+    clear: right;
+    text-decoration: none;
+    font-family: 'Bitter' serif;
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+    /*background-color: red;*/
+    width: 80%;
+    /*text-shadow: 0 2px 3px rgba(0,0,0,1);*/
+
+
+}
+
+.teacher {
+    display: block;
+    font-weight: 100;
+    margin-left: ;
+    font-size: .75rem;
+    clear: right;
+    overflow: hidden;
+    width: 80%;
+}
+
+.experience li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 15%;
+    padding-right: 5%;
+    font-size: .75rem;
+}
+
+.skillset li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 15%;
+    padding-right: 5%;
+    font-size: .75rem;
+    margin-bottom: 0;
+}
+
+.details {
+    position: relative;
+    width: 70%;
+    /*background-color: orange;*/
+    display: inline-block;
+    margin-top: -1.5rem;
+    padding: 2rem .5rem;
+
+}
+
+.short-description {
+    position: relative;
+    /*background-color: red;*/
+    font-size: .70rem;
+    width: 80%;
+    overflow: scroll;
+}
+
+.cost {
+    position: relative;
+    /*background-color: purple;*/
+    float: right;
+    display: inline-block;
+    margin-top: -5.5rem;
+    margin-right: 1.5rem;
+    margin-left: auto;
+}
+
+.cost-button {
+    font-size: 1rem;
+
+}
+
+footer {
+    background-color: rgb(245, 255, 237);
+    text-align: center;
+}

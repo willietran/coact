@@ -1,0 +1,25 @@
+{% extends 'base_template.html' %}
+
+
+{% block title %}
+Create a new class! | Coact
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="registration-wrapper">
+  <form enctype="multipart/form-data" method='POST'>
+    {% csrf_token %}
+{#    {% for field in classroom_form %}#}
+{#        {{ field }}#}
+{#    {% endfor %}#}
+      {{ classroom_form.as_p }}
+    <input id="submit" type="submit" value="Sign Up" name="SubmitButton">
+  </form>
+</div>
+{% endblock %}

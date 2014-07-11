@@ -1,0 +1,60 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' type='text/css' href='{% static "css/style.css" %}'>
+  <title>Test Page</title>
+</head>
+
+<body>
+
+  <!-- ****************************
+              HEADER
+  ***************************** -->
+
+  <header>
+    <div class="navigation-bar">
+      <nav>
+          <ul>
+            <li><a href="/" id="home-logo"><img class="logo" src="{% static "img/coact logo 150.png" %}" alt="logo"></a></li>
+            <a href="{% url 'register' %}" id="signup-link"><li class="nav-contact">Sign Up</li></a>
+          </ul>
+      </nav>
+    </div>
+    <div class="Copy-Text">
+      <h1>Make learning easier.</h1>
+      <p>Learn how to code by building your favorite apps that you use everyday. Get started with mobile app development by creating your own Instagram or Yelp.</p>
+    </div>
+    <div id="wrapper-form">
+      <form method='POST'>
+        {% csrf_token %}
+        {% for field in landing_form %}
+            {{ field }}
+        {% endfor %}
+        <input id="submit" type="submit" value="Sign Up" name="SubmitButton">
+      </form>
+      <p>Stay up to date and be notified as soon as we are up.</p>
+    </div>
+
+  </header>
+
+  <!-- ****************************
+              CONTENT
+  ***************************** -->
+  <div id="content-wrapper">
+    <div class="BulletPoints">
+      <ul>
+        <li class="point1">Choose your teacher with trusted ratings.</li>
+        <li class="point2">Most engaging way to get started on building your own apps!</li>
+        <li class="point3">Recruit your friends to lower your price!</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ****************************
+              FOOTER
+  ***************************** -->
+  <footer></footer>
+</html>
