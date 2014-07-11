@@ -1,0 +1,20 @@
+{% extends 'base_template.html'%}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update Class Details">
+    </form>
+{% endblock %}

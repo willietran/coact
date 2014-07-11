@@ -93,6 +93,35 @@ def join_class(request, classroom_id):
     return render(request, "join_class.html", classroom_data1)
 
 
+def edit_class(request, classroom_id):
+    classroom = Classroom.objects.get(id=classroom_id)
+    if classroom.teacher == request.user:
+        if request.method == "POST":
+            form = CreateClassForm(request.POST, request.FILES)
+            if form.is_valid():
+                classroom.title = form.cleaned_data['title']
+                classroom.project = form.cleaned_data['project']
+                classroom.description = form.cleaned_data['description']
+                classroom.short_description = form.cleaned_data['short_description']
+                classroom.screenshot = form.cleaned_data['screenshot']
+                classroom.cost = form.cleaned_data['cost']
+                classroom.save()
+                return redirect("beta")
+        else:
+            form = CreateClassForm(initial={'title': classroom, 'project': classroom, 'description': classroom,
+                                            'short_description': classroom, 'screenshot': classroom,
+                                            'cost':classroom.cost})
+        data = {"form": form, "classroom": classroom}
+        return render(request, "registration/edit_class.html", data)
+    else:
+        return redirect("error")
+
+
+def error(request):
+    return render(request, "error.html")
+
+
+
 
 
 
@@ -112,7 +141,7 @@ def join_class(request, classroom_id):
 #
 #     edit_skills = Skill.objects.all()
 #     data = {"edit_skills_form": form, "edit_skills": edit_skills}
-#     return render(request, "registration/edit_profile.html")
+#     return render(request, "registration/edit_class.html")
 
 
 

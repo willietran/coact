@@ -12,14 +12,18 @@ Details | Coact
 
 {% block content %}
 <div class="sidebar-container">
+
     <div class="teacher-container">
         <h1>{{ classroom.teacher }}</h1>
+        {% if classroom.teacher == request.user %}
+        <a href="{% url 'edit_class' classroom.id %}">Edit Class Details</a>
+        {% endif %}
 {#        <div class="teacher-ratings">#}
 {#            <p>Stars</p>#}
 {#        </div>#}
         <div class="experience">
             <ul class="experience">
-                <li>{{ classroom.teacher. }}</li>
+{#                <li>{{ classroom.teacher. }}</li>#}
 {#                <li>{{ skillset.name_2 }}</li>#}
 {#                <li>{{ skillset.name_3 }}</li>#}
             </ul>
@@ -28,6 +32,9 @@ Details | Coact
     <input type="button" value="Schedule A Lesson">
     <a href="{% url 'join_class' classroom.id %}" id="join_class">Join This Class</a>
     <input type="button" value="Send A Message">
+    <div class="calendar">
+        {% url "calendar_current_month" %}
+    </div>
     <div class="social-proof">
         <p>Social Proof text</p>
     </div>

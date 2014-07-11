@@ -48,7 +48,7 @@ Learn to code by creating apps | Coact
         {% for class in classroom %}
         <div class="class1">
             <div class="image">
-                <img class="profile" src="{{ class.screenshot.url }}" alt="Profile picture" height="120" width="170">
+                <img class="profile" src="{{ class.screenshot.url }}" alt="Profile picture" height="150" width="170">
             </div>
             <div class="details">
                 <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>

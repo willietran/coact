@@ -25,7 +25,7 @@ class LandingForm(forms.Form):
 class CreateClassForm(forms.Form):
     title = forms.CharField(max_length=140,
                             widget=forms.TextInput(attrs={'placeholder': 'Name of Class'}))
-    project = forms.CharField(max_length=30,
+    project = forms.CharField(max_length=50,
                               widget=forms.TextInput(attrs={'placeholder': 'What are you building?'}))
     short_description = forms.CharField(max_length=140,
                                         widget=forms.TextInput(attrs={'placeholder': 'Brief Summary of Your Class'}))
@@ -33,6 +33,7 @@ class CreateClassForm(forms.Form):
                                   widget=forms.TextInput(attrs={'placeholder': 'About the class'}))
     cost = forms.FloatField()
     screenshot = forms.ImageField()
+
 
 
 
