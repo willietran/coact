@@ -3,9 +3,10 @@
     width: 45%;
     background-color: rgba(242, 242, 242, 0.90);
     text-align: center;
-    margin: auto;
+    margin: 1rem auto;
     border-radius: 5px;
     box-shadow: 0 0 10px;
+    padding: 1rem;
 }
 
 dl {
@@ -43,4 +44,10 @@ hr {
     color: #000000;
     border-radius: 5px;
     padding: 0 1rem;
+}
+
+.reply:hover, .delete:hover {
+    box-shadow: 0 0 10px;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
 }

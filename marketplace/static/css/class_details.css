@@ -34,6 +34,10 @@
 .outside-titles {
     text-align: center;
     margin-top: 2%;
+    color: rgb(123, 123, 123);
+    font-family: 'bitter' serif;
+    text-shadow: 0 0 1px;
+    font-weight: 100;
 }
 
 h1 {
@@ -95,8 +99,18 @@ h1 {
     background-color: rgb(97, 138, 255);
 }
 
-.social-proof ul li{
+.social-proof {
+    margin-top: 2rem;
+}
+
+.social-proof ul li {
     text-align: left;
+}
+
+.social-proof h3 {
+    font-weight: 150;
+    font-family: 'avenir' sans-serif;
+
 }
 
 .about-teacher {

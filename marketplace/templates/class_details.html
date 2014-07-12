@@ -23,26 +23,17 @@ Details | Coact
             {% if classroom.teacher == request.user %}
             <a id="edit-details" href="{% url 'edit_class' classroom.id %}">Edit Class Details</a>
             {% endif %}
-    {#        <div class="teacher-ratings">#}
-    {#            <p>Stars</p>#}
-    {#        </div>#}
-{#            <div class="experience">#}
-{#                <ul class="experience">#}
-{#                    <li>Objective-C</li>#}
-{#                    <li>HTML5</li>#}
-{#                    <li>SEO</li>#}
-{#                </ul>#}
-{#            </div>#}
             <div class="about-teacher">
-                <p>Here is some text about the teacher. This is not actually working at the moment. I need to add this into my models.</p>
+                <p>{{ classroom.teacher.about }}</p>
             </div>
         </div>
     {#    <input type="button" value="Schedule A Lesson">#}
         <div class="contact-teacher">
-            <a href="{% url 'join_class' classroom.id %}" id="join_class"><input id="join-class" type="submit" value="Join This Class" name="SubmitButton"></a>
-            <a id="message-teacher" href="{% url 'messages_compose_to' classroom.teacher %}"><input id="send-message" type="submit" value="Send A Message" name="SubmitButton"></a>
+            <a href="{% url 'join_class' classroom.id %}" id="join_class"><input id="join-class" type="submit" value="Schedule a lesson" name="SubmitButton"></a>
+            <a id="message-teacher" href="{% url 'messages_compose_to' classroom.teacher %}"><input id="send-message" type="submit" value="Send a message" name="SubmitButton"></a>
         </div>
         <div class="social-proof">
+            <h3 class="social-title">What other students think</h3>
             <ul>
                 <li><p>"This class was really neat and some other stuff I can't think of writing right now!"</p></li>
                 <li><subtitle>-Armen Suny</subtitle></li>

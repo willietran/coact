@@ -38,7 +38,7 @@ class Teacher(models.Model):
 class Classroom(models.Model):
     title = models.CharField(max_length=140)
     project = models.CharField(max_length=50)
-    short_description = models.CharField(max_length=140)
+    short_description = models.CharField(max_length=160)
     description = models.TextField()
     cost = models.FloatField()
     teacher = models.ForeignKey(User, related_name='classroom_teacher')
