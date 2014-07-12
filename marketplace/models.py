@@ -49,7 +49,11 @@ class Classroom(models.Model):
         return u"{}".format(self.title)
 
 
-
+class Review(models.Model):
+    title = models.CharField(max_length=140)
+    content = models.CharField(max_length=400)
+    classroom = models.ForeignKey(Classroom, related_name='classroom_review')
+    reviewer = models.ForeignKey(Classroom, related_name='reviewer_review')
 
 
 

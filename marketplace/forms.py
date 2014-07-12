@@ -44,3 +44,6 @@ class CreateClassForm(forms.Form):
 
     cost = forms.FloatField()
     screenshot = forms.ImageField()
+
+
+class ReviewForm(forms.Form):

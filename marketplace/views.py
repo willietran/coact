@@ -126,11 +126,14 @@ def delete_class(request, classroom_id):
     return render(request, "delete_class.html", classroom_data)
 
 
-
-
 def error(request):
     return render(request, "error.html")
 
+
+def create_review(request, classroom_id):
+    classroom = Classroom.objects.get(id=classroom_id)
+    if classroom.student != request.user:
+        if request.method == "POST":
 
 
 
