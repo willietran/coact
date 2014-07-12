@@ -20,6 +20,7 @@ Details | Coact
     <div class="sidebar-container">
         <div class="teacher-container">
             <h1>{{ classroom.teacher }}</h1>
+            <img id="teacher-picture" src="{{ classroom.teacher.image.url }}" alt="picture of teacher">
             {% if classroom.teacher == request.user %}
             <a id="edit-details" href="{% url 'edit_class' classroom.id %}">Edit Class Details</a>
             {% endif %}

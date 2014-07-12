@@ -11,7 +11,7 @@ class EmailUserCreationForm(UserCreationForm):
     name = forms.CharField(max_length=30)
     about = forms.CharField(max_length=400,
                             widget=forms.Textarea(attrs={'placeholder': 'Tell a bit about yourself'}))
-    # image = forms.ImageField()
+    image = forms.ImageField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
@@ -21,7 +21,7 @@ class EmailUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "name", "email", "password1", "password2", "about")
+        fields = ("username", "name", "email", "password1", "password2", "about", "image")
 
 
 class LandingForm(forms.Form):

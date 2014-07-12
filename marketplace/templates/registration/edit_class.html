@@ -18,7 +18,7 @@
     <form enctype="multipart/form-data" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input id="submit" type="submit" value="Update Class Details">
+        <input id="submit" type="submit" value="Update Class">
     </form>
     <a href="{% url 'delete_class' classroom.id %}" id="delete_class">Delete This Class</a>
 {% endblock %}

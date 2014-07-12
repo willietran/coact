@@ -54,6 +54,7 @@ h1 {
     padding: .25rem;
     border-radius: 2px;
     display: inline-block;
+    margin-top: 10%;
 }
 
 .teacher-container {
@@ -116,6 +117,14 @@ h1 {
 .about-teacher {
     text-align: left;
     font-size: .8rem;
+}
+
+#teacher-picture {
+    border-radius: 100%;
+    width: 50%;
+    height: 50%;
+    display: block;
+    margin: auto;
 }
 
 .clearfix:before,.clearfix:after{

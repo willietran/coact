@@ -28,7 +28,6 @@ body {
     /*background-color: blue;*/
     display: inline-block;
     max-height: 3rem;
-    width: 25%;
     float: right;
     margin-top: 1%;
 }
@@ -55,6 +54,18 @@ a {
     padding: .9rem;
     margin-left: 1rem;
 }
+
+.profile-image {
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+}
+
+.line-image {
+    margin-right: -5%;
+}
+
 
 hr {
     margin: 0;

@@ -7,8 +7,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^beta/$', 'marketplace.views.beta', name='beta'),
@@ -34,7 +32,6 @@ urlpatterns = patterns('',
 
     # Classroom Creation
     url(r'^create_class/$', 'marketplace.views.create_class', name='create_class'),
-    # url(r'^details/$', 'marketplace.views.class_details', name='class_details'),
     url(r'^details/(?P<classroom_id>[0-9]+)/$', 'marketplace.views.class_details', name='class_details'),
     url(r'^details/(?P<classroom_id>[0-9]+)/join/$', 'marketplace.views.join_class', name='join_class'),
     url(r'^details/(?P<classroom_id>[0-9]+)/edit/$', 'marketplace.views.edit_class', name='edit_class'),
@@ -46,12 +43,6 @@ urlpatterns = patterns('',
 
     # Django-Messages
     url(r'^messages/', include('django_messages.urls')),
-
-
-
-    # url(r'^inbox/$',
-    #     inbox,
-    #     {'template_name': 'beta.html'}, name='messages_inbox')
 
 )
 
