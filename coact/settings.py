@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'mptt',
     'easy_thumbnails',
     'calendarium',
-    'django_messages'
+    'django_messages',
+    'crispy_forms'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -68,7 +69,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
-
 
 
 ROOT_URLCONF = 'coact.urls'
@@ -114,6 +114,9 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, "static", *MEDIA_URL.strip("/").split("/
 
 LOGIN_REDIRECT_URL = 'beta'
 LOGIN_URL = 'login'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 AUTH_USER_MODEL = 'marketplace.User'
 
