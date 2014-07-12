@@ -1,0 +1,116 @@
+.sidebar-container {
+    margin-right: 5%;
+    display: inline-block;
+    float: right;
+    width: 22%;
+    padding: auto;
+}
+
+.screenshot {
+    margin-left: 5%;
+}
+
+.classroom-screenshot {
+    max-width: 65%;
+    max-height: 50%;
+    height: auto;
+}
+
+.about {
+    margin-left: 5%;
+    width: 65.11%;
+}
+
+.complete-wrapper {
+    border: 1px solid #a3a3a3;
+    border-radius: 5px;
+    margin: 3% 22%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.outside-titles {
+    text-align: center;
+    margin-top: 2%;
+}
+
+h1 {
+    font-weight: 100;
+}
+
+#edit-details {
+    text-align: center;
+    font-weight: 100;
+    font-size: .8rem;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: rgb(97, 138, 255);
+    padding: .25rem;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.teacher-container {
+    text-align: center;
+}
+
+.contact-teacher {
+    text-align: center;
+}
+
+#join-class, #send-message {
+    position: relative;
+    font-family: 'avenir' sans-serif;
+    font-size: 1.2rem;
+    display: block;
+    text-align: center;
+    /*width: 50%;*/
+    /*font-weight: 100;*/
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: rgba(0,0,0,0);
+    padding: .5rem;
+    margin: auto;
+    border-radius: 5px;
+}
+
+#join-class {
+    margin-top: 1rem;
+    padding: 1.1rem;
+    background-color: rgba(30, 162, 2, 0.80)
+}
+
+#join-class:hover, #send-message:hover {
+    -webkit-transition: 1s ease;
+    transition: 1s ease;
+    box-shadow: 0 0 10px;
+}
+
+
+#send-message {
+    margin-top: .5rem;
+    font-size: 1rem;
+    background-color: rgb(97, 138, 255);
+}
+
+.social-proof ul li{
+    text-align: left;
+}
+
+.about-teacher {
+    text-align: left;
+    font-size: .8rem;
+}
+
+.clearfix:before,.clearfix:after{
+  content:'\0020';
+  display:block;
+  overflow:hidden;
+  visibility:hidden;
+  width:0;
+  height:0
+}
+.clearfix:after{clear:both}
+.clearfix{zoom:1}

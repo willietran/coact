@@ -76,14 +76,10 @@ def class_details(request, classroom_id):
 
     return render(request, "class_details.html", classroom_data)
 
-
+@login_required()
 def join_class(request, classroom_id):
-    # classroom = Classroom.objects.all()
-    # classroom_data = {'classroom': classroom}
     classroom1 = Classroom.objects.get(id=classroom_id)
     classroom_data1 = {'classroom': classroom1}
-    # new_student = Learner.objects.get_or_create(name=request.user, hangout=request.user)
-    # classroom1.student.add(new_student)
     try:
         new_student = Learner.objects.get(name=request.user)
     except Learner.DoesNotExist:
@@ -108,13 +104,28 @@ def edit_class(request, classroom_id):
                 classroom.save()
                 return redirect("beta")
         else:
-            form = CreateClassForm(initial={'title': classroom, 'project': classroom, 'description': classroom,
-                                            'short_description': classroom, 'screenshot': classroom,
-                                            'cost':classroom.cost})
+            form = CreateClassForm(initial={'title': classroom.title, 'project': classroom.project,
+                                            'description': classroom.description,
+                                            'short_description': classroom.short_description,
+                                            'screenshot': classroom.screenshot,
+                                            'cost': classroom.cost})
         data = {"form": form, "classroom": classroom}
         return render(request, "registration/edit_class.html", data)
     else:
         return redirect("error")
+
+
+def delete_class(request, classroom_id):
+    classroom = Classroom.objects.get(id=classroom_id)
+    classroom_data = {'classroom': classroom}
+    if classroom.teacher == request.user:
+        classroom.delete()
+    else:
+        return redirect("error")
+
+    return render(request, "delete_class.html", classroom_data)
+
+
 
 
 def error(request):

@@ -1,0 +1,54 @@
+body {
+    background-color: rgb(255, 244, 224);
+    background: url(../img/camera_photo_blur_light.jpg) fixed no-repeat center center;
+    background-size: cover;
+}
+
+.subnavilist {
+    position: relative;
+    padding: 0;
+    text-align: center;
+}
+
+.inbox, .sent, .new_message, .trash {
+    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    border: solid #5e5e5e 2px;
+    width: 10rem;
+    text-align: center;
+    background-color: rgba(255, 250, 217, 0.40);
+    font-family: "Bitter" sans-serif;
+    border-radius: 3px;
+
+}
+
+.inbox a, .sent a, .new_message a, .trash a {
+    color: #000000;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /*border: solid #5e5e5e 2px;*/
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.inbox:hover, .sent:hover, .new_message:hover, .trash:hover {
+    -webkit-transition: .5s ease;
+    box-shadow: 0 0 10px #5e5e5e;
+    background-color: rgb(255, 255, 255);
+
+}
+
+/*.inbox:active, .sent:active, .new_message:active, .trash:active {*/
+    /*box-shadow: 0 0 100px;*/
+    /*transition: .1s ease;*/
+/*}*/
+
+h1 {
+    color: #5e5e5e
+}
+
+table {
+    color: #5e5e5e
+}

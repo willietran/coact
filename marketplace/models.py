@@ -15,6 +15,7 @@ class EmailSignup(models.Model):
 class User(AbstractUser):
     hangout = models.CharField(max_length=30)
     image = models.ImageField(null=True, upload_to='user_img')
+    about = models.TextField(null=True)
 
 
 class Learner(models.Model):

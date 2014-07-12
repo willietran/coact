@@ -35,20 +35,10 @@ class CreateClassForm(forms.Form):
     project = forms.CharField(max_length=50,
                               widget=forms.TextInput(attrs={'placeholder': 'What are you building?'}))
     short_description = forms.CharField(max_length=140,
-                                        widget=forms.TextInput(attrs={'placeholder': 'Brief Summary of Your Class'}))
+                                        widget=forms.Textarea())
+                                        # widget=forms.TextInput(attrs={'placeholder': 'Brief Summary of Your Class'}))
     description = forms.CharField(min_length=1,
-                                  widget=forms.TextInput(attrs={'placeholder': 'About the class'}))
+                                  widget=forms.Textarea())
+                                  # widget=forms.TextInput(attrs={'placeholder': 'About the class'}))
     cost = forms.FloatField()
     screenshot = forms.ImageField()
-
-
-
-
-
-# class EditSkillsForm(forms.Form):
-#     skill_1 = forms.CharField(max_length=50, required=False,
-#                             widget=forms.TextInput(attrs={'placeholder': 'Skill 1 (ex: Objective-C)'}))
-    # skill_2 = forms.CharField(max_length=50, required=False,
-    #                         widget=forms.TextInput(attrs={'placeholder': 'Skill 2 (ex: HTML5)'}))
-    # skill_3 = forms.CharField(max_length=50, required=False,
-    #                         widget=forms.TextInput(attrs={'placeholder': 'Skill 3 (ex: SEO)'}))

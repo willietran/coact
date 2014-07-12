@@ -44,6 +44,12 @@ h1 {
     transition: 1s ease;
 }
 
+
+#submit:active {
+    box-shadow: 0 0 100px;
+    transition: .1s ease;
+}
+
 label {
     display: block;
     color: #ffffff;
@@ -52,12 +58,16 @@ label {
 
 #id_short_description {
     height: 5rem;
-    /*text-align: left;*/
+    width: 31.1%;
+    border-radius: 5px;
 }
 
 #id_description {
     overflow: scroll;
     height: 20rem;
+    width: 31.1%;
+    border-radius: 5px;
+
 }
 
 #id_cost {
@@ -66,4 +76,24 @@ label {
 
 #id_screenshot {
     width: 11%;
+}
+
+#delete_class {
+    /*background-color: red;*/
+    width: 10%;
+    font-weight: 200;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background-color: rgba(252, 1, 13, 0.70);
+    border-radius: 5px;
+    padding: .5rem;
+    margin: 3rem auto;
+    display: block;
+    text-align: center;
+}
+
+#delete_class:hover {
+    box-shadow: 0 0 20px;
+    -webkit-transition: 1s ease;
+    transition: 1s ease;
 }

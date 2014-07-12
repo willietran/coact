@@ -44,6 +44,11 @@ h1 {
     transition: 1s ease;
 }
 
+.register-button:active {
+    box-shadow: 0 0 100px;
+    transition: .1s ease;
+}
+
 label {
     display: block;
     color: #ffffff;

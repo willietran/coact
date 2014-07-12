@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 Details | Coact
@@ -6,48 +7,66 @@ Details | Coact
 
 
 {% block css %}
-
+"{% static 'css/class_details.css' %}"
 {% endblock %}
 
 
 {% block content %}
-<div class="sidebar-container">
-
-    <div class="teacher-container">
-        <h1>{{ classroom.teacher }}</h1>
-        {% if classroom.teacher == request.user %}
-        <a href="{% url 'edit_class' classroom.id %}">Edit Class Details</a>
-        {% endif %}
-{#        <div class="teacher-ratings">#}
-{#            <p>Stars</p>#}
-{#        </div>#}
-        <div class="experience">
-            <ul class="experience">
-{#                <li>{{ classroom.teacher. }}</li>#}
-{#                <li>{{ skillset.name_2 }}</li>#}
-{#                <li>{{ skillset.name_3 }}</li>#}
+<div class="outside-titles">
+    <h1 class="outside-name">{{ classroom.title }}</h1>
+    <p class="outside-teacher">by: {{ classroom.teacher }}</p>
+</div>
+<div class="complete-wrapper clearfix">
+    <div class="sidebar-container">
+        <div class="teacher-container">
+            <h1>{{ classroom.teacher }}</h1>
+            {% if classroom.teacher == request.user %}
+            <a id="edit-details" href="{% url 'edit_class' classroom.id %}">Edit Class Details</a>
+            {% endif %}
+    {#        <div class="teacher-ratings">#}
+    {#            <p>Stars</p>#}
+    {#        </div>#}
+{#            <div class="experience">#}
+{#                <ul class="experience">#}
+{#                    <li>Objective-C</li>#}
+{#                    <li>HTML5</li>#}
+{#                    <li>SEO</li>#}
+{#                </ul>#}
+{#            </div>#}
+            <div class="about-teacher">
+                <p>Here is some text about the teacher. This is not actually working at the moment. I need to add this into my models.</p>
+            </div>
+        </div>
+    {#    <input type="button" value="Schedule A Lesson">#}
+        <div class="contact-teacher">
+            <a href="{% url 'join_class' classroom.id %}" id="join_class"><input id="join-class" type="submit" value="Join This Class" name="SubmitButton"></a>
+            <a id="message-teacher" href="{% url 'messages_compose_to' classroom.teacher %}"><input id="send-message" type="submit" value="Send A Message" name="SubmitButton"></a>
+        </div>
+        <div class="social-proof">
+            <ul>
+                <li><p>"This class was really neat and some other stuff I can't think of writing right now!"</p></li>
+                <li><subtitle>-Armen Suny</subtitle></li>
+                <hr>
+                <li><p>"Here's some more text about how awesome this class is!"</p></li>
+                <li><subtitle>-Kevin Tandean</subtitle></li>
+                <hr>
+                <li><p>"And lets make a third just for good measure. Alright cool!"</p></li>
+                <li><subtitle>-Tad Whitaker</subtitle></li>
+                <hr>
             </ul>
         </div>
+    {#    <input type="button" value="Schedule A Lesson">#}
+{#       <div class="contact-teacher">#}
+{#            <a href="{% url 'join_class' classroom.id %}" id="join_class"><input id="join-class" type="submit" value="Join This Class" name="SubmitButton"></a>#}
+{#            <a id="message-teacher" href="{% url 'messages_compose_to' classroom.teacher %}"><input id="send-message" type="submit" value="Send A Message" name="SubmitButton"></a>#}
+{#        </div>#}
     </div>
-{#    <input type="button" value="Schedule A Lesson">#}
-    <div class="contact-teacher">
-        <a href="{% url 'join_class' classroom.id %}" id="join_class">Join This Class</a>
-        <a href="{% url 'messages_compose_to' classroom.teacher %}">Send A Message</a>
+    <div class="screenshot">
+        <img src="{{ classroom.screenshot.url }}" class="classroom-screenshot" alt="class screenshot" height="400" width="700">
     </div>
-    <div class="social-proof">
-        <p>Social Proof text</p>
+    <div class="about">
+        <h1>{{ classroom.title }}</h1>
+        <p>{{ classroom.description }}</p>
     </div>
-{#    <input type="button" value="Schedule A Lesson">#}
-    <div class="contact-teacher2">
-        <a href="{% url 'join_class' classroom.id %}" id="join_class">Join This Class</a>
-        <a href="{% url 'messages_compose_to' classroom.teacher %}">Send A Message</a>
-    </div>
-</div>
-<div class="screenshot">
-    <img src="{{ classroom.screenshot.url }}" class="classroom-screenshot" alt="class screenshot" height="400" width="700">
-</div>
-<div class="about">
-    <h1>{{ classroom.title }}</h1>
-    <p>{{ classroom.description }}</p>
 </div>
 {% endblock %}

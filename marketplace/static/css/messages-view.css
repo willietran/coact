@@ -1,0 +1,46 @@
+.view-wrapper {
+    position: relative;
+    width: 45%;
+    background-color: rgba(242, 242, 242, 0.90);
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px;
+}
+
+dl {
+    text-align: left;
+}
+
+dt {
+    font-size: 1.1rem;
+    font-family: 'Bitter' sans-serif;
+}
+
+dd {
+}
+
+.message-body {
+    text-align: center;
+    padding-top: 1.5rem;
+    text-decoration: underline;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);
+}
+
+.reply, .delete {
+    position: relative;
+    border: 1px solid #000000;
+    background-color: rgba(0,0,0,0);
+    color: #000000;
+    border-radius: 5px;
+    padding: 0 1rem;
+}

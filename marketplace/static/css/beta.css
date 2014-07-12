@@ -1,67 +1,3 @@
-/*body {*/
-    /*font-family: 'Roboto', sans-serif;*/
-    /*margin: 0;*/
-/*}*/
-
-/*
-******************************
-       NAVIGATION BAR
-******************************
-*/
-
-/*.navbar-container {*/
-    /*background-color: rgba(249, 253, 255, 0.60);*/
-    /*width: 100%;*/
-    /*margin: .5rem 6rem .5rem 6rem auto;*/
-    /*display: inline-block;*/
-    /*max-height: 3rem;*/
-/*}*/
-
-/*.navbar-pullright {*/
-    /*width: 100%;*/
-/*}*/
-
-/*.navbar-buttons {*/
-    /*background-color: blue;*/
-    /*display: inline-block;*/
-    /*max-height: 3rem;*/
-    /*width: 25%;*/
-    /*float: right;*/
-    /*margin-top: 1%;*/
-/*}*/
-
-/*a {*/
-    /*text-decoration: none;*/
-    /*color: #6b6b6b;*/
-/*}*/
-
-/*.navbar-buttons ul li {*/
-    /*list-style-type: none;*/
-    /*display: inline-block;*/
-    /*background-color: olive;*/
-    /*padding: .75rem;*/
-    /*font-size: 1rem;*/
-    /*margin-top: -2.3rem;*/
-/*}*/
-
-/*.navbar-company {*/
-    /*width: 20%;*/
-    /*max-height: 3rem;*/
-    /*background-color: purple;*/
-    /*display: inline-block;*/
-    /*padding: .9rem;*/
-    /*margin-left: 1rem;*/
-/*}*/
-
-/*hr {*/
-    /*margin: 0;*/
-    /*height: 0;*/
-    /*clear: both;*/
-    /*border: solid #ddd;*/
-    /*border-width: 1px 0 0;*/
-    /*border-top: 1px solid #ddd;*/
-    /*border-bottom: 1px solid #fff;*/
-/*}*/
 
 
 /*
@@ -285,7 +221,7 @@ input[type=submit] {
 }
 
 footer {
-    background-color: rgb(245, 255, 237);
+    /*background-color: rgb(245, 255, 237);*/
     text-align: center;
     background-color: rgb(255, 244, 224);
 

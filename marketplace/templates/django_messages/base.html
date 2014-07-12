@@ -6,12 +6,12 @@
 {% block content %}  
 {% endblock %}
 {% block sidebar %}
-<link rel="stylesheet" type="text/css" href="{% block css %}{% endblock %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/messages-base.css' %}">
+<link rel="stylesheet" type="text/css" href="{% block css %}{% endblock %}">
 <ul class="subnavilist">
-    <li><a href="{% url 'messages_inbox' %} ">{% trans "Inbox" %}</a></li>
-    <li><a href="{% url 'messages_outbox' %} ">{% trans "Sent Messages" %}</a></li>
-    <li><a href="{% url 'messages_compose' %} ">{% trans "New Message" %}</a></li>
-    <li><a href="{% url 'messages_trash' %} ">{% trans "Trash" %}</a></li>
+    <li class="inbox"><a href="{% url 'messages_inbox' %} ">{% trans "Inbox" %}</a></li>
+    <li class="sent"><a href="{% url 'messages_outbox' %} ">{% trans "Sent Messages" %}</a></li>
+    <li class="new_message"><a href="{% url 'messages_compose' %} ">{% trans "New Message" %}</a></li>
+    <li class="trash"><a href="{% url 'messages_trash' %} ">{% trans "Trash" %}</a></li>
 </ul>
 {% endblock %}
