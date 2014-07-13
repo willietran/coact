@@ -28,7 +28,6 @@ Details | Coact
                 <p>{{ classroom.teacher.about }}</p>
             </div>
         </div>
-    {#    <input type="button" value="Schedule A Lesson">#}
     <hr>
         <div class="class-cost">
             <p>${{ classroom.cost }} for 1 hour</p>
@@ -56,11 +55,6 @@ Details | Coact
                 <li><a class="leave-review" href="{% url 'create_review' classroom.id %}">Leave A Review</a></li>
             </ul>
         </div>
-    {#    <input type="button" value="Schedule A Lesson">#}
-{#       <div class="contact-teacher">#}
-{#            <a href="{% url 'join_class' classroom.id %}" id="join_class"><input id="join-class" type="submit" value="Join This Class" name="SubmitButton"></a>#}
-{#            <a id="message-teacher" href="{% url 'messages_compose_to' classroom.teacher %}"><input id="send-message" type="submit" value="Send A Message" name="SubmitButton"></a>#}
-{#        </div>#}
     </div>
     <div class="screenshot">
         <img src="{{ classroom.screenshot.url }}" class="classroom-screenshot" alt="class screenshot" height="400" width="700">

@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # User Registration
     url(r'^register/$', 'marketplace.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
     url(r'^confirm/$', 'marketplace.views.confirm', name='confirm'),
     # url(r'^edit_profile/$', 'marketplace.views.edit_profile', name='edit_profile'),
 
