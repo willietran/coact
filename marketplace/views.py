@@ -84,7 +84,7 @@ def join_class(request, classroom_id):
     try:
         new_student = Learner.objects.get(name=request.user)
     except Learner.DoesNotExist:
-        new_student = Learner.objects.create(name=request.user, hangout=request.user.email) # Changed to request.user.email. If it doesn't work, change it back to request.user
+        new_student = Learner.objects.create(name=request.user, hangout=request.user) # Changed to request.user.email. If it doesn't work, change it back to request.user
     classroom1.student.add(new_student)
 
     return render(request, "join_class.html", classroom_data1)
@@ -103,7 +103,7 @@ def edit_class(request, classroom_id):
                 classroom.screenshot = form.cleaned_data['screenshot']
                 classroom.cost = form.cleaned_data['cost']
                 classroom.save()
-                return redirect("beta")
+                return redirect("/details/{}".format(classroom_id))
         else:
             form = CreateClassForm(initial={'title': classroom.title, 'project': classroom.project,
                                             'description': classroom.description,
@@ -118,13 +118,14 @@ def edit_class(request, classroom_id):
 
 def delete_class(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
-    classroom_data = {'classroom': classroom}
+    # classroom_data = {'classroom': classroom}
     if classroom.teacher == request.user:
         classroom.delete()
+        return redirect("beta")
     else:
         return redirect("error")
 
-    return render(request, "delete_class.html", classroom_data)
+    # return render(request, "delete_class.html", classroom_data)
 
 
 def error(request):
@@ -144,7 +145,7 @@ def create_review(request, classroom_id):
                 classroom = Classroom.objects.get(id=classroom_id)
                 reviewer = request.user
                 Review.objects.create(review=review, classroom=classroom, reviewer=reviewer)
-                return redirect('beta')
+                return redirect('/details/{}'.format(classroom_id))
         else:
             form = ReviewForm(initial={'classroom': classroom.title})
         data = {"form": form, 'classroom': classroom}

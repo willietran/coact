@@ -52,12 +52,16 @@ h1 {
     color: #ffffff;
     background-color: rgb(97, 138, 255);
     padding: .25rem;
-    border-radius: 2px;
+    border-radius: 3px;
     display: inline-block;
     margin-top: 10%;
 }
 
 .teacher-container {
+    text-align: center;
+}
+
+.class-cost {
     text-align: center;
 }
 
@@ -83,8 +87,9 @@ h1 {
 
 #join-class {
     margin-top: 1rem;
-    padding: 1.1rem;
-    background-color: rgba(30, 162, 2, 0.80)
+    padding: 1rem;
+    background-color: rgba(30, 162, 2, 0.80);
+    font-size: 1rem;
 }
 
 #join-class:hover, #send-message:hover {
@@ -96,6 +101,7 @@ h1 {
 
 #send-message {
     margin-top: .5rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
     background-color: rgb(97, 138, 255);
 }
