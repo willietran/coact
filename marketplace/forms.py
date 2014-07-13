@@ -47,3 +47,7 @@ class CreateClassForm(forms.Form):
 
 
 class ReviewForm(forms.Form):
+    review = forms.CharField(max_length=140,
+                             widget=forms.Textarea(attrs={'placeholder': 'Write a short review for others!'}))
+    # content = forms.CharField(max_length=400,
+    #                           widget=forms.TextInput(attrs={'placeholder': 'Write Your Review'}))

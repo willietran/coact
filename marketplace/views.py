@@ -76,6 +76,7 @@ def class_details(request, classroom_id):
 
     return render(request, "class_details.html", classroom_data)
 
+
 @login_required()
 def join_class(request, classroom_id):
     classroom1 = Classroom.objects.get(id=classroom_id)
@@ -129,12 +130,25 @@ def delete_class(request, classroom_id):
 def error(request):
     return render(request, "error.html")
 
-
+@login_required()
 def create_review(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
-    if classroom.student != request.user:
+    if classroom.teacher == request.user:
+        return redirect('beta')
+    else:
         if request.method == "POST":
-
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                review = form.cleaned_data['review']
+                # content = form.cleaned_data['content']
+                classroom = Classroom.objects.get(id=classroom_id)
+                reviewer = request.user
+                Review.objects.create(review=review, classroom=classroom, reviewer=reviewer)
+                return redirect('beta')
+        else:
+            form = ReviewForm(initial={'classroom': classroom.title})
+        data = {"form": form, 'classroom': classroom}
+        return render(request, "create_review.html", data)
 
 
 

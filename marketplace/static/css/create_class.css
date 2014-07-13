@@ -77,6 +77,12 @@ label {
     width: 11%;
 }
 
+#id_review {
+    height: 5rem;
+    width: 20%;
+    border-radius: 5px;
+}
+
 #delete_class {
     /*background-color: red;*/
     width: 10%;

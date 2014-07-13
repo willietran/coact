@@ -38,6 +38,9 @@ urlpatterns = patterns('',
     url(r'^details/(?P<classroom_id>[0-9]+)/delete/$', 'marketplace.views.delete_class', name='delete_class'),
     url(r'^error/$', 'marketplace.views.error', name='error'),
 
+    # Classroom Review
+    url(r'^details/(?P<classroom_id>[0-9]+)/create_review/$', 'marketplace.views.create_review', name='create_review'),
+
     # Calendar
     url(r'^calendar/', include('calendarium.urls')),
 

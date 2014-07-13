@@ -35,16 +35,20 @@ Details | Coact
         </div>
         <div class="social-proof">
             <h3 class="social-title">What other students think</h3>
+            {% for review in classroom.classroom_review.all %}
+                {% if classroom.classroom_review.all.count == 0 %}
+                    <ul>
+                        <li>No reviews for this class! You should be the first!</li>
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li>"{{ review }}"</li>
+                        <hr>
+                    </ul>
+                {% endif %}
+            {% endfor %}
             <ul>
-                <li><p>"This class was really neat and some other stuff I can't think of writing right now!"</p></li>
-                <li><subtitle>-Armen Suny</subtitle></li>
-                <hr>
-                <li><p>"Here's some more text about how awesome this class is!"</p></li>
-                <li><subtitle>-Kevin Tandean</subtitle></li>
-                <hr>
-                <li><p>"And lets make a third just for good measure. Alright cool!"</p></li>
-                <li><subtitle>-Tad Whitaker</subtitle></li>
-                <hr>
+                <li><a class="leave-review" href="{% url 'create_review' classroom.id %}">Leave A Review</a></li>
             </ul>
         </div>
     {#    <input type="button" value="Schedule A Lesson">#}

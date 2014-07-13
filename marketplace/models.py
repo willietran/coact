@@ -50,10 +50,13 @@ class Classroom(models.Model):
 
 
 class Review(models.Model):
-    title = models.CharField(max_length=140)
-    content = models.CharField(max_length=400)
+    review = models.CharField(max_length=140)
+    # content = models.CharField(max_length=400)
     classroom = models.ForeignKey(Classroom, related_name='classroom_review')
-    reviewer = models.ForeignKey(Classroom, related_name='reviewer_review')
+    reviewer = models.ForeignKey(User, related_name='reviewer_review')
+
+    def __unicode__(self):
+        return u"{}".format(self.review)
 
 
 

@@ -13,12 +13,12 @@ Create a new class! | Coact
 
 
 {% block content %}
-<h1>Create Class</h1>
+<h1>Leave A Review on <br>"{{ classroom.title }}"</h1>
 <div class="registration-wrapper">
   <form enctype="multipart/form-data" method='POST'>
     {% csrf_token %}
-      {{ classroom_form.as_p }}
-    <input id="submit" type="submit" value="Create Class" name="SubmitButton">
+      {{ form.as_p }}
+    <input id="submit" type="submit" value="Submit Review" name="SubmitButton">
   </form>
 </div>
 {% endblock %}
