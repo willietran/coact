@@ -84,7 +84,7 @@ def join_class(request, classroom_id):
     try:
         new_student = Learner.objects.get(name=request.user)
     except Learner.DoesNotExist:
-        new_student = Learner.objects.create(name=request.user, hangout=request.user) # Changed to request.user.email. If it doesn't work, change it back to request.user
+        new_student = Learner.objects.create(name=request.user, hangout=request.user)
     classroom1.student.add(new_student)
 
     return render(request, "join_class.html", classroom_data1)
@@ -131,6 +131,7 @@ def delete_class(request, classroom_id):
 def error(request):
     return render(request, "error.html")
 
+
 @login_required()
 def create_review(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
@@ -150,6 +151,19 @@ def create_review(request, classroom_id):
             form = ReviewForm(initial={'classroom': classroom.title})
         data = {"form": form, 'classroom': classroom}
         return render(request, "create_review.html", data)
+
+
+@login_required()
+def view_profile(request, user_id):
+    user = User.objects.get(id=user_id)
+    user_data = {'user': user}
+    return render(request, "view_profile.html", user_data)
+
+
+def view_teacher(request, user_id):
+    teacher = User.objects.get(id=user_id)
+    teacher_data = {'teacher': teacher}
+    return render(request, "view_teacher.html", teacher_data)
 
 
 

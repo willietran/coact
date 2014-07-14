@@ -26,8 +26,8 @@
         <div class="navbar-buttons">
             <ul class="navbar-pull-right">
 {#                <li><a href="#" id="Contact">Contact Us</a></li>#}
-                <li class="line-image"><a href="#" id="profile-picture"><img class="profile-image" src="{{ user.image.url }}"></a></li>
-                <li><a href="#" id="Settings">{{ user.username }}</a></li>
+                <li class="line-image"><a href="{% url 'view_profile' request.user.id %}" id="profile-picture"><img class="profile-image" src="{{ request.user.image.url }}"></a></li>
+                <li><a href="{% url 'view_profile' request.user.id %}" id="Settings">{{ request.user.username }}</a></li>
                 <li><a href="{% url 'messages_inbox' %}" id="messages">Messages</a></li>
                 <li><a href="{% url 'create_class' %}" id="Create Class">Create Class</a></li>
                 <li><a href="{% url 'logout' %}" id="Logout">Logout</a></li>

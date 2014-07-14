@@ -19,7 +19,7 @@ Details | Coact
 <div class="complete-wrapper clearfix">
     <div class="sidebar-container">
         <div class="teacher-container">
-            <h1>{{ classroom.teacher }}</h1>
+            <a href="{% url 'view_teacher' classroom.teacher.id %}"><h1 class="teacher-name">{{ classroom.teacher }}</h1></a>
             <img id="teacher-picture" src="{{ classroom.teacher.image.url }}" alt="picture of teacher">
             {% if classroom.teacher == request.user %}
             <a id="edit-details" href="{% url 'edit_class' classroom.id %}">Edit Class Details</a>
@@ -61,6 +61,7 @@ Details | Coact
     </div>
     <div class="about">
         <h1>{{ classroom.title }}</h1>
+        <p class="project-title">Project: {{ classroom.project }}</p>
         <p>{{ classroom.description }}</p>
     </div>
 </div>

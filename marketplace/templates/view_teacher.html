@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block css %}
+{% static 'css/view_profile.css' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="info-container">
+    <h1 class="user-name">{{ teacher }}</h1>
+    <img class="user-image" src="{{ teacher.image.url }}" alt='user image'>
+    <p class="user-about">{{ teacher.about }}</p>
+{#    <a class="contact" href="{% url 'messages_compose_to' user %}">Send Me A Message</a>#}
+</div>
+<div class="helper">
+    <h1>Classes {{ teacher }} is teaching</h1>
+</div>
+<div class="main-container">
+{% for class in teacher.classroom_teacher.all %}
+    <div class="class1 clearfix">
+        <div class="image">
+            <img class="profile" src="{{ class.screenshot.url }}" alt="Profile picture" height="150" width="170">
+        </div>
+        <div class="details">
+            <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>
+            <h3 class="teacher">by: {{ class.teacher }}</a></h3>
+            <p class="short-description">{{ class.short_description }}</p>
+        </div>
+        <div class="cost">
+            <a href="{% url 'class_details' class.id %}" class="cost-button">${{ class.cost }} <div class="one-hour"> for 1 hour</div></a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

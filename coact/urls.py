@@ -44,6 +44,10 @@ urlpatterns = patterns('',
     # Calendar
     url(r'^calendar/', include('calendarium.urls')),
 
+    # View Profile
+    url(r'^view/(?P<user_id>[0-9]+)/$', 'marketplace.views.view_profile', name='view_profile'),
+    url(r'^view_teacher/(?P<user_id>[0-9]+)/$', 'marketplace.views.view_teacher', name='view_teacher'),
+
     # Django-Messages
     url(r'^messages/', include('django_messages.urls')),
 

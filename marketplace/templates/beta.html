@@ -52,7 +52,8 @@ Learn to code by creating apps | Coact
             </div>
             <div class="details">
                 <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>
-                <h3 class="teacher">by: {{ class.teacher }}</h3>
+                <h3 class="teacher">by: <a class="class-teacher" href="{% url 'view_teacher' class.teacher.id %}">{{ class.teacher }}</a></h3>
+{#                <h3 class="teacher">by: {{ class.teacher }}</h3>#}
                 <p class="short-description">{{ class.short_description }}</p>
             </div>
             <div class="cost">

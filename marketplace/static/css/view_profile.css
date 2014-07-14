@@ -1,0 +1,196 @@
+/*
+******************************
+      USER INFORMATION
+******************************
+*/
+
+.info-container {
+    /*background-color: white;*/
+    text-align: center;
+    margin-top: 2%;
+}
+
+.user-name {
+    font-weight: 100;
+}
+
+.user-image {
+    width: 10%;
+    height: 10%;
+    border-radius: 100%;
+    margin-bottom: 1rem;
+}
+
+.user-about {
+    /*background-color: green;*/
+    width: 15%;
+    margin: auto;
+    border: 1px #000000 solid;
+    border-radius: 5px;
+    padding: .5rem;
+}
+
+h3 {
+    font-weight: 100;
+    margin: .7rem;
+}
+
+/*
+******************************
+       CLASSES TAUGHT
+******************************
+*/
+
+.classes-section{
+    /*background-color: rgb(245, 255, 237);*/
+    background-color: rgb(255, 244, 224);
+    /*background-color: orange;*/
+    padding-top: .1%;
+}
+
+.helper {
+    position: relative;
+    /*background-color: orange;*/
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    color: #6b6b6b
+}
+
+.helper h1 {
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.main-container {
+    position: relative;
+    margin-left: 15%;
+    /*background-color: blue;*/
+    margin-right: 15%;
+    margin-top: 2.5%;
+}
+
+.class1 {
+    position: relative;
+    /*background-color: red;*/
+    background-color: rgb(255, 255, 255);
+    height: 70%;
+    margin-bottom: 1rem;
+    /*padding: 1.5rem 2.5rem;*/
+    -webkit-box-shadow: 0 0 5px #888888;
+}
+
+.class1:hover {
+    -webkit-box-shadow: 0 0 30px #888888;
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+    transition: 1s ease;
+}
+
+.image {
+    position: relative;
+    display: inline-block;
+    width: 20%;
+}
+
+.profile {
+    width: 100%;
+
+}
+
+.class-name {
+    display: inline-block;
+    clear: right;
+    text-decoration: none;
+    font-family: 'Bitter' serif;
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+    width: 80%;
+
+
+}
+
+.teacher {
+    display: block;
+    font-weight: 100;
+    margin-left: ;
+    font-size: .75rem;
+    clear: right;
+    overflow: hidden;
+    width: 80%;
+}
+
+.experience li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 15%;
+    padding-right: 5%;
+    font-size: .75rem;
+}
+
+.skillset li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 15%;
+    padding-right: 5%;
+    font-size: .75rem;
+    margin-bottom: 0;
+}
+
+.details {
+    position: relative;
+    width: 70%;
+    display: inline-block;
+    padding: 0 .5rem;
+    top: -2rem;
+
+}
+
+.short-description {
+    position: relative;
+    /*background-color: red;*/
+    font-size: .80rem;
+    width: 80%;
+    overflow: scroll;
+    margin: 0;
+}
+
+.cost {
+    position: relative;
+    /*background-color: purple;*/
+    float: right;
+    display: inline-block;
+    margin-top: -5.5rem;
+    margin-right: 1.5rem;
+    margin-left: auto;
+
+}
+
+.cost-button {
+    font-size: 1rem;
+    color: #000000;
+}
+
+.one-hour {
+    display: inline-block;
+    font-size: .75rem;
+    color: rgb(164, 164, 164)
+}
+
+footer {
+    /*background-color: rgb(245, 255, 237);*/
+    text-align: center;
+    background-color: rgb(255, 244, 224);
+
+}
+
+.clearfix:before,.clearfix:after{
+  content:'\0020';
+  display:block;
+  overflow:hidden;
+  visibility:hidden;
+  width:0;
+  height:0
+}
+.clearfix:after{clear:both}
+.clearfix{zoom:1}
