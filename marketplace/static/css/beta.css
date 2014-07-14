@@ -36,7 +36,7 @@
 
 .jumbotron-text p {
     font-size: 1.25rem;
-    font-weight: 100rem;
+    /*font-weight: 100;*/
 }
 
 #wrapper-form{
@@ -157,7 +157,7 @@ input[type=submit] {
 .teacher {
     display: block;
     font-weight: 100;
-    margin-left: ;
+    margin-left: 0;
     font-size: .75rem;
     clear: right;
     overflow: hidden;
