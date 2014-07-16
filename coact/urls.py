@@ -17,6 +17,8 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
     url(r'^confirm/$', 'marketplace.views.confirm', name='confirm'),
+    (r'^accounts/', include('registration.backends.default.urls')),
+
     # url(r'^edit_profile/$', 'marketplace.views.edit_profile', name='edit_profile'),
 
     # Password Reset

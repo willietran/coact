@@ -43,8 +43,11 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'calendarium',
     'django_messages',
-    'crispy_forms'
+    'crispy_forms',
+    'registration'
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -114,9 +117,6 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, "static", *MEDIA_URL.strip("/").split("/
 
 LOGIN_REDIRECT_URL = 'beta'
 LOGIN_URL = 'login'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
 
 AUTH_USER_MODEL = 'marketplace.User'
 

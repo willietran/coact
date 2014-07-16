@@ -87,8 +87,8 @@ input[type=submit] {
 
 .classes-section{
     /*background-color: rgb(245, 255, 237);*/
-    background-color: rgb(255, 244, 224);
-    /*background-color: orange;*/
+    /*background-color: rgb(255, 244, 224);*/
+    background-color: #eee;
     padding-top: .1%;
 }
 
@@ -224,7 +224,8 @@ input[type=submit] {
 footer {
     /*background-color: rgb(245, 255, 237);*/
     text-align: center;
-    background-color: rgb(255, 244, 224);
+    /*background-color: rgb(255, 244, 224);*/
+    background-color: #eeeeee;
 
 }
 

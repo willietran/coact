@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block css %}
+"{% static "css/register.css" %}"
+{% endblock %}
+
+
+{% block content %}
+    <h1>Create an account</h1>
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.label }}
+        {{ form.as_p }}
+
+        <input class="register-button" type="submit" value="Create Account">
+    </form>
+{% endblock %}
