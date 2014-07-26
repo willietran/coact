@@ -8,6 +8,7 @@ from marketplace.forms import EmailUserCreationForm, LandingForm
 from marketplace.models import EmailSignup
 
 
+# Initial view just for the home page
 def home(request):
     if request.method == "POST":
         form = LandingForm(request.POST)
@@ -24,12 +25,14 @@ def home(request):
     return render(request, "index.html", data)
 
 
+# Home page for the beta access. Not the landing page to collect e-mail sign ups
 def beta(request):
     classroom = Classroom.objects.all()
     class_data = {"classroom": classroom}
     return render(request, "beta.html", class_data)
 
 
+# Registration view
 def register(request):
     if request.method == 'POST':
         form = EmailUserCreationForm(request.POST, request.FILES)
@@ -44,6 +47,7 @@ def register(request):
     })
 
 
+# View to create a new class
 def create_class(request):
     if request.method == "POST":
         form = CreateClassForm(request.POST, request.FILES)
@@ -66,10 +70,12 @@ def create_class(request):
     return render(request, "create_class.html", data)
 
 
+# Confirmation page for after people create a new account
 def confirm(request):
     return render(request, "confirm.html")
 
 
+# View to allow pepole to view details in the class before signing up
 def class_details(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
     classroom_data = {'classroom': classroom}
@@ -77,6 +83,7 @@ def class_details(request, classroom_id):
     return render(request, "class_details.html", classroom_data)
 
 
+# The button to place a mark on people to measure purchase intent
 @login_required()
 def join_class(request, classroom_id):
     classroom1 = Classroom.objects.get(id=classroom_id)
@@ -90,6 +97,7 @@ def join_class(request, classroom_id):
     return render(request, "join_class.html", classroom_data1)
 
 
+# Teacher's ability to edit the class that they created.
 def edit_class(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
     if classroom.teacher == request.user:
@@ -116,6 +124,7 @@ def edit_class(request, classroom_id):
         return redirect("error")
 
 
+# Allows a teacher to delet their own class.
 def delete_class(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
     # classroom_data = {'classroom': classroom}
@@ -128,10 +137,12 @@ def delete_class(request, classroom_id):
     # return render(request, "delete_class.html", classroom_data)
 
 
+# This is an error page for when people try to game the system
 def error(request):
     return render(request, "error.html")
 
 
+# Users can create a new review on a class. I need to work on this to allow for more information
 @login_required()
 def create_review(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
@@ -153,6 +164,7 @@ def create_review(request, classroom_id):
         return render(request, "create_review.html", data)
 
 
+# Viewing people's profiles
 @login_required()
 def view_profile(request, user_id):
     user = User.objects.get(id=user_id)
@@ -160,10 +172,15 @@ def view_profile(request, user_id):
     return render(request, "view_profile.html", user_data)
 
 
+# Viewing teacher's profiles
 def view_teacher(request, user_id):
     teacher = User.objects.get(id=user_id)
     teacher_data = {'teacher': teacher}
     return render(request, "view_teacher.html", teacher_data)
+
+
+def charge(request):
+    return render(request, 'charge.html')
 
 
 

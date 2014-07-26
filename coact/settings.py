@@ -44,7 +44,8 @@ INSTALLED_APPS = (
     'calendarium',
     'django_messages',
     'crispy_forms',
-    'registration'
+    'registration',
+    # 'simple_email_confirmation'
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.

@@ -6,6 +6,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+
+    <!-- JS Files -->
+{#    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>#}
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <!-- CSS Files -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href={% block css %}{% endblock %}>

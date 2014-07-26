@@ -53,6 +53,9 @@ urlpatterns = patterns('',
     # Django-Messages
     url(r'^messages/', include('django_messages.urls')),
 
+    # Payment Charging
+    url(r'^charge/$', 'marketplace.views.charge', name='charge'),
+
 )
 
 if settings.DEBUG:

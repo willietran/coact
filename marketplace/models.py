@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+# from simple_email_confirmation import SimpleEmailConfirmationUserMixin
+
 
 # Create your models here.
 
