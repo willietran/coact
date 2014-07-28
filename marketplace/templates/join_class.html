@@ -5,6 +5,21 @@
 
 {% endblock %}
 
+{% block head %}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+{% endblock %}
+
 
 {% block css %}
 "{% static 'css/schedule.css' %}"
@@ -13,30 +28,39 @@
 
 {% block content %}
     <h1>Schedule your time!</h1>
-{#    <img class="calendar" src="{% static 'img/calendar_view.png' %}"#}
-{#    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>#}
-{#    <script>#}
-{#        braintree.setup("eyJ2ZXJzaW9uIjoxLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiIxY2Q4Yjc5ZjlhZGIxY2I3NTAyYzU0MWQ5OGEwZmMzZGE2MmZiOWJkY2U1ZGNlYjI0OTNlNzhkOTI5NGU4NDg2fGNyZWF0ZWRfYXQ9MjAxNC0wNy0yNlQwMjo0ODo1NC43MzcxMjA1MDcrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWRjcHNweTJicndkanIzcW5cdTAwMjZwdWJsaWNfa2V5PTl3d3J6cWszdnIzdDRuYzgiLCJjaGFsbGVuZ2VzIjpbImN2diJdLCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZGNwc3B5MmJyd2RqcjNxbi9jbGllbnRfYXBpIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhdXRoVXJsIjoiaHR0cHM6Ly9hdXRoLnZlbm1vLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJwYXltZW50QXBwU2NoZW1lcyI6W10sInRocmVlRFNlY3VyZUVuYWJsZWQiOmZhbHNlLCJwYXlwYWxFbmFibGVkIjp0cnVlLCJwYXlwYWwiOnsiZGlzcGxheU5hbWUiOiJBY21lIFdpZGdldHMsIEx0ZC4gKFNhbmRib3gpIiwiY2xpZW50SWQiOm51bGwsInByaXZhY3lVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vcHAiLCJ1c2VyQWdyZWVtZW50VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3RvcyIsImJhc2VVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbSIsImFzc2V0c1VybCI6Imh0dHBzOi8vY2hlY2tvdXQucGF5cGFsLmNvbSIsImRpcmVjdEJhc2VVcmwiOm51bGwsImFsbG93SHR0cCI6dHJ1ZSwiZW52aXJvbm1lbnROb05ldHdvcmsiOnRydWUsImVudmlyb25tZW50Ijoib2ZmbGluZSJ9fQ==", 'dropin', {#}
-{#            container: 'container'#}
-{#        });#}
-{#    </script>#}
-{#    <form id="container" method="post" action="/checkout">#}
-{#        <div id="dropin"></div>#}
-{#        <input type="submit" value="Pay $10">#}
-{#    </form>#}
 
-    <form action="/charge/" method="POST">
+    <form class='stripeBtn' action="/charge/" method="POST">
     {% csrf_token %}
       <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="pk_test_pWxm3wMH8P9Lvrp96uZp7nHK"
-        data-image="/square-image.png"
+        data-key="pk_live_UOChTX1somui4onsvUB0RWgR"
+        data-image="{% static 'img/coact logo 150.png' %}"
         data-name="Coact"
-        data-description="2 widgets ($10.00)"
+        data-description="2 widgets ($10)"
         data-amount="1000"
         data-allow-remember-me="True">
       </script>
     </form>
+    <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7
+"><input type="image" id="stripeImage" src="{% static 'img/blue.png' %}"></a>
+
+
+
+
+
+<!-- define the calendar element -->
+<div id="my-calendar"></div>
+
+<!-- initialize the calendar on ready -->
+<script type="application/javascript">
+    $(document).ready(function () {
+        $("#my-calendar").zabuto_calendar();
+    });
+</script>
+
+
+
 
 
 

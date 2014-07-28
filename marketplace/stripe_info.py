@@ -1,4 +1,3 @@
-from django.http import request
 import stripe
 
 __author__ = 'WillieTran'

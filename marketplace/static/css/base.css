@@ -71,6 +71,15 @@ hr {
     margin: 0;
 }
 
+.stripeBtn {
+    margin: auto;
+    text-align: center;
+}
+
+.zabuto_calendar {
+    width: 15%;
+}
+
 /*
 ******************************
           MESSAGES

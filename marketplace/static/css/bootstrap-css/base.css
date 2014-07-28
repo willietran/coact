@@ -1,0 +1,32 @@
+
+#create-class {
+    border: 1px forestgreen solid;
+    padding: .3rem 1.3rem;
+    vertical-align: middle;
+    background: forestgreen;
+    color: white;
+    font-weight: 100;
+    margin: 1rem;
+    border-radius: 3px;
+}
+
+.profile-image {
+    border-radius: 100%;
+    border: white 2px solid;
+}
+
+.navbar-default {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+
+}
+
+.dropdown-toggle {
+    color: white;
+    text-shadow: 2px 2px 5px;
+}
+
+.navbar-brand {
+    color: white;
+}

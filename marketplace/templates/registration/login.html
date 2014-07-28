@@ -1,12 +1,15 @@
-{% extends "base.html" %}
+{% extends "base-bs.html" %}
 {% load staticfiles %}
+
+
+
 
 {% block title %}
 Login | Teach For Charity with Coact
 {% endblock %}
 
 {% block css %}
-"{% static "css/login.css" %}"
+"{% static 'css/bootstrap-css/login.css' %}"
 {% endblock %}
 
 {% block content %}
@@ -20,3 +23,36 @@ Login | Teach For Charity with Coact
 
     <p>Not a member? <a href="{% url 'register' %}">Register!</a></p>
 {% endblock %}
+
+
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head lang="en">#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Login | Teach For Charity with Coact</title>#}
+{#    <!-- Bootstrap Files -->#}
+{##}
+{#    <!-- Latest compiled and minified CSS -->#}
+{#    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
+{#    <!-- Optional theme -->#}
+{#    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">#}
+{#    <!-- Latest compiled and minified JavaScript -->#}
+{#    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-css/login.css' %}"#}
+{#</head>#}
+{#<body>#}
+{#    <div class="holder">#}
+{#        <h3>Sign in to Coact</h3>#}
+{#        <form method="post" action="." class="form">#}
+{#            {% csrf_token %}#}
+{#            {{ form.as_p }}#}
+{#            <input class='register-button' type="submit" value="Log in">#}
+{#        </form>#}
+{##}
+{#        <p>Not a member? <a href="{% url 'register' %}">Register!</a></p>#}
+{#    </div>#}
+{#</body>#}
+{#</html>#}
+
+
+

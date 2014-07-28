@@ -1,0 +1,10 @@
+body {
+    font-family: avenir, helvetica, sans-serif;
+    font-weight: 100;
+    text-align: center;
+}
+
+label {
+    display: none;
+}
+

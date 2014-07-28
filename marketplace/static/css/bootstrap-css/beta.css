@@ -1,0 +1,194 @@
+body {
+    background: #eee;
+}
+
+
+/*
+************************************************************************
+                            VIDEO SECTION
+************************************************************************
+*/
+
+.video-section {
+    margin-top: -80px;
+}
+
+.video-section .pattern-overlay {
+background-color: rgba(71, 71, 71, 0.59);
+padding: 110px 0 32px;
+min-height: 496px;
+/* Incase of overlay problems just increase the min-height*/
+}
+
+.video-section h1, .video-section h3{
+text-align:center;
+color:#fff;
+}
+.video-section h1{
+font-size:5rem;
+font-family: avenir, helvetica, sans-serif;
+/*font-weight:bold;*/
+margin: 40px auto 0px;
+text-shadow: 1px 1px 1px #000;
+-webkit-text-shadow: 1px 1px 1px #000;
+-moz-text-shadow: 1px 1px 1px #000;
+}
+.video-section h3{
+font-size: 25px;
+font-weight:lighter;
+margin: 0px auto 15px;
+}
+.video-section .buttonBar{display:none;}
+.player {font-size: 1px;}
+
+.video-text {
+    margin-top: 50px;
+}
+
+
+/*
+************************************************************************
+                            COPY PART
+************************************************************************
+*/
+
+.copy-row {
+    background: rgba(255, 139, 91, 0.71);
+    margin: 3rem 14rem auto;
+    text-align: center;
+    padding: 2rem;
+    /*width: 875px;*/
+    vertical-align: middle;
+    color: #ffffff;
+    font-weight: 100;
+    font-size: .75rem;
+    font-family: avenir, helvetica, sans-serif;
+    border: 1px white solid;
+    min-width: 210px;
+}
+
+
+/*
+************************************************************************
+                            FEATURED PROJECTS
+************************************************************************
+*/
+
+.info-container {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 0;
+    /*margin-left: 1rem;*/
+}
+
+.info-row {
+    margin: 2% 10%;
+    text-align: center;
+
+}
+
+.teacher-info {
+    text-align: center;
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 0;
+    height: 300px;
+    /*margin-top: 2rem;*/
+    margin: 2rem 1rem auto;
+    width: 281px;
+    left: 10px;
+
+}
+
+.class-image {
+    position: inherit;
+    display: inline-block;
+    float: left;
+}
+
+.teacher-pic {
+    position: relative;
+    vertical-align: middle;
+    z-index: 1000;
+    /*float: left;*/
+    /*margin-left: -42px;*/
+    /*margin-top: 33px;*/
+    border-radius: 100%;
+    border: 2px white solid;
+    margin: -50px auto;
+}
+
+.class-name {
+    text-align: center;
+    font-size: 1.75rem;
+    text-decoration: none;
+    color: black;
+    padding: 5rem 2rem;
+    margin: auto;
+    top: 100px;
+    display: block;
+}
+
+/*
+************************************************************************
+                            TEACHER INFO
+************************************************************************
+*/
+
+.teacher-container {
+    text-align: center;
+    margin: 3rem auto;
+}
+
+.teacher-container h1 {
+    padding-bottom: 3rem;
+}
+
+.teacher-one {
+    background: url(../../img/Ben-featured-picture.jpg) no-repeat center center;
+}
+
+.teacher-two {
+    background: url(../../img/Willie-featured.jpg) no-repeat center center;
+    margin-left: 4.5rem;
+}
+
+.teacher-h1 {
+    position: absolute;
+    bottom: 70px;
+    margin: auto;
+    font-family: avenir, helvetica, sans-serif;
+    color: white;
+    padding: .5rem;
+    text-shadow: 1px 1px 2px black;
+}
+
+.teacher-details {
+    position: absolute;
+    bottom: 10px;
+    margin: .5rem auto;
+    padding: .5rem;
+    font-family: avenir, helvetica, sans-serif;
+    color: white;
+    text-align: left;
+    text-shadow: 1px 1px 2px black;
+}
+
+.teacher-one, .teacher-two {
+    background-size: cover;
+    height: 450px;
+    width: 425px;
+    border: 1px white solid;
+}
+
+.teacher-one:hover, .teacher-two:hover, .teacher-info:hover {
+    box-shadow: 0 0 10px;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
+}
+
+.modal-content {
+    width: 400px;
+    margin: auto;
+}
+

@@ -8,14 +8,25 @@
     <title>{% block title %}{% endblock %}</title>
 
     <!-- JS Files -->
-{#    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>#}
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 
     <!-- CSS Files -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href={% block css %}{% endblock %}>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"
+
+    <!-- include the calendar js and css files -->
+    <script src="{% static 'js/zabuto_calendar.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/zabuto_calendar.min.css' %}">
+
+    {% block head %}
+
+    {% endblock %}
+
+
 </head>
 <body>
 <!--

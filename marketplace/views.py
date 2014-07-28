@@ -1,7 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.template.loaders.app_directories import app
 from marketplace.forms import *
+import stripe
 
 # Create your views here.
 from marketplace.forms import EmailUserCreationForm, LandingForm
@@ -29,7 +31,13 @@ def home(request):
 def beta(request):
     classroom = Classroom.objects.all()
     class_data = {"classroom": classroom}
-    return render(request, "beta.html", class_data)
+    return render(request, "beta-bs.html", class_data)
+
+
+def class_list(request):
+    classroom = Classroom.objects.all()
+    class_data = {"classroom": classroom}
+    return render(request, "class-list.html", class_data)
 
 
 # Registration view
@@ -75,12 +83,12 @@ def confirm(request):
     return render(request, "confirm.html")
 
 
-# View to allow pepole to view details in the class before signing up
+# View to allow people to view details in the class before signing up
 def class_details(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
     classroom_data = {'classroom': classroom}
 
-    return render(request, "class_details.html", classroom_data)
+    return render(request, "class_details-bs.html", classroom_data)
 
 
 # The button to place a mark on people to measure purchase intent
@@ -180,6 +188,42 @@ def view_teacher(request, user_id):
 
 
 def charge(request):
+
+    # classroom = Classroom.objects.get(id=classroom_id)
+    # classroom_data = {'classroom': classroom}
+
+    # Set your secret key: remember to change this to your live secret key in production
+    # See your keys here https://dashboard.stripe.com/account
+    stripe.api_key = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
+
+    # Get the credit card details submitted by the form
+    token = request.POST['stripeToken']
+
+    # Create a Customer
+    customer = stripe.Customer.create(
+        card=token,
+        description="payingcustomer@example.com"
+    )
+
+    # Charge the Customer instead of the card
+    stripe.Charge.create(
+        amount=4000,  # in cents
+        currency="usd",
+        customer=customer.id
+    )
+
+    # # Save the customer ID in your database so you can use it later
+    # save_stripe_customer_id(user, customer.id)
+    #
+    # # Later...
+    # customer_id = get_stripe_customer_id(user)
+    #
+    # stripe.Charge.create(
+    #     amount=1500, # $15.00 this time
+    #     currency="usd",
+    #     customer=customer_id
+    # )
+
     return render(request, 'charge.html')
 
 

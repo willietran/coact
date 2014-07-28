@@ -43,7 +43,7 @@ class CreateClassForm(forms.Form):
                                   widget=forms.Textarea(attrs={'placeholder': 'Describe your class in detail'}))
 
     cost = forms.FloatField()
-    screenshot = forms.ImageField()
+    screenshot = forms.ImageField(required=False)
 
 
 class ReviewForm(forms.Form):

@@ -1,0 +1,108 @@
+{% extends 'base-bs.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+Learn to code by creating apps | Coact
+{% endblock %}
+
+{% block css %}
+"{% static "css/bootstrap-css/beta.css" %}"
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+<!--Video Section-->
+
+<script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+<script src="{% static 'js/video.js' %}"></script>
+
+
+<section class="content-section video-section">
+  <div class="pattern-overlay">
+  <a id="bgndVideo" class="player" data-property="{videoURL:'http://youtu.be/Qsb2wtvYUyw',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 video-text">
+        <h1>Learn By Creating</h1>
+        <h3>Start building your future by creating your favorite apps</h3>
+{#        <button type='button' class="btn btn-success btn-custom" id="jumbotron-cta">Browse Classes</button>#}
+	   </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Video Section Ends Here-->
+
+<!-- Copy Section -->
+
+<div class="copy-container container">
+    <div class="row">
+        <div class="col-lg-9 copy-row">
+            <h1>Real Teachers. Real Goals. Real Progress.</h1>
+        </div>
+    </div>
+</div>
+
+<!-- End Copy Section -->
+
+<!-- Featured Projects -->
+
+<div class="info-container container">
+    <h2>Featured Projects</h2>
+    <div class="row info-row">
+        {% for class in classroom|slice:":3" %}
+        <a href="{% url 'class_details' class.id %}">
+        <div class="col-md-4 teacher-info">
+            <div class="class-image">
+                <img src="{{ class.screenshot.url }}" alt="class screenshot" height="150" width=100%>
+            </div>
+            <div class="teacher-picture">
+                <a href="{% url 'view_teacher' class.teacher.id %}"><img class="teacher-pic" src="{{ class.teacher.image.url }}" alt="class teacher image" height="85" width="85"></a>
+            </div>
+            <div class="class-name-div">
+                <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>
+            </div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- End Featured Projects -->
+
+<!-- Some of the Teachers -->
+
+<div class="teacher-container container">
+    <h2>Some of The Teachers</h2>
+    <div class="row info-row">
+        <a href="{% url 'view_teacher' 11 %}">
+        <div class="col-md-6 teacher-one">
+            <div class="teacher-name">
+                <h1 class="teacher-h1">Ben Kremer</h1>
+                <p class="teacher-details">
+                    Brilliant full-stack developer with over 10 years of experience of running his own consulting company. If you want to learn how to make beautiful websites, then Ben Kremer is your guy!
+                </p>
+            </div>
+        </div>
+        </a>
+        <a href="{% url 'view_teacher' 1 %}">
+        <div class="col-md-6 teacher-two">
+            <div class="teacher-name">
+                <h1 class="teacher-h1">Willie Tran</h1>
+                <p class="teacher-details">
+                    Hi! I built this thing, and I am able to do a few other things as well. If you're wanting to maximize conversions to your website or grow your userbase then you should check out my classes!
+                </p>
+            </div>
+        </div>
+        </a>
+    </div>
+</div>
+
+<!-- End Some of the Teachers -->
+
+{% endblock %}

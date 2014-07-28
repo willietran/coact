@@ -1,0 +1,96 @@
+body {
+    background-color: #eeeeee;
+}
+
+
+.copy-header {
+    margin: auto;
+    height: 150px;
+    font-weight: 100;
+    font-family: avenir, helvetica, sans-serif;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);
+    background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);
+}
+
+/*
+************************************************************************
+                            AVAILABLE CLASSES
+************************************************************************
+*/
+
+
+.info-container {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 0;
+    /*margin-left: 1rem;*/
+}
+
+.info-row {
+    margin: 2% 10%;
+    text-align: center;
+
+}
+
+.teacher-info {
+    text-align: center;
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 0;
+    /*height: 300px;*/
+    /*margin-top: 2rem;*/
+    margin: 2rem 1rem auto;
+    /*width: 281px;*/
+    left: 10px;
+
+}
+
+.class-image {
+    position: inherit;
+    display: inline-block;
+    float: left;
+}
+
+.teacher-pic {
+    position: relative;
+    vertical-align: middle;
+    z-index: 1000;
+    float: left;
+    margin-left: -42px;
+    margin-top: 40px;
+    border-radius: 100%;
+    border: 2px white solid;
+}
+
+.class-name-div {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    width: 60%;
+    /*float: left;*/
+    text-align: left;
+    margin-left: -20px;
+    top: 20px;
+    font-size: 1.75rem;
+    color: black;
+    font-family: avenir, helvetica, sans-serif;
+}
+
+.teacher-name {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-align: left;
+    top: 60px;
+    font-size: 1.75rem;
+    color: black;
+    font-family: avenir, helvetica, sans-serif;
+}
