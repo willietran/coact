@@ -1,67 +1,67 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-
-{% block title %}
-
-{% endblock %}
-
-{% block head %}
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
-
-{% endblock %}
-
-
-{% block css %}
-"{% static 'css/schedule.css' %}"
-{% endblock %}
-
-
-{% block content %}
-    <h1>Schedule your time!</h1>
-
-    <form class='stripeBtn' action="/charge/" method="POST">
-    {% csrf_token %}
-      <script
-        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="pk_test_pWxm3wMH8P9Lvrp96uZp7nHK"
-        data-key="pk_live_UOChTX1somui4onsvUB0RWgR"
-        data-image="{% static 'img/coact logo 150.png' %}"
-        data-name="Coact"
-        data-description="2 widgets ($10)"
-        data-amount="1000"
-        data-allow-remember-me="True">
-      </script>
-    </form>
-    <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7
-"><input type="image" id="stripeImage" src="{% static 'img/blue.png' %}"></a>
-
-
-
-
-
-<!-- define the calendar element -->
-<div id="my-calendar"></div>
-
-<!-- initialize the calendar on ready -->
-<script type="application/javascript">
-    $(document).ready(function () {
-        $("#my-calendar").zabuto_calendar();
-    });
-</script>
-
-
-
-
-
-
-{% endblock %}
+{#{% extends 'base.html' %}#}
+{#{% load staticfiles %}#}
+{##}
+{#{% block title %}#}
+{##}
+{#{% endblock %}#}
+{##}
+{#{% block head %}#}
+{##}
+{#<!-- Latest compiled and minified CSS -->#}
+{#<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">#}
+{##}
+{#<!-- Optional theme -->#}
+{#<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">#}
+{##}
+{#<!-- Latest compiled and minified JavaScript -->#}
+{#<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>#}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
+{##}
+{##}
+{#{% block css %}#}
+{#"{% static 'css/schedule.css' %}"#}
+{#{% endblock %}#}
+{##}
+{##}
+{#{% block content %}#}
+{#    <h1>Schedule your time!</h1>#}
+{##}
+{#    <form class='stripeBtn' action="/charge/" method="POST">#}
+{#    {% csrf_token %}#}
+{#      <script#}
+{#        src="https://checkout.stripe.com/checkout.js" class="stripe-button"#}
+{#        data-key="pk_test_pWxm3wMH8P9Lvrp96uZp7nHK"#}
+{#        data-key="pk_live_UOChTX1somui4onsvUB0RWgR"#}
+{#        data-image="{% static 'img/coact logo 150.png' %}"#}
+{#        data-name="Coact"#}
+{#        data-description="2 widgets ($10)"#}
+{#        data-amount="1000"#}
+{#        data-allow-remember-me="True">#}
+{#      </script>#}
+{#    </form>#}
+{#    <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7#}
+{#"><input type="image" id="stripeImage" src="{% static 'img/blue.png' %}"></a>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#<!-- define the calendar element -->#}
+{#<div id="my-calendar"></div>#}
+{##}
+{#<!-- initialize the calendar on ready -->#}
+{#<script type="application/javascript">#}
+{#    $(document).ready(function () {#}
+{#        $("#my-calendar").zabuto_calendar();#}
+{#    });#}
+{#</script>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#{% endblock %}#}

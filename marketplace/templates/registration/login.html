@@ -13,15 +13,23 @@ Login | Teach For Charity with Coact
 {% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
-    <form method="post" action=".">
+
+    <div class="container">
+      <form class="form-signin" role="form" method="post" action=".">
         {% csrf_token %}
-        {{ form.as_p }}
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input id="id_username" maxlength="245" name="username" type="text" class="form-control" placeholder="Username" required autofocus>
+        <input id="id_password" name="password" type="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
 
-        <input class='register-button' type="submit" value="Log in">
-    </form>
+    </div> <!-- /container -->
 
-    <p>Not a member? <a href="{% url 'register' %}">Register!</a></p>
 {% endblock %}
 
 

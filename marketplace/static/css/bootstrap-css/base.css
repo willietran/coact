@@ -30,3 +30,79 @@
 .navbar-brand {
     color: white;
 }
+
+.emailPassword, .aboutSection, .imageSection, .doneButton, .progressDone {
+    display: none;
+}
+
+.loginModal {
+    height: 100%;
+    padding: 4rem;
+    text-align: center;
+    background-color: rgba(32, 32, 71, 0.95)
+}
+
+.loginModal input {
+    margin-bottom: 1rem;
+    border-radius: 0;
+}
+
+.loginModal button {
+    margin-top: 1rem;
+    border-radius: 0;
+    background-color: rgb(77, 189, 150) !important;
+    background-image: none;
+    border: none;
+}
+
+.registerModal {
+    height: 100%;
+    padding: 4rem;
+    text-align: center;
+    background-color: rgba(32, 32, 71, 0.95)
+}
+
+.registerModal input {
+    margin-bottom: 1rem;
+    border-radius: 0;
+    display: block;
+}
+
+.registerModal textarea {
+    border-radius: 0;
+}
+
+.registerModal button {
+    margin-top: 1rem;
+    border-radius: 0;
+    background-color: rgb(77, 189, 150) !important;
+    background-image: none;
+    border: none;
+}
+
+.registerModal a {
+    margin-top: 1rem;
+    border-radius: 0;
+    background-color: rgb(77, 189, 150) !important;
+    background-image: none;
+    border: none;
+}
+
+.subtitle-register, .header-register {
+    color: white;
+    font-family: helvetica, sans-serif;
+}
+
+#id_image {
+    position: absolute;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.progress-bar, .progress {
+    border-radius: 0;
+}
+
+
+

@@ -1,19 +1,19 @@
-{% extends 'base-bs.html' %}
-
-{% load staticfiles %}
-
-{% block title %}
-Available Projects | Coact
-{% endblock %}
-
-{% block css %}
-"{% static "css/bootstrap-css/class-list.css" %}"
-{% endblock %}
-
-{% block head %}
-{% endblock %}
-
-
+{#{% extends 'base-bs.html' %}#}
+{##}
+{#{% load staticfiles %}#}
+{##}
+{#{% block title %}#}
+{#Available Projects | Coact#}
+{#{% endblock %}#}
+{##}
+{#{% block css %}#}
+{#"{% static "css/bootstrap-css/class-list.css" %}"#}
+{#{% endblock %}#}
+{##}
+{#{% block head %}#}
+{#{% endblock %}#}
+{##}
+{##}
 
 {% block content %}
 
@@ -22,7 +22,7 @@ Available Projects | Coact
         <div class="col-md-12 copy-header">
             <hr>
             <h1>Available Classes</h1>
-            <p>Placeholder Text</p>
+            <p class="col-xs-12">Never leave a project unfinished again. Real Teachers will walk you through until you have reached your goal.</p>
             <hr>
         </div>
     </div>
@@ -34,18 +34,26 @@ Available Projects | Coact
     <div class="row info-row">
         {% for class in classroom %}
         <a href="{% url 'class_details' class.id %}">
-        <div class="col-md-12 teacher-info">
-            <div class="class-image">
-                <img src="{{ class.screenshot.url }}" alt="class screenshot" height="175" width="225">
+        <div class="col-lg-12 teacher-info1">
+            <div class="class-image1">
+                <img src="{{ class.screenshot.url }}" alt="class screenshot1" height="175" width="225">
             </div>
-            <div class="teacher-picture">
-                <a href="{% url 'view_teacher' class.teacher.id %}"><img class="teacher-pic" src="{{ class.teacher.image.url }}" alt="class teacher image" height="85" width="85"></a>
+            <div class="teacher-picture1">
+                <a href="{% url 'view_teacher' class.teacher.id %}"><img class="teacher-pic1" src="{{ class.teacher.image.url }}" alt="class teacher image" height="85" width="85"></a>
             </div>
-            <div class="class-name-div">
-                <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>
+            <div class="class-text1">
+                <div class="class-name-div1">
+                    <a href="{% url 'class_details' class.id %}" class="class-name1">{{ class }}</a>
+                </div>
+                <div class="teacher-name1">
+                    <p>by: <a href="{% url 'view_teacher' class.teacher.id %}">{{ class.teacher.username }}</a></p>
+                </div>
+                <div class="teacher-details1 hidden-md hidden-sm hidden-xs">
+                    <p>{{ class.short_description }}</p>
+                </div>
             </div>
-            <div class="teacher-name">
-                <p>by: <a href="{% url 'view_teacher' class.teacher.id %}">{{ class.teacher.username }}</a></p>
+            <div class="cost1">
+                <a href="{% url 'class_details' class.id %}" class="cost-button">${{ class.cost }}</a><div class="one-hour"> for 1 hour</div>
             </div>
         </div>
         </a>

@@ -1,0 +1,164 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- JS Files -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'js/create_class.js' %}"></script>
+
+    <!-- Bootstrap Files -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <!-- CSS Files -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href={% block css %}{% endblock %}>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-css/create_class_base.css' %}"
+
+
+
+
+
+    <!-- include the calendar js and css files -->
+    <script src="{% static 'js/zabuto_calendar.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/zabuto_calendar.min.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    {% block head %}
+
+    {% endblock %}
+
+
+</head>
+<body>
+<!--
+******************************
+       NAVIGATION BAR
+******************************
+-->
+
+<nav id="navigation" class="navbar navbar-default transparent navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'beta' %}"><img src="{% static 'img/coact logo2-100.png' %}" alt="Coact Logo"></a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    {% if user.is_authenticated %}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"> {{ request.user.username }}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'view_profile' request.user.id %}">View Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'messages_compose' %}">Compose Message</a></li>
+          </ul>
+        <li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span></a></li>
+        <li><a href="{% url 'create_class' %}" id='create-class'>Start Teaching</a> </li>
+      </ul>
+    </div>
+    {% else %}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'login' %}" class="navigation-login" data-toggle="modal" data-target=".bs-example-modal-sm">Login</a></li>
+        <li><a href="{% url 'register' %}" class="navigation-register">Register</a></li>
+      </ul>
+    </div>
+    {% endif %}<!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!--
+******************************
+        SIDE BAR
+******************************
+-->
+
+ <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a class="basicInformationLink" href="#">Basic Information</a></li>
+            <li><a class="shortDescriptionLink" href="#">Short Description</a></li>
+            <li><a class="longDescriptionLink" href="#">Long Description</a></li>
+            <li><a class="screenshotLink" href="#">Screenshot</a></li>
+          </ul>
+        </div>
+      </div>
+ </div>
+
+<!--
+******************************
+        MAIN CONTENT
+******************************
+-->
+
+<div class="col-sm-9 col-sm-offset-2 col-md-10 col-md-offset-2-main contentSection">
+    <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="basicInformation">
+            <h2 class="form-signin-heading header-class-create">Class Name</h2>
+            <label>Title</label>
+            <input id="id_title" maxlength="140" name="title" placeholder="Name of Your Class" type="text" class="form-control">
+            <label>Project</label>
+            <input id="id_project" maxlength="50" name="project" placeholder="What will you be building?" type="text" class="form-control">
+        </div>
+        <div class="shortDescription">
+            <h2 class="form-signin-heading header-class-create">Class Name</h2>
+            <label>Brief Description</label>
+            <textarea cols="40" id="id_short_description" name="description" placeholder="Brief Summary of Your Class" rows="10"></textarea>
+        </div>
+        <div class="longDescription">
+            <h2 class="form-signin-heading header-register">Class Name</h2>
+            <label>Detailed Description</label>
+            <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="10"></textarea>
+        </div>
+        <div class="imageSection">
+            <input id="id_image" name="image" type="file" style="height: 150px; width: auto">
+            <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
+        </div>
+    </form>
+</div>
+
+
+{#{% block content %}#}
+{##}
+{#{% endblock %}#}
+
+
+
+<!--
+******************************
+         FOOTER
+******************************
+-->
+
+<footer>
+    <p>&copy; 2014 Coact, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
+
+</body>
+</html>

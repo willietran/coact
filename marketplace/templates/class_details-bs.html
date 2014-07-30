@@ -32,20 +32,23 @@
         <div class="class-cost">
             <p>${{ classroom.cost }} for 1 hour</p>
         </div>
-        <div class="contact-teacher">
-            <a href="{% url 'join_class' classroom.id %}" id="join_class"><input id="join-class" type="submit" value="Schedule a lesson" name="SubmitButton"></a>
-            <a id="message-teacher" href="{% url 'messages_compose_to' classroom.teacher %}"><input id="send-message" type="submit" value="Send a message" name="SubmitButton"></a>
-        </div>
-
-{#    <script src="https://apis.google.com/js/platform.js"></script>#}
-{#        <div id="placeholder-div1"></div>#}
-{#        <script>#}
-{#          gapi.hangout.render('placeholder-div1', {#}
-{#            'render': 'createhangout',#}
-{#            'initial_apps': [{'app_id' : '184219133185', 'start_data' : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]#}
-{#          });#}
-{#        </script>#}
-
+    <p>Reserve Your First Hour</p>
+    <form action="/charge/" method="POST" class="stripeBtn" style="text-align: center;">
+    {% csrf_token %}
+      <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_pWxm3wMH8P9Lvrp96uZp7nHK"
+        data-amount="{{ classroom.cost }}"
+        data-name="{{ classroom.teacher }}"
+        data-description="{{ classroom.title }} (${{ classroom.cost }})"
+        data-image="{% static 'img/coact logo2-100.png' %}">
+      </script>
+    </form>
+    <p>Schedule a time to meet</p>
+    <div class="contact-teacher">
+{#        <a href="{% url 'join_class' classroom.id %}" id="join_class"><input id="join-class" type="submit" value="Schedule a lesson" name="SubmitButton"></a>#}
+        <a id="message-teacher" href="{% url 'messages_compose_to' classroom.teacher %}"><input id="send-message" type="submit" value="Send a message" name="SubmitButton"></a>
+    </div>
     <div class="hangout">
         <script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
         <g:hangout render="createhangout"
@@ -53,6 +56,7 @@
                       { id : 'foo@example.com', invite_type : 'EMAIL' }]">
         </g:hangout>
     </div>
+
     <hr>
         <div class="social-proof">
             <h3 class="social-title">What other students think</h3>

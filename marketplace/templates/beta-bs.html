@@ -18,7 +18,7 @@ Learn to code by creating apps | Coact
 <!--Video Section-->
 
 <script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
-<script src="{% static 'js/video.js' %}"></script>
+<script src="{% static 'js/beta.js' %}"></script>
 
 
 <section class="content-section video-section">
@@ -29,14 +29,18 @@ Learn to code by creating apps | Coact
         <div class="col-lg-12 video-text">
         <h1>Learn By Creating</h1>
         <h3>Start building your future by creating your favorite apps</h3>
-{#        <button type='button' class="btn btn-success btn-custom" id="jumbotron-cta">Browse Classes</button>#}
 	   </div>
+      <div class="col-md-4 video-button">
+          <a href="#class-list" type="button" class="btn btn-success btn-custom moreClassButton">See Available Classes</a>
+      </div>
       </div>
     </div>
   </div>
 </section>
 
 <!--Video Section Ends Here-->
+
+
 
 <!-- Copy Section -->
 
@@ -52,12 +56,12 @@ Learn to code by creating apps | Coact
 
 <!-- Featured Projects -->
 
-<div class="info-container container">
+<div class="info-container container" id="featured-title">
     <h2>Featured Projects</h2>
     <div class="row info-row">
         {% for class in classroom|slice:":3" %}
         <a href="{% url 'class_details' class.id %}">
-        <div class="col-md-4 teacher-info">
+        <div class="col-lg-4 col-md-12 teacher-info">
             <div class="class-image">
                 <img src="{{ class.screenshot.url }}" alt="class screenshot" height="150" width=100%>
             </div>
@@ -75,13 +79,25 @@ Learn to code by creating apps | Coact
 
 <!-- End Featured Projects -->
 
+<!--Hidden Classes-->
+
+<div class="classes-container container">
+    <div class="row">
+        <div class="col-md-12 class-list" id="class-list">
+
+        </div>
+    </div>
+</div>
+
+<!--End of Hidden Classes-->
+
 <!-- Some of the Teachers -->
 
 <div class="teacher-container container">
     <h2>Some of The Teachers</h2>
     <div class="row info-row">
         <a href="{% url 'view_teacher' 11 %}">
-        <div class="col-md-6 teacher-one">
+        <div class="col-md-5 teacher-one">
             <div class="teacher-name">
                 <h1 class="teacher-h1">Ben Kremer</h1>
                 <p class="teacher-details">
@@ -91,7 +107,7 @@ Learn to code by creating apps | Coact
         </div>
         </a>
         <a href="{% url 'view_teacher' 1 %}">
-        <div class="col-md-6 teacher-two">
+        <div class="col-md-5 teacher-two">
             <div class="teacher-name">
                 <h1 class="teacher-h1">Willie Tran</h1>
                 <p class="teacher-details">

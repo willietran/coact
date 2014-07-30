@@ -10,6 +10,7 @@
     <!-- JS Files -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'js/base.js' %}"></script>
 
     <!-- Bootstrap Files -->
 
@@ -81,8 +82,8 @@
     {% else %}
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'login' %}" class="navigation-login" data-toggle="modal" data-target=".bs-example-modal-sm">Login</a></li>
-        <li><a href="{% url 'register' %}" class="navigation-register">Register</a></li>
+        <li><a href="#" class="navigation-login" data-toggle="modal" data-target=".bs-example-modal-sm">Login</a></li>
+        <li><a href="#" class="navigation-register" data-toggle="modal" data-target=".register-modal-lg">Register</a></li>
       </ul>
     </div>
     {% endif %}<!-- /.navbar-collapse -->
@@ -92,14 +93,84 @@
 
 <!--
 ******************************
-      CREATE CLASS MODAL
+        LOGIN MODAL
 ******************************
 -->
 
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      ...
+    <div class="modal-content loginModal">
+      <form method="post" action="/login/">
+        {% csrf_token %}
+        <input id="id_username" maxlength="245" name="username" type="text" class="form-control" placeholder="Username" required autofocus>
+        <input id="id_password" name="password" type="password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--
+******************************
+     CREATE ACCOUNT MODAL
+******************************
+-->
+
+<div class="modal fade register-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content registerModal">
+      <form method="post" action="/register/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="userName">
+            <h2 class="form-signin-heading header-register">Pick Your Username</h2>
+            <h4 class="subtitle-register">Hey there! Lets make a username, so we know what to call you</h4>
+            <input id="id_username" maxlength="30" name="username" type="text" placeholder="Username" class="form-control">
+            <input id="id_name" maxlength="30" name="name" type="text" placeholder="Name" class="form-control">
+            <a href="#" class="btn btn-lg btn-primary btn-block usernameNext" id="usernameNext">Next: Email</a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                <span class="sr-only">60% Complete</span>
+              </div>
+            </div>
+        </div>
+        <div class="emailPassword">
+            <h2 class="form-signin-heading header-register">Register Your Account</h2>
+            <h4 class="subtitle-register">Awesome! Could we also get your e-mail and password too?</h4>
+            <input id="id_email" name="email" type="email" placeholder="E-mail" class="form-control">
+            <input id="id_password1" name="password1" type="password" placeholder="Password" class="form-control">
+            <input id="id_password2" name="password2" type="password" placeholder="Confirm Password" class="form-control">
+            <a href="#" class="btn btn-lg btn-primary btn-block emailPasswordNext">Next: About You</a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                <span class="sr-only">60% Complete</span>
+              </div>
+            </div>
+        </div>
+        <div class="aboutSection">
+            <h2 class="form-signin-heading header-register">About You</h2>
+            <h4 class="subtitle-register">Tiny favor... Could you tell us a bit about yourself?</h4>
+            <textarea cols="40" id="id_about" name="about" placeholder="What makes you awesome?" rows="10" class="form-control"></textarea>
+            <a href="#" class="btn btn-lg btn-primary btn-block aboutNext">Next: Image</a>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                <span class="sr-only">60% Complete</span>
+              </div>
+            </div>
+        </div>
+        <div class="imageSection">
+            <h2 class="form-signin-heading header-register">Take A Picture</h2>
+            <h4 class="subtitle-register">Show the world how good you look!</h4>
+            <input id="id_image" name="image" type="file" style="height: 150px; width: auto">
+            <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
+{#            <a href="#" class="btn btn-lg btn-primary btn-block imageNext">Next: High Five!</a>#}
+        </div>
+          <button class="btn btn-lg btn-primary btn-block doneButton" type="submit">Done!</button>
+          <div class="progress progressDone">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                <span class="sr-only">60% Complete</span>
+              </div>
+          </div>
+      </form>
     </div>
   </div>
 </div>

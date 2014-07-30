@@ -35,9 +35,10 @@ def beta(request):
 
 
 def class_list(request):
-    classroom = Classroom.objects.all()
-    class_data = {"classroom": classroom}
-    return render(request, "class-list.html", class_data)
+    if request.method == 'GET':
+        classroom = Classroom.objects.all()
+        class_data = {"classroom": classroom}
+        return render(request, "class-list.html", class_data)
 
 
 # Registration view
@@ -75,7 +76,7 @@ def create_class(request):
 
     classroom = Classroom.objects.all()
     data = {"classroom_form": form, "classroom": classroom}
-    return render(request, "create_class.html", data)
+    return render(request, "class_create/base.html", data)
 
 
 # Confirmation page for after people create a new account
@@ -101,6 +102,26 @@ def join_class(request, classroom_id):
     except Learner.DoesNotExist:
         new_student = Learner.objects.create(name=request.user, hangout=request.user)
     classroom1.student.add(new_student)
+
+    # Set your secret key: remember to change this to your live secret key in production
+    # See your keys here https://dashboard.stripe.com/account
+    stripe.api_key = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
+
+    # Get the credit card details submitted by the form
+    token = request.POST['stripeToken']
+
+    # Create a Customer
+    customer = stripe.Customer.create(
+        card=token,
+        description="payingcustomer@example.com"
+    )
+
+    # Charge the Customer instead of the card
+    stripe.Charge.create(
+        amount=4000,  # in cents
+        currency="usd",
+        customer=customer.id
+    )
 
     return render(request, "join_class.html", classroom_data1)
 
@@ -212,19 +233,11 @@ def charge(request):
         customer=customer.id
     )
 
-    # # Save the customer ID in your database so you can use it later
-    # save_stripe_customer_id(user, customer.id)
-    #
-    # # Later...
-    # customer_id = get_stripe_customer_id(user)
-    #
-    # stripe.Charge.create(
-    #     amount=1500, # $15.00 this time
-    #     currency="usd",
-    #     customer=customer_id
-    # )
-
     return render(request, 'charge.html')
+
+
+def landing_page(request):
+    return render(request, 'landing.html')
 
 
 

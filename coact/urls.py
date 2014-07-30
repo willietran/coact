@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^beta/$', 'marketplace.views.beta', name='beta'),
     url(r'^$', 'marketplace.views.beta', name='home'),
+    url(r'^landing_page/$', 'marketplace.views.landing_page', name='landing_page'),
 
     # User Registration
     url(r'^register/$', 'marketplace.views.register', name='register'),
