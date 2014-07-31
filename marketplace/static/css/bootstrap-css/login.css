@@ -8,3 +8,7 @@ label {
     display: none;
 }
 
+.form-signin {
+    width: 20%;
+    margin: auto;
+}

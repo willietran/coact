@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block head %}
+<meta http-equiv="refresh" content="0; url={% url "landing" %}"/>
+{% endblock %}
+
 {% block content %}
     <p>Come back soon!</p>
 {% endblock %}

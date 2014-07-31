@@ -11,7 +11,9 @@ class EmailUserCreationForm(UserCreationForm):
     name = forms.CharField(max_length=30)
     about = forms.CharField(max_length=400,
                             widget=forms.Textarea(attrs={'placeholder': 'Tell a bit about yourself'}))
-    image = forms.ImageField(required=False)
+    image = forms.ImageField(required=True)
+    occupation = forms.CharField(max_length=30,
+                                 required=True,)
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
@@ -43,7 +45,7 @@ class CreateClassForm(forms.Form):
                                   widget=forms.Textarea(attrs={'placeholder': 'Describe your class in detail'}))
 
     cost = forms.FloatField()
-    screenshot = forms.ImageField(required=False)
+    screenshot = forms.ImageField(required=True)
 
 
 class ReviewForm(forms.Form):

@@ -104,8 +104,8 @@
             <li><a class="basicInformationLink" href="#">Basic Information</a></li>
             <li><a class="shortDescriptionLink" href="#">Short Description</a></li>
             <li><a class="longDescriptionLink" href="#">Long Description</a></li>
-            <li><a class="screenshotLink" href="#">Screenshot</a></li>
           </ul>
+            <input type="submit" form="classCreationForm" class="btn btn-primary submitCreateButton" value="Submit Class">
         </div>
       </div>
  </div>
@@ -116,32 +116,90 @@
 ******************************
 -->
 
-<div class="col-sm-9 col-sm-offset-2 col-md-10 col-md-offset-2-main contentSection">
-    <form method="post" action="." enctype="multipart/form-data">
+<div class="col-sm-9 col-sm-offset-2 col-md-4 col-md-offset-3-main contentSection">
+    <form method="post" action="." enctype="multipart/form-data" id="classCreationForm">
         {% csrf_token %}
         <div class="basicInformation">
-            <h2 class="form-signin-heading header-class-create">Class Name</h2>
-            <label>Title</label>
-            <input id="id_title" maxlength="140" name="title" placeholder="Name of Your Class" type="text" class="form-control">
-            <label>Project</label>
-            <input id="id_project" maxlength="50" name="project" placeholder="What will you be building?" type="text" class="form-control">
+{#            <h2 class="form-signin-heading header-class-create">Class Information</h2>#}
+            <label for="id_title">Title</label>
+{#            <input id="id_title" maxlength="140" name="title" placeholder="Name of Your Class" type="text" class="form-control">#}
+            {{ classroom_form.title }}
+            <label for="id_project">Project</label>
+{#            <input id="id_project" maxlength="50" name="project" placeholder="What will you be building?" type="text" class="form-control">#}
+            {{ classroom_form.project }}
+            <label for="id_cost">Price Per Hour</label>
+{#            <input id="id_cost" step="any" type="number">#}
+            {{ classroom_form.cost }}
+            <label for="id_screenshot">Add an Image Of Your End Product</label>
+            <input id="id_screenshot" name="screenshot" type="file" height="150px" width="150px">
+{#            {{ classroom_form.screenshot }}#}
+            <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
         </div>
         <div class="shortDescription">
-            <h2 class="form-signin-heading header-class-create">Class Name</h2>
-            <label>Brief Description</label>
-            <textarea cols="40" id="id_short_description" name="description" placeholder="Brief Summary of Your Class" rows="10"></textarea>
+{#            <h2 class="form-signin-heading header-class-create">Short Description</h2>#}
+            <label for="id_short_description">Brief Description</label>
+{#            <textarea cols="40" id="id_short_description" name="short_description" placeholder="Brief Summary of Your Class" rows="10"></textarea>#}
+            {{ classroom_form.short_description }}
         </div>
         <div class="longDescription">
-            <h2 class="form-signin-heading header-register">Class Name</h2>
-            <label>Detailed Description</label>
-            <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="10"></textarea>
-        </div>
-        <div class="imageSection">
-            <input id="id_image" name="image" type="file" style="height: 150px; width: auto">
-            <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
+{#            <h2 class="form-signin-heading header-register">Full Description</h2>#}
+            <label for="id_description">Detailed Description</label>
+            <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="50"></textarea>
+{#            {{ classroom_form.description }}#}
         </div>
     </form>
 </div>
+
+<div class="information-container .hidden-xs .hidden-sm">
+    <div class="row .hidden-xs .hidden-sm">
+        <div class="col-md-4 .hidden-xs .hidden-sm">
+            <div class="title-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Writing a Title</h4>
+                <ul>
+                    <li>Your class name will be the first thing people see!</li>
+                    <li>Make sure it's alluring!</li>
+                    <li>Stating a clear goal in the title helps</li>
+                </ul>
+            </div>
+            <div class="project-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Choosing a project</h4>
+                <ul>
+                    <li>Interesting Projects are why people are here!</li>
+                    <li>The more popular apps that people use perform much better.</li>
+                    <li>Show a picture of the end product! It helps!</li>
+                </ul>
+            </div>
+            <div class="price-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Price</h4>
+                <ul>
+                    <li>For back-end programming, the rates are about $45/hr.</li>
+                    <li>Front-end rates usually go for a bit less.</li>
+                    <li>The more extensive and your project is, the more sessions it will take.</li>
+                </ul>
+            </div>
+            <div class="s-description-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Short Description</h4>
+                <ul>
+                    <li>Keep it short. Limit is the same length as a tweet (140 characters).</li>
+                    <li>On the list of available classes, this will be the additional information people see.</li>
+                </ul>
+                <img class="description-image" src="{% static 'img/s-description-tip.png' %}" alt="Area of Short Description">
+            </div>
+            <div class="description-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Description</h4>
+                <ul>
+                    <li>This is where you get to really elaborate!</li>
+                    <li>Write in detail about what you'll be doing in your class.</li>
+                    <li>It helps immensely to write a general guideline of what you'll be doing in this class.</li>
+                    <li>We've noticed that classes that put what material to study beforehand are more popular.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 
 
 {#{% block content %}#}
@@ -156,9 +214,9 @@
 ******************************
 -->
 
-<footer>
-    <p>&copy; 2014 Coact, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-</footer>
+{#<footer>#}
+{#    <p>&copy; 2014 Coact, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>#}
+{#</footer>#}
 
 </body>
 </html>

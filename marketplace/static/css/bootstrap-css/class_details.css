@@ -1,0 +1,27 @@
+.header-container {
+    height: 150px;
+    /*background-color: red;*/
+    text-align: center;
+    position: relative;
+}
+
+.wrapper-header {
+    width: 100%;
+    background-color: rgba(236, 225, 235, 0.84);
+}
+
+.title-column {
+    position: absolute;
+    text-align: left;
+}
+
+.title-column > h1 {
+    position: relative;
+    font-size: 20px;
+    font-weight: lighter;
+    margin-top: 5rem;
+}
+
+.title-column > p {
+    font-weight: bold;
+}

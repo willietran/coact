@@ -1,9 +1,12 @@
+import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.template.loaders.app_directories import app
+from django.contrib.auth import authenticate, login
 from marketplace.forms import *
 import stripe
+import requests
 
 # Create your views here.
 from marketplace.forms import EmailUserCreationForm, LandingForm
@@ -47,7 +50,10 @@ def register(request):
         form = EmailUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("login")
+            new_user = authenticate(username=request.POST['username'],
+                                    password=request.POST['password1'])
+            login(request, new_user)
+            return redirect("home")
     else:
         form = EmailUserCreationForm()
 
@@ -57,6 +63,7 @@ def register(request):
 
 
 # View to create a new class
+@login_required()
 def create_class(request):
     if request.method == "POST":
         form = CreateClassForm(request.POST, request.FILES)
@@ -208,10 +215,10 @@ def view_teacher(request, user_id):
     return render(request, "view_teacher.html", teacher_data)
 
 
-def charge(request):
+def charge(request, classroom_id):
 
-    # classroom = Classroom.objects.get(id=classroom_id)
-    # classroom_data = {'classroom': classroom}
+    classroom = Classroom.objects.get(id=classroom_id)
+    classroom_data = {'classroom': classroom}
 
     # Set your secret key: remember to change this to your live secret key in production
     # See your keys here https://dashboard.stripe.com/account
@@ -233,11 +240,27 @@ def charge(request):
         customer=customer.id
     )
 
-    return render(request, 'charge.html')
+    return render(request, 'charge.html', classroom_data)
 
 
 def landing_page(request):
     return render(request, 'landing.html')
+
+
+def stripe_connect(request):
+
+    print request
+
+    url = "https://connect.stripe.com/oauth/token"
+    client_secret = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
+    code = str(request.GET['code'])
+    grant_type = 'authorization_code'
+
+    query_args = {'client_secret': client_secret, 'code': code, 'grant_type': grant_type}
+    r = requests.post(url, data=query_args)
+    print r
+
+    return render(request, 'stripe_login.html')
 
 
 

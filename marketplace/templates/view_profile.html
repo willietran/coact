@@ -19,6 +19,8 @@
     <p class="user-about">{{ user.about }}</p>
 {#    <a class="contact" href="{% url 'messages_compose_to' user %}">Send Me A Message</a>#}
 </div>
+
+
 <div class="helper">
     <h1>Classes you are teaching</h1>
 </div>
@@ -30,7 +32,7 @@
         </div>
         <div class="details">
             <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>
-            <h3 class="teacher">by: {{ class.teacher }}</a></h3>
+            <h3 class="teacher">by: {{ class.teacher }}</h3>
             <p class="short-description">{{ class.short_description }}</p>
         </div>
         <div class="cost">
@@ -39,4 +41,8 @@
     </div>
 {% endfor %}
 </div>
+
+    <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_4TamfC1v8Ik7Iehtch3Pw9hykMxjZARS
+"><input type="image" id="stripeImage" src="{% static 'img/blue.png' %}"></a>
+
 {% endblock %}

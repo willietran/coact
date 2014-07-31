@@ -57,7 +57,8 @@ urlpatterns = patterns('',
     url(r'^messages/', include('django_messages.urls')),
 
     # Payment Charging
-    url(r'^charge/$', 'marketplace.views.charge', name='charge'),
+    url(r'^charge/(?P<user_id>[0-9]+)/$', 'marketplace.views.charge', name='charge'),
+    url(r'^stripe_connect/$', 'marketplace.views.stripe_connect', name='stripe_connect'),
 
 )
 
