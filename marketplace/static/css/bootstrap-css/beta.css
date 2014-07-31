@@ -62,6 +62,7 @@ margin: 0px auto 15px;
 .btn-custom {
   background-color: hsl(12, 55%, 75%) !important;
   background-repeat: repeat-x;
+  background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FF8B5B", endColorstr="#FF8B5B");
   background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(255, 139, 91, 0.71)), to(rgba(255, 139, 91, 0.71)));
   background-image: -moz-linear-gradient(top, rgba(255, 139, 91, 0.71), rgba(255, 139, 91, 0.71));
@@ -81,6 +82,10 @@ margin: 0px auto 15px;
   border-radius: 0;
   width: 200px;
   height: 40px;
+}
+
+.btn-success:hover {
+    background-position: 0 !important;
 }
 
 

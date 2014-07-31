@@ -1,0 +1,153 @@
+
+.background-container {
+    background: url(../../img/computer%20and%20desk.jpg) center center no-repeat;
+    background-size: cover;
+    height: 350px;
+}
+
+p {
+    font-weight: 200;
+}
+
+h4 {
+    font-weight: 400;
+}
+
+/**********************************
+              Header
+***********************************/
+
+.header-container {
+    height: 150px;
+    text-align: center;
+    position: relative;
+}
+
+hr {
+    margin-top: 0;
+}
+
+.wrapper-header {
+    width: 100%;
+    background-color: #f1f4f4;
+    border-bottom: 1px solid #ced1d1;
+}
+
+.title-column {
+    position: absolute;
+    text-align: left;
+}
+
+.title-column > h1 {
+    position: relative;
+    font-size: 20px;
+    font-weight: lighter;
+    margin-top: 5rem;
+    color: #494D55;
+
+}
+
+.title-column > p {
+    font-weight: normal;
+    color: #494D55;
+}
+
+.user-name {
+    text-transform: uppercase;
+}
+
+.teacher-about-title, .classes-teaching-title {
+    margin-top: 4rem;
+}
+
+.contact-teacher {
+    background-color: #57ca8e;
+    background-image: none;
+    border-radius: 0;
+    border: none;
+    letter-spacing: 1px;
+    font-weight: 100;
+    margin-top: -20px;
+}
+
+.contact-teacher:hover {
+    background-image: none;
+    background-color: #39b574;
+}
+
+/*
+************************************************************************
+                            CLASS LIST
+************************************************************************
+*/
+
+
+.class-list {
+    margin-left: -25px;
+}
+
+.teacher-info1 {
+    background-color: #f1f4f4;
+    margin-top: 25px;
+    display: inline-block;
+    padding: 0;
+    box-shadow: 0 0 1px;
+}
+
+.teacher-info1:hover {
+    box-shadow: 0 0 8px;
+    -webkit-transition: .5s ease;
+}
+
+.class-image1 {
+    float: left;
+}
+
+.teacher-pic1 {
+    float: left;
+    border-radius:100%;
+    margin-left: -42.5px;
+    margin-top: 44px;
+    margin-right: 10px;
+    border: 2px solid white;
+}
+
+.copy-header {
+    font-family: avenir, helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100px;
+}
+
+.class-name-div1 {
+    width: 100%;
+    text-align: left;
+    padding-top: 15px;
+}
+
+.class-name1 {
+    background-color: #f1f4f4;
+    font-size: 1.75rem;
+    color: #000000;
+    font-weight: 300;
+}
+
+.teacher-name1 {
+    text-align: left;
+}
+
+.teacher-details1 {
+    text-align: left;
+}
+
+.class-text1 {
+    padding-right: -40px;
+}
+
+.cost1 {
+    float: left;
+    display: inline-block;
+    text-align: left;
+}
+
+

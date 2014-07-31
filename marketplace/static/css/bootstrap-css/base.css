@@ -104,6 +104,14 @@
     border-radius: 0;
 }
 
+.nav-username {
+    color: white !important;
+    font-weight: lighter;
+}
+
+.glyphicon-envelope {
+    color: white !important;
+}
 
 
 

@@ -1,0 +1,83 @@
+{% extends 'base-bs.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block css %}
+{% static 'css/bootstrap-css/view_profile.css' %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 background-container">
+        </div>
+    </div>
+</div>
+
+<div class="wrapper-header">
+    <div class="container header-container">
+        <div class="row title-row">
+            <div class="col-md-12 title-column">
+                <h1 class="user-name">{{ user }} </h1><span><a href="#" type="button" class="btn btn-primary contact-teacher" style="float:right;">Edit Your Profile</a></span>
+                <p class="user_name"><strong>{{ user.first_name }},</strong> {{ user.occupation }} </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container profile-content">
+    <div class="row">
+        <div class="col-md-12 teacher-about-title">
+            <h4>About {{ user.first_name }}</h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 teacher-about">
+            <p class="teacher-about-text">{{ user.about }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 classes-teaching-title">
+            <h4>Classes you are teaching:</h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row info-row">
+        {% for class in user.classroom_teacher.all %}
+        <div class="col-lg-12 teacher-info1">
+            <div class="class-image1">
+                <img src="{{ class.screenshot.url }}" alt="class screenshot1" height="175" width="225">
+            </div>
+            <div class="teacher-picture1">
+                <a href="{% url 'view_teacher' class.teacher.id %}"><img class="teacher-pic1" src="{{ class.teacher.image.url }}" alt="class teacher image" height="85" width="85"></a>
+            </div>
+            <div class="class-text1">
+                <div class="class-name-div1">
+                    <a href="{% url 'class_details' class.id %}" class="class-name1">{{ class }}</a>
+                </div>
+                <div class="teacher-name1">
+                    <p>by: <a href="{% url 'view_teacher' class.teacher.id %}">{{ class.teacher.username }}</a></p>
+                </div>
+                <div class="teacher-details1 hidden-md hidden-sm hidden-xs">
+                    <p>{{ class.short_description }}</p>
+                </div>
+            </div>
+            <div class="cost1">
+                <a href="{% url 'class_details' class.id %}" class="cost-button">${{ class.cost }}</a><div class="one-hour"> for 1 hour</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

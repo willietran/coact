@@ -1,0 +1,77 @@
+
+.background-container {
+    background: url(../../img/donation-confirmation-thanks.jpg) center center no-repeat;
+    background-size: cover;
+    height: 350px;
+}
+
+p {
+    font-weight: 200;
+}
+
+h4 {
+    font-weight: 400;
+}
+
+/**********************************
+              Header
+***********************************/
+
+.header-container {
+    height: 150px;
+    text-align: center;
+    position: relative;
+}
+
+hr {
+    margin-top: 0;
+}
+
+.wrapper-header {
+    width: 100%;
+    background-color: #f1f4f4;
+    border-bottom: 1px solid #ced1d1;
+}
+
+.title-column {
+    position: absolute;
+    text-align: left;
+}
+
+.title-column > h1 {
+    position: relative;
+    font-size: 20px;
+    font-weight: lighter;
+    margin-top: 5rem;
+    color: #494D55;
+
+}
+
+.title-column > p {
+    font-weight: normal;
+    color: #494D55;
+}
+
+.user-name {
+    text-transform: uppercase;
+}
+
+.teacher-about-title, .classes-teaching-title {
+    margin-top: 4rem;
+}
+
+.contact-teacher {
+    background-color: #6867ca;
+    background-image: none;
+    border-radius: 0;
+    border: none;
+    letter-spacing: 1px;
+    font-weight: 100;
+    margin-top: -20px;
+}
+
+.contact-teacher:hover {
+    background-image: none;
+    /*background-color: rgba(68, 159, 67, 0.87);*/
+    background-color: #6867ca;
+}

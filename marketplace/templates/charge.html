@@ -1,8 +1,75 @@
-{% extends 'base.html' %}
+{% extends 'base-bs.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block css %}
+{% static 'css/bootstrap-css/charge.css' %}
+{% endblock %}
 
 
 {% block content %}
 
-    <h1>Charge Page</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 background-container">
+        </div>
+    </div>
+</div>
+
+<div class="wrapper-header">
+    <div class="container header-container">
+        <div class="row title-row">
+            <div class="col-md-12 title-column">
+                <h1 class="user-name">{{ user }} </h1>
+                <p class="thankyou">Thank you for enrolling in:</p>
+                <a href="{% url 'class_details' classroom.id %}"><p>{{ classroom.title }} with {{ classroom.teacher.first_name }}</p></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#<div class="payment-breakdown container">#}
+{#    <div class="payment-breakdown-row row">#}
+{#        <div class="payment-breakdown-col col-md-12">#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+{#<tbody class="table-hover payment-breakdown">#}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Payment Details</h3>
+        </div>
+    </div>
+    <table class="table table-hover col-md-12">
+        <tr>
+            <th>Item</th>
+            <th>Charge To</th>
+            <th>Cost</th>
+        </tr>
+        <tr>
+            <td>{{ classroom.title }}</td>
+            <td>{{ classroom.teacher.first_name }}</td>
+            <td>${{ classroom.cost }}</td>
+        </tr>
+        <tr>
+            <td>Total:</td>
+            <td></td>
+            <td>${{ classroom.cost }}</td>
+        </tr>
+    </table>
+    <div class="row">
+        <div class="col-md-12">
+            <span></span>
+        </div>
+    </div>
+</div>
+{#</tbody>#}
 
 {% endblock %}

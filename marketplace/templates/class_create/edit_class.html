@@ -1,0 +1,216 @@
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- JS Files -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'js/create_class.js' %}"></script>
+
+    <!-- Bootstrap Files -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <!-- CSS Files -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href={% block css %}{% endblock %}>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-css/edit_class.css' %}"
+
+
+
+
+
+    <!-- include the calendar js and css files -->
+    <script src="{% static 'js/zabuto_calendar.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/zabuto_calendar.min.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    {% block head %}
+
+    {% endblock %}
+
+
+</head>
+<body>
+<!--
+******************************
+       NAVIGATION BAR
+******************************
+-->
+
+<nav id="navigation" class="navbar navbar-default transparent navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'beta' %}"><img src="{% static 'img/coact logo2-100.png' %}" alt="Coact Logo"></a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    {% if user.is_authenticated %}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"> {{ request.user.username }}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'view_profile' request.user.id %}">View Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'messages_compose' %}">Compose Message</a></li>
+          </ul>
+        <li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span></a></li>
+        <li><a href="{% url 'create_class' %}" id='create-class'>Start Teaching</a> </li>
+      </ul>
+    </div>
+    {% else %}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'login' %}" class="navigation-login" data-toggle="modal" data-target=".bs-example-modal-sm">Login</a></li>
+        <li><a href="{% url 'register' %}" class="navigation-register">Register</a></li>
+      </ul>
+    </div>
+    {% endif %}<!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!--
+******************************
+        SIDE BAR
+******************************
+-->
+
+ <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <h1 class="create-class">Edit Your Class</h1>
+          <hr>
+          <ul class="nav nav-sidebar">
+            <li><a class="basicInformationLink" href="#">Basic Information</a></li>
+            <li><a class="shortDescriptionLink" href="#">Short Description</a></li>
+            <li><a class="longDescriptionLink" href="#">Long Description</a></li>
+          </ul>
+            <input type="submit" form="classCreationForm" class="btn btn-primary submitCreateButton" value="Done Editing">
+        </div>
+      </div>
+ </div>
+
+<!--
+******************************
+        MAIN CONTENT
+******************************
+-->
+
+<div class="col-sm-9 col-sm-offset-2 col-md-4 col-md-offset-3-main contentSection">
+    <form method="post" action="." enctype="multipart/form-data" id="classCreationForm">
+        {% csrf_token %}
+        <div class="basicInformation">
+            <label for="id_title">Title</label>
+            {{ form.title }}
+            <label for="id_project">Project</label>
+            {{ form.project }}
+            <label for="id_cost">Price Per Hour</label>
+            {{ form.cost }}
+            <label for="id_screenshot">Add an Image Of Your End Product</label>
+            <input id="id_screenshot" name="screenshot" type="file" height="150px" width="150px">
+            <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
+{#            {{ classroom_form.screenshot }}#}
+        </div>
+        <div class="shortDescription">
+            <label for="id_short_description">Brief Description</label>
+            {{ form.short_description }}
+        </div>
+        <div class="longDescription">
+            <label for="id_description">Detailed Description</label>
+            {{ form.description }}
+        </div>
+    </form>
+</div>
+
+<div class="information-container .hidden-xs .hidden-sm">
+    <div class="row .hidden-xs .hidden-sm">
+        <div class="col-md-4 .hidden-xs .hidden-sm">
+            <div class="title-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Writing a Title</h4>
+                <ul>
+                    <li>Your class name will be the first thing people see!</li>
+                    <li>Make sure it's alluring!</li>
+                    <li>Stating a clear goal in the title helps</li>
+                </ul>
+            </div>
+            <div class="project-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Choosing a project</h4>
+                <ul>
+                    <li>Interesting Projects are why people are here!</li>
+                    <li>The more popular apps that people use perform much better.</li>
+                    <li>Show a picture of the end product! It helps!</li>
+                </ul>
+            </div>
+            <div class="price-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Price</h4>
+                <ul>
+                    <li>For back-end programming, the rates are about $45/hr.</li>
+                    <li>Front-end rates usually go for a bit less.</li>
+                    <li>The more extensive and your project is, the more sessions it will take.</li>
+                </ul>
+            </div>
+            <div class="s-description-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Short Description</h4>
+                <ul>
+                    <li>Keep it short. Limit is the same length as a tweet (140 characters).</li>
+                    <li>On the list of available classes, this will be the additional information people see.</li>
+                </ul>
+                <img class="description-image" src="{% static 'img/s-description-tip.png' %}" alt="Area of Short Description">
+            </div>
+            <div class="description-tip tip" style="display: none;">
+                <h4><img src="{% static 'img/brainstorming.png' %}">Helpful Tips - Description</h4>
+                <ul>
+                    <li>This is where you get to really elaborate!</li>
+                    <li>Write in detail about what you'll be doing in your class.</li>
+                    <li>It helps immensely to write a general guideline of what you'll be doing in this class.</li>
+                    <li>We've noticed that classes that put what material to study beforehand are more popular.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{#{% block content %}#}
+{##}
+{#{% endblock %}#}
+
+
+
+<!--
+******************************
+         FOOTER
+******************************
+-->
+
+{#<footer>#}
+{#    <p>&copy; 2014 Coact, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>#}
+{#</footer>#}
+
+</body>
+</html>

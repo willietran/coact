@@ -35,7 +35,6 @@
 .title-column > p {
     font-weight: normal;
     color: #494D55;
-
 }
 
 /**********************************
@@ -69,13 +68,36 @@ hr {
     margin-top: 3rem;
 }
 
-.teacher-section > img {
+.teacher-image {
     margin-top: 2rem;
     border-radius: 100%;
+    border: 2px solid #f1f4f4;
 }
 
 .teacher-section > h1 {
     font-weight: 200;
+}
+
+.teacher-about {
+    font-weight: 200;
+}
+
+.edit-class {
+    background-color: #57ca8e;
+    background-image: none;
+    border-radius: 0;
+    border: none;
+    letter-spacing: 1px;
+    font-weight: 100;
+}
+
+.edit-class:hover {
+    background-image: none;
+    background-color: #39b574;
+}
+
+.edit-class-hr {
+    margin-top: 2rem;
 }
 
 /**********************************
@@ -95,18 +117,44 @@ hr {
     font-size: 2rem;
 }
 
-.schedule {
-    margin-top: 1rem;
+.schedule, .reserve {
+    margin-top: 2rem;
 }
+
+.stripe-button-el, .g-Wh9Azc-b {
+    width: 150px;
+}
+
 
 .bottom-hr {
     margin-top: 4rem;
 }
 
 #send-message {
-    width: 50%;
+    width: 150px;
     height: 30px;
     margin: 0;
     border-radius: 3px;
     border: none;
+    font-weight: 100;
+    font-family: avenir, helvetica, sans-serif;
+}
+
+.nav-username {
+    color: grey !important;
+    font-weight: lighter;
+}
+
+.glyphicon-envelope {
+    color: grey !important;
+}
+
+.social-stuff {
+    display: inline-block;
+    float: left;
+    margin-top: 1rem;
+}
+
+.project-title, .classroom-description {
+    font-weight: 200;
 }

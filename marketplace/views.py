@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.template.loaders.app_directories import app
 from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
 from marketplace.forms import *
 import stripe
 import requests
@@ -94,7 +95,9 @@ def confirm(request):
 # View to allow people to view details in the class before signing up
 def class_details(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
-    classroom_data = {'classroom': classroom}
+    cost_in_cents = classroom.cost*100
+    classroom_data = {'classroom': classroom,
+                      'cost_in_cents': cost_in_cents}
 
     return render(request, "class_details-bs.html", classroom_data)
 
@@ -135,7 +138,7 @@ def edit_class(request, classroom_id):
                                             'screenshot': classroom.screenshot,
                                             'cost': classroom.cost})
         data = {"form": form, "classroom": classroom}
-        return render(request, "registration/edit_class.html", data)
+        return render(request, "class_create/edit_class.html", data)
     else:
         return redirect("error")
 
@@ -185,16 +188,17 @@ def create_review(request, classroom_id):
 def view_profile(request, user_id):
     user = User.objects.get(id=user_id)
     user_data = {'user': user}
-    return render(request, "view_profile.html", user_data)
+    return render(request, "view-profile-bs.html", user_data)
 
 
 # Viewing teacher's profiles
 def view_teacher(request, user_id):
     teacher = User.objects.get(id=user_id)
     teacher_data = {'teacher': teacher}
-    return render(request, "view_teacher.html", teacher_data)
+    return render(request, "view_teacher-bs.html", teacher_data)
 
 
+@csrf_exempt
 def charge(request, classroom_id):
 
     classroom = Classroom.objects.get(id=classroom_id)
@@ -210,12 +214,14 @@ def charge(request, classroom_id):
     # Create a Customer
     customer = stripe.Customer.create(
         card=token,
-        description="payingcustomer@example.com"
+        description=request.user.email
     )
+
+    class_cost = classroom.cost*100
 
     # Charge the Customer instead of the card
     stripe.Charge.create(
-        amount=4000,  # in cents
+        amount=int(class_cost),  # in cents
         currency="usd",
         customer=customer.id
     )

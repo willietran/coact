@@ -32,6 +32,7 @@
 
 
 
+
     <!-- include the calendar js and css files -->
     <script src="{% static 'js/zabuto_calendar.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/zabuto_calendar.min.css' %}">
@@ -68,7 +69,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"> {{ request.user.username }}<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle nav-username" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"> {{ request.user.username }}<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{% url 'view_profile' request.user.id %}">View Profile</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -188,7 +189,7 @@
 ******************************
 -->
 
-<footer>
+<footer style="text-align: center; margin-top: 3rem;">
     <p>&copy; 2014 Coact, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
 </footer>
 
