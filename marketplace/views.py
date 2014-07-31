@@ -110,26 +110,6 @@ def join_class(request, classroom_id):
         new_student = Learner.objects.create(name=request.user, hangout=request.user)
     classroom1.student.add(new_student)
 
-    # Set your secret key: remember to change this to your live secret key in production
-    # See your keys here https://dashboard.stripe.com/account
-    stripe.api_key = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
-
-    # Get the credit card details submitted by the form
-    token = request.POST['stripeToken']
-
-    # Create a Customer
-    customer = stripe.Customer.create(
-        card=token,
-        description="payingcustomer@example.com"
-    )
-
-    # Charge the Customer instead of the card
-    stripe.Charge.create(
-        amount=4000,  # in cents
-        currency="usd",
-        customer=customer.id
-    )
-
     return render(request, "join_class.html", classroom_data1)
 
 

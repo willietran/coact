@@ -1,3 +1,10 @@
+
+
+
+/**********************************
+              Header
+***********************************/
+
 .header-container {
     height: 150px;
     /*background-color: red;*/
@@ -7,7 +14,8 @@
 
 .wrapper-header {
     width: 100%;
-    background-color: rgba(236, 225, 235, 0.84);
+    /*background-color: rgba(236, 225, 235, 0.84);*/
+    background-color: #f1f4f4
 }
 
 .title-column {
@@ -20,8 +28,85 @@
     font-size: 20px;
     font-weight: lighter;
     margin-top: 5rem;
+    color: #494D55;
+
 }
 
 .title-column > p {
-    font-weight: bold;
+    font-weight: normal;
+    color: #494D55;
+
+}
+
+/**********************************
+            Content
+***********************************/
+
+.screenshot-column {
+    margin-top: 4.5rem;
+}
+
+.content-column > h4 {
+    margin-top: 6rem;
+    font-weight: 400;
+    color: #494D55;
+}
+
+hr {
+    margin-top: 0;
+}
+
+/**********************************
+        Teacher Section
+***********************************/
+
+.teacher-section {
+    margin-top: 1.3rem;
+    text-align: center;
+}
+
+.teacher-section > p {
+    margin-top: 3rem;
+}
+
+.teacher-section > img {
+    margin-top: 2rem;
+    border-radius: 100%;
+}
+
+.teacher-section > h1 {
+    font-weight: 200;
+}
+
+/**********************************
+        Payment Section
+***********************************/
+
+.payment-section {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.payment-section > p {
+    font-weight: 200;
+}
+
+.cost {
+    font-size: 2rem;
+}
+
+.schedule {
+    margin-top: 1rem;
+}
+
+.bottom-hr {
+    margin-top: 4rem;
+}
+
+#send-message {
+    width: 50%;
+    height: 30px;
+    margin: 0;
+    border-radius: 3px;
+    border: none;
 }
