@@ -21,6 +21,8 @@ class User(AbstractUser):
     occupation = models.CharField(max_length=30, null=True)
 
 
+# I don't understand the relationships you've built here. You would still have to do: learner.hangout.hangout
+# to get to the `hangout` attribute on the User model. Naming these fields as `name` and `hangout` doesn't change that
 class Learner(models.Model):
     # See python documentation on modeling here: https://docs.djangoproject.com/en/dev/topics/db/models/
     name = models.ForeignKey(User, related_name='student_name')
@@ -30,6 +32,10 @@ class Learner(models.Model):
         return u"{}".format(self.name)
 
 
+# Are you actually using this model?
+# If yes, it would make more sense for Learner and Teacher to either 1) be the same model with a field that has options
+# for either learner or teacher or 2) if they must be different models, have them inherit from the same base abstract
+# model so you don't have to repeat this code
 class Teacher(models.Model):
     name = models.ForeignKey(User, related_name='teacher_name')
     hangout = models.ForeignKey(User, related_name='teacher_hangout')
