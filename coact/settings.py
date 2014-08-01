@@ -134,6 +134,9 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'tran.william26@gmail.com'
 
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
