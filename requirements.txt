@@ -4,6 +4,8 @@ South==0.8.4
 argparse==1.1
 braintree==3.1.1
 coverage==3.6
+dj-database-url==0.3.0
+dj-static==0.0.6
 django-annoying==0.7.9
 django-calendarium==0.6
 django-crispy-forms==1.4.0
@@ -13,12 +15,15 @@ django-mptt==0.6.1
 django-polymorphic==0.5.5
 django-registration==1.0
 django-simple-email-confirmation==0.10.2
+django-toolbelt==0.0.1
 easy-thumbnails==2.0.1
+gunicorn==19.1.0
 psycopg2==2.5.3
 python-dateutil==2.2
 pytz==2014.4
 requests==0.13.2
 six==1.7.3
+static3==0.5.1
 stripe==1.18.0
 vobject==0.8.1c
 wsgiref==0.1.2

@@ -44,7 +44,7 @@ class CreateClassForm(forms.Form):
     description = forms.CharField(min_length=1,
                                   widget=forms.Textarea(attrs={'placeholder': 'Describe your class in detail'}))
 
-    cost = forms.FloatField()
+    cost = forms.DecimalField(decimal_places=2, max_digits=10)
     screenshot = forms.ImageField(required=True)
 
 
