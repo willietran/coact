@@ -1,1 +1,1 @@
-web: gunicorn marketplace.wsgi --log-file -
+web: gunicorn coact.wsgi --log-file -
