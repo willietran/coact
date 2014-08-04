@@ -1,0 +1,43 @@
+{% extends 'base-bs.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+<script type="text/javascript" src="/static/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/static/lodash.min.js"></script>
+<script type="text/javascript" src="/static/s3upload.js"></script>
+{% endblock %}
+
+{% block content %}
+<input type="file" id="file" onchange="s3_upload();"/>
+<p id="status">Please select a file</p>
+<div id="preview"><img src="{% static 'img/image_add.png' %}"  /></div>
+
+<form method="POST" action="/submit_form/">
+    <input type="hidden" id="avatar_url" name="avatar_url" value="{% static 'img/image_add.png' %}" />
+    <input type="text" name="username" placeholder="Username" /><br />
+    <input type="text" name="full_name" placeholder="Full name" /><br /><br />
+    <input type="submit" value="Update profile" />
+</form>
+
+<script>
+    function s3_upload(){
+        var s3upload = new S3Upload({
+            file_dom_selector: 'file',
+            s3_sign_put_url: '/sign_s3/',
+
+            onProgress: function(percent, message) {
+                $('#status').html('Upload progress: ' + percent + '%' + message);
+            },
+            onFinishS3Put: function(url) {
+                $('#status').html('Upload completed. Uploaded to: '+ url);
+                $("#avatar_url").val(url);
+                $("#preview").html('<img src="'+url+'" style="width:300px;" />');
+            },
+            onError: function(status) {
+                $('#status').html('Upload error: ' + status);
+            }
+        });
+    }
+</script>
+{% endblock %}

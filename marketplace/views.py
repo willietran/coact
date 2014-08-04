@@ -249,6 +249,10 @@ def stripe_connect(request):
     return render(request, 'stripe_login.html')
 
 
+def account(request):
+    return render(request, 'account.html')
+
+
 
 
 # def edit_profile(request):
