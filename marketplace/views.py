@@ -27,6 +27,8 @@ def home(request):
         form = LandingForm()
 
     landing = EmailSignup.objects.all()
+    # In general, it's better not to pass data you're not using. For example, if 40,000 people signed up their emails
+    # loading 40,000 records here might take your application over a minute to load
     data = {"landing_form": form, "landing": landing}
     return render(request, "index.html", data)
 
@@ -34,11 +36,15 @@ def home(request):
 # Home page for the beta access. Not the landing page to collect e-mail sign ups
 def beta(request):
     classroom = Classroom.objects.all()
+    # Plural variable names make more sense for multiple objects.
+    # It looks like your template is only showing 3 Classroom objects. Instead of calling Classroom.objects.all(), which
+    # could be a million, you should limit your classroom data here in the view
     class_data = {"classroom": classroom}
     return render(request, "beta-bs.html", class_data)
 
 
 def class_list(request):
+    # ...And if the request isn't a GET request?
     if request.method == 'GET':
         classroom = Classroom.objects.all()
         class_data = {"classroom": classroom}
@@ -69,6 +75,7 @@ def create_class(request):
     if request.method == "POST":
         form = CreateClassForm(request.POST, request.FILES)
         if form.is_valid():
+            # Why aren't you using a ModelForm here?
             title = form.cleaned_data['title']
             project = form.cleaned_data['project']
             description = form.cleaned_data['description']
@@ -95,6 +102,7 @@ def confirm(request):
 # View to allow people to view details in the class before signing up
 def class_details(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
+    # There is probably a Django template tag that would have formatted cost_in_cents for you in the view
     cost_in_cents = classroom.cost*100
     classroom_data = {'classroom': classroom,
                       'cost_in_cents': cost_in_cents}
@@ -107,6 +115,7 @@ def class_details(request, classroom_id):
 def join_class(request, classroom_id):
     classroom1 = Classroom.objects.get(id=classroom_id)
     classroom_data1 = {'classroom': classroom1}
+    # You should be using Django's built-in `get_or_create`
     try:
         new_student = Learner.objects.get(name=request.user)
     except Learner.DoesNotExist:
@@ -119,6 +128,7 @@ def join_class(request, classroom_id):
 # Teacher's ability to edit the class that they created.
 def edit_class(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
+    # Still not sure why you're not using a ModelForm
     if classroom.teacher == request.user:
         if request.method == "POST":
             form = CreateClassForm(request.POST, request.FILES)
@@ -209,6 +219,7 @@ def charge(request, classroom_id):
     stripe.api_key = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
 
     # Get the credit card details submitted by the form
+    # This stripe token is probably what you want to save when you start saving transactions in your DB
     token = request.POST['stripeToken']
 
     # Create a Customer
@@ -234,7 +245,7 @@ def landing_page(request):
 
 
 def stripe_connect(request):
-
+    # You should remove stray print statements
     print request
 
     url = "https://connect.stripe.com/oauth/token"
