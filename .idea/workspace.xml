@@ -73,11 +73,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="beta-bs.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="beta-bs.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/marketplace/templates/beta-bs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4848485" vertical-offset="1245" max-vertical-offset="2145">
+            <state vertical-scroll-proportion="-10.0" vertical-offset="1245" max-vertical-offset="2145">
               <caret line="99" column="40" selection-start-line="99" selection-start-column="40" selection-end-line="99" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.9064449" vertical-offset="464" max-vertical-offset="990">
+              <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -121,7 +131,6 @@
         <option value="$PROJECT_DIR$/marketplace/static/css/bootstrap-css/charge.css" />
         <option value="$PROJECT_DIR$/marketplace/static/css/bootstrap-css/edit_class.css" />
         <option value="$PROJECT_DIR$/marketplace/models.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/coact/wsgi.py" />
         <option value="$PROJECT_DIR$/Procfile" />
@@ -144,6 +153,7 @@
         <option value="$PROJECT_DIR$/coact/settings.py" />
         <option value="$PROJECT_DIR$/local_settings.py" />
         <option value="$PROJECT_DIR$/marketplace/templates/beta-bs.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -808,13 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7406639" vertical-offset="423" max-vertical-offset="930">
-          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.254717" vertical-offset="0" max-vertical-offset="530">
@@ -1037,8 +1040,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/marketplace/templates/beta-bs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4848485" vertical-offset="1245" max-vertical-offset="2145">
+        <state vertical-scroll-proportion="-10.0" vertical-offset="1245" max-vertical-offset="2145">
           <caret line="99" column="40" selection-start-line="99" selection-start-column="40" selection-end-line="99" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9064449" vertical-offset="464" max-vertical-offset="990">
+          <caret line="60" column="6" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
           <folding />
         </state>
       </provider>

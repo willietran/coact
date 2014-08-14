@@ -55,3 +55,7 @@ target/
 venv
 *.pyc
 staticfiles
+.idea
+.idea/
+/.idea/
+/.idea
