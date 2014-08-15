@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -191,10 +192,21 @@ def view_profile(request, user_id):
     return render(request, "view-profile-bs.html", user_data)
 
 
+def dashboard(request, user_id):
+    user = User.objects.get(id=user_id)
+    payment_history = Payment.objects.filter(student=user)
+    # User Lookup Field "a = Payment.objects.filter(classroom__teacher__username='willietran')"
+    teacher_payments = Payment.objects.filter(classroom__teacher__username=user)
+
+    dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments}
+
+    return render(request, "dashboard.html", dashboard_data)
+
+
 # Viewing teacher's profiles
 def view_teacher(request, user_id):
     teacher = User.objects.get(id=user_id)
-    teacher_data = {'teacher': teacher, 'id':user_id}
+    teacher_data = {'teacher': teacher, 'id': user_id}
     return render(request, "view_teacher-bs.html", teacher_data)
 
 
@@ -204,27 +216,60 @@ def charge(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
     classroom_data = {'classroom': classroom}
 
+    # Potential: Pull back the classroom teacher for this by doing classroom.teacher and then match it to the
+    # username in StripePayments
+
+    stripe_info = StripeKey.objects.get(user=classroom.teacher)
+    print "Printing Stripe Connect Key"
+    print stripe_info.api_key
+
     # Set your secret key: remember to change this to your live secret key in production
     # See your keys here https://dashboard.stripe.com/account
-    stripe.api_key = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
+    stripe.api_key = stripe_info.api_key
 
     # Get the credit card details submitted by the form
     token = request.POST['stripeToken']
 
-    # Create a Customer
-    customer = stripe.Customer.create(
-        card=token,
-        description=request.user.email
-    )
-
+    # # Create a Customer
+    # customer = stripe.Customer.create(
+    #     card=token,
+    #     description=request.user.email
+    # )
+    #
     class_cost = classroom.cost*100
-
-    # Charge the Customer instead of the card
-    stripe.Charge.create(
-        amount=int(class_cost),  # in cents
-        currency="usd",
-        customer=customer.id
+    #
+    # # Charge the Customer instead of the card
+    # stripe.Charge.create(
+    #     amount=int(class_cost),  # in cents
+    #     currency="usd",
+    #     customer=customer.id
+    # )
+    #
+    # Make a new payment transaction object for Payment History
+    Payment.objects.create(
+        charge_amount=int(classroom.cost),
+        classroom=classroom,
+        student=request.user,
+        date=datetime.now()
     )
+
+    access_token = stripe_info.api_key
+    url = "https://api.stripe.com/v1/charges"
+    amount = int(class_cost)  # in cents
+    currency = "usd"
+    card = token
+
+    query_args = {'access_token': access_token,
+                  'amount': amount,
+                  'currency': currency,
+                  'card': card}
+
+    r = requests.post(url, data=query_args)
+
+    print "Printing access token..."
+    print access_token
+    print r.status_code
+    print r.json
 
     return render(request, 'charge.html', classroom_data)
 
@@ -249,9 +294,9 @@ def stripe_connect(request):
     print r.json['access_token']
 
     # Creating a stripe Customer Token
-    stripe.Customer.create(
-        description=request.user.email,
-        api_key=r.json['access_token']
+    StripeKey.objects.create(
+        api_key=r.json['access_token'],
+        user=request.user
     )
 
     return render(request, 'stripe_login.html')

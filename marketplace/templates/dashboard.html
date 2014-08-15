@@ -1,0 +1,104 @@
+{% extends 'base-bs.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block css %}
+{% static 'css/bootstrap-css/view_profile.css' %}
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="wrapper-header">
+    <div class="container header-container">
+        <div class="row title-row">
+            <div class="col-md-12 title-column">
+                <h1>Welcome home, {{ request.user.first_name }}</h1>
+                <p>Here's what's going on around Coact</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 payment-history">
+            <h2>Important Announcements</h2>
+            <div class="announcements">
+                <ul>
+                    <li>
+                        <p>The site is about to be live! Thank you so much for being a part of something awesome!</p>
+                    </li>
+                    <li>
+                        <p>We are currently working on implementing multiple students in a single classroom. This will allow teachers to earn more and students to pay less. Also, wouldn't it be nice to work with a friend?</p>
+                    </li>
+                </ul>
+            </div>
+            <h2>Payment History</h2>
+            <table class="table table-hover">
+                <tr>
+                    <th>Date Paid</th>
+                    <th>Classroom Name</th>
+                    <th>Teacher</th>
+                    <th>Teacher Username</th>
+                    <th>Amount Charged</th>
+                </tr>
+                {% for payment in payment_history %}
+                <tr>
+                    <td>{{ payment.date }}</td>
+                    <td>{{ payment.classroom.title }}</td>
+                    <td>{{ payment.classroom.teacher.first_name }}</td>
+                    <td>{{ payment.classroom.teacher }}</td>
+                    <td>{{ payment.classroom.cost }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-3">
+            {% if teacher_payments.count != 0 %}
+            <h2>Instructor Information</h2>
+            <table class="table table-hover">
+                <tr>
+                    <th>Date Paid</th>
+                    <th>Class</th>
+                    <th>Student</th>
+                    <th>Amount Earned</th>
+                </tr>
+                {% for payment in teacher_payments %}
+                <tr>
+                    <td>{{ payment.date }}</td>
+                    <td>{{ payment.classroom.title }}</td>
+                    <td>{{ payment.student }}</td>
+                    <td>{{ payment.classroom.cost }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+                <p>You are not currently teaching any classes or have any students.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53450139-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+{% endblock %}

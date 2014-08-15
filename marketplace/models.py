@@ -43,18 +43,20 @@ class Classroom(models.Model):
     project = models.CharField(max_length=50)
     short_description = models.CharField(max_length=160)
     description = models.TextField()
-    # cost = models.FloatField()
     cost = models.DecimalField(decimal_places=2, max_digits=10)
     teacher = models.ForeignKey(User, related_name='classroom_teacher')
     student = models.ManyToManyField(Learner, related_name='classroom_learner')
     screenshot = models.ImageField(upload_to='class_img', null=True)
+    api_key = models.CharField(max_length=100, null=True, default='0000')
 
     def __unicode__(self):
         return u"{}".format(self.title)
 
+
 class Calendar(models.Model):
     teacher = models.ForeignKey(User, related_name='calendar_teacher')
     slot = models.ManyToManyField('Slot', related_name='calendar_slot')
+
 
 class Slot(models.Model):
     calendar = models.ForeignKey(Calendar, related_name='slot_calendar')
@@ -64,7 +66,6 @@ class Slot(models.Model):
 
 class Review(models.Model):
     review = models.CharField(max_length=140)
-    # content = models.CharField(max_length=400)
     classroom = models.ForeignKey(Classroom, related_name='classroom_review')
     reviewer = models.ForeignKey(User, related_name='reviewer_review')
 
@@ -72,14 +73,19 @@ class Review(models.Model):
         return u"{}".format(self.review)
 
 
+class Payment(models.Model):
+    charge_amount = models.DecimalField(decimal_places=2, max_digits=10)
+    classroom = models.ForeignKey(Classroom, related_name='payment_classroom')
+    student = models.ForeignKey(User, related_name='payment_student')
+    date = models.DateTimeField()
+
+    def __unicode__(self):
+        return u"{}'s payment to {}".format(self.student, self.classroom)
 
 
-# class Skill(models.Model):
-#     # Look into Django ModelFormSet
-#     name = models.CharField(max_length=20)
-#     # name_2 = models.CharField(max_length=20)
-#     # name_3 = models.CharField(max_length=20)
-#     user = models.ForeignKey(User, related_name='user_skill')
-#
-#     def __unicode__(self):
-#         return u"{}".format(self.name)
+class StripeKey(models.Model):
+    api_key = models.CharField(max_length=100)
+    user = models.ForeignKey(User, related_name='stripe_key_user')
+
+    def __unicode__(self):
+        return u"{}'s Access Token".format(self.user)
