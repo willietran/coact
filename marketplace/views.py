@@ -244,7 +244,15 @@ def stripe_connect(request):
 
     query_args = {'client_secret': client_secret, 'code': code, 'grant_type': grant_type}
     r = requests.post(url, data=query_args)
-    print r
+
+    # Accessing the access token that we got from the User OAuth Login
+    print r.json['access_token']
+
+    # Creating a stripe Customer Token
+    stripe.Customer.create(
+        description=request.user.email,
+        api_key=r.json['access_token']
+    )
 
     return render(request, 'stripe_login.html')
 
