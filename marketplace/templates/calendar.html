@@ -1,0 +1,41 @@
+<style>
+table,th,td
+{
+border:1px solid black;
+border-collapse:collapse;
+}
+
+.booked
+{
+    background-color: green;
+}
+</style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    var schedule = {{ slots_list_json|safe }};
+</script>
+
+<div id="calendar" style="display:none">
+{% load slot_is_booked %}
+<table>
+    <tr>
+        {% for day in days %}
+        <th>{{ day }}</th>
+        {% endfor %}
+    </tr>
+    {% for hour in hours %}
+    <tr style="height:30px">
+        {% for day in days %}
+        <td data-day="{{ day }}" data-hour="{{ hour }}" class="{{ day|custom_add:hour|is_full:slots }}"></td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<span>{{ slots }}</span>
+
+<button id="submit_schedule" data-teacherid="{{ teacherid }}">submit</button>
+</div>
+
+</body>
+</html>

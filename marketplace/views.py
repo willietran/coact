@@ -194,7 +194,7 @@ def view_profile(request, user_id):
 # Viewing teacher's profiles
 def view_teacher(request, user_id):
     teacher = User.objects.get(id=user_id)
-    teacher_data = {'teacher': teacher}
+    teacher_data = {'teacher': teacher, 'id':user_id}
     return render(request, "view_teacher-bs.html", teacher_data)
 
 
@@ -253,6 +253,41 @@ def account(request):
     return render(request, 'account.html')
 
 
+@csrf_exempt
+def calendar(request, user_id):
+    user = User.objects.get(id=user_id)
+    Calendar.objects.get_or_create(teacher=user)
+    calendar = Calendar.objects.get(teacher=user)
+
+    slots = Slot.objects.filter(calendar=calendar)
+    slots_list=[]
+    for item in slots:
+        # print item.day
+        slots_list.append(item.day+'-'+str(item.time))
+
+    slots_list_json  =json.dumps(slots_list)
+
+    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    hours = []
+    for i in range(1,24):
+            hours.append(i)
+    data = {'days':days, 'hours':hours, 'slots':slots_list, 'slots_list_json': slots_list_json, 'teacherid':user_id}
+
+        # if request.method=='GET':
+        #     return render(request, 'calendar.html', data)
+
+    if request.method == 'POST':
+        user = User.objects.get(id=user_id)
+        jsondata = json.loads(request.body)
+        Calendar.objects.get(teacher=user).delete()
+        Calendar.objects.create(teacher=user)
+        calendar = Calendar.objects.get(teacher=user)
+        for item in jsondata:
+            splitted = item.split("-")
+            print splitted
+            Slot.objects.create(calendar=calendar,day=splitted[0],time=splitted[1])
+
+    return render(request, 'calendar.html', data)
 
 
 # def edit_profile(request):

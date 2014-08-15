@@ -51,6 +51,7 @@
         <div class="col-md-12 classes-teaching-title">
             <h4>Classes {{ teacher.first_name }} is teaching:</h4>
             <hr>
+            <div id="calendar_container"></div>
         </div>
     </div>
     <div class="row info-row">
@@ -92,5 +93,7 @@
   ga('send', 'pageview');
 
 </script>
+    <span id="data" data-id="{{ teacher.id }}" style="display:None"></span>
+    <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
 
 {% endblock %}
