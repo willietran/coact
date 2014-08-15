@@ -63,6 +63,8 @@ urlpatterns = patterns('',
     # Amazon S3 Image Uploading Test
     url(r'^account/$', 'marketplace.views.account', name='account'),
 
+    url(r'^calendar/(?P<user_id>[0-9]+)/$', 'marketplace.views.calendar', name='calendar'),
+
 )
 
 if settings.DEBUG:

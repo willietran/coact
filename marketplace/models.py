@@ -52,6 +52,15 @@ class Classroom(models.Model):
     def __unicode__(self):
         return u"{}".format(self.title)
 
+class Calendar(models.Model):
+    teacher = models.ForeignKey(User, related_name='calendar_teacher')
+    slot = models.ManyToManyField('Slot', related_name='calendar_slot')
+
+class Slot(models.Model):
+    calendar = models.ForeignKey(Calendar, related_name='slot_calendar')
+    day = models.CharField(max_length=10)
+    time = models.IntegerField()
+
 
 class Review(models.Model):
     review = models.CharField(max_length=140)
