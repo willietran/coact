@@ -30,7 +30,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 payment-history">
+        <div class="col-md-12 payment-history">
             <h2>Important Announcements</h2>
             <div class="announcements">
                 <ul>
@@ -42,27 +42,8 @@
                     </li>
                 </ul>
             </div>
-            <h2>Payment History</h2>
-            <table class="table table-hover">
-                <tr>
-                    <th>Date Paid</th>
-                    <th>Classroom Name</th>
-                    <th>Teacher</th>
-                    <th>Teacher Username</th>
-                    <th>Amount Charged</th>
-                </tr>
-                {% for payment in payment_history %}
-                <tr>
-                    <td>{{ payment.date }}</td>
-                    <td>{{ payment.classroom.title }}</td>
-                    <td>{{ payment.classroom.teacher.first_name }}</td>
-                    <td>{{ payment.classroom.teacher }}</td>
-                    <td>{{ payment.classroom.cost }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="col-md-3">
+
+            <div class="instructor-payment">
             {% if teacher_payments.count != 0 %}
             <h2>Instructor Information</h2>
             <table class="table table-hover">
@@ -84,6 +65,30 @@
             {% else %}
                 <p>You are not currently teaching any classes or have any students.</p>
             {% endif %}
+            </div>
+
+            <h2>Payment History</h2>
+            <table class="table table-hover">
+                <tr>
+                    <th>Date Paid</th>
+                    <th>Classroom Name</th>
+                    <th>Teacher</th>
+                    <th>Teacher Username</th>
+                    <th>Amount Charged</th>
+                </tr>
+                {% for payment in payment_history %}
+                <tr>
+                    <td>{{ payment.date }}</td>
+                    <td>{{ payment.classroom.title }}</td>
+                    <td>{{ payment.classroom.teacher.first_name }}</td>
+                    <td>{{ payment.classroom.teacher }}</td>
+                    <td>{{ payment.classroom.cost }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-3">
+
         </div>
     </div>
 </div>

@@ -1,9 +1,7 @@
 from datetime import datetime
 import json
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.template.loaders.app_directories import app
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
 from marketplace.forms import *
@@ -194,9 +192,8 @@ def view_profile(request, user_id):
 
 def dashboard(request, user_id):
     user = User.objects.get(id=user_id)
-    payment_history = Payment.objects.filter(student=user)
-    # User Lookup Field "a = Payment.objects.filter(classroom__teacher__username='willietran')"
-    teacher_payments = Payment.objects.filter(classroom__teacher__username=user)
+    payment_history = Payment.objects.filter(student=request.user)
+    teacher_payments = Payment.objects.filter(classroom__teacher__username=request.user)
 
     dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments}
 
