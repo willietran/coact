@@ -52,6 +52,7 @@ urlpatterns = patterns('',
     # View Profile
     url(r'^view/(?P<user_id>[0-9]+)/$', 'marketplace.views.view_profile', name='view_profile'),
     url(r'^view_teacher/(?P<user_id>[0-9]+)/$', 'marketplace.views.view_teacher', name='view_teacher'),
+    url(r'^dashboard/(?P<user_id>[0-9]+)/$', 'marketplace.views.dashboard', name='dashboard'),
 
     # Django-Messages
     url(r'^messages/', include('django_messages.urls')),
