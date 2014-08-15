@@ -255,27 +255,6 @@ def account(request):
 
 @csrf_exempt
 def calendar(request, user_id):
-    user = User.objects.get(id=user_id)
-    Calendar.objects.get_or_create(teacher=user)
-    calendar = Calendar.objects.get(teacher=user)
-
-    slots = Slot.objects.filter(calendar=calendar)
-    slots_list=[]
-    for item in slots:
-        # print item.day
-        slots_list.append(item.day+'-'+str(item.time))
-
-    slots_list_json  =json.dumps(slots_list)
-
-    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    hours = []
-    for i in range(1,24):
-            hours.append(i)
-    data = {'days':days, 'hours':hours, 'slots':slots_list, 'slots_list_json': slots_list_json, 'teacherid':user_id}
-
-        # if request.method=='GET':
-        #     return render(request, 'calendar.html', data)
-
     if request.method == 'POST':
         user = User.objects.get(id=user_id)
         jsondata = json.loads(request.body)
@@ -286,6 +265,26 @@ def calendar(request, user_id):
             splitted = item.split("-")
             print splitted
             Slot.objects.create(calendar=calendar,day=splitted[0],time=splitted[1])
+
+    user = User.objects.get(id=user_id)
+    Calendar.objects.get_or_create(teacher=user)
+    calendar = Calendar.objects.get(teacher=user)
+    slots = Slot.objects.filter(calendar=calendar)
+
+    slots_list=[]
+    for item in slots:
+        # print item.day
+        slots_list.append(item.day+'-'+str(item.time))
+
+    slots_list_json  =json.dumps(slots_list)
+
+    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    hours = []
+
+    for i in range(1,24):
+            hours.append(i)
+
+    data = {'days':days, 'hours':hours, 'slots':slots_list, 'slots_list_json': slots_list_json, 'teacherid':user_id}
 
     return render(request, 'calendar.html', data)
 
