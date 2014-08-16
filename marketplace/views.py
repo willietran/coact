@@ -65,6 +65,41 @@ def register(request):
 # View to create a new class
 @login_required()
 def create_class(request):
+
+    print request
+
+    url = "https://connect.stripe.com/oauth/token"
+    client_secret = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
+    code = str(request.GET['code'])
+    grant_type = 'authorization_code'
+
+    query_args = {'client_secret': client_secret, 'code': code, 'grant_type': grant_type}
+    r = requests.post(url, data=query_args)
+
+    # Accessing the access token that we got from the User OAuth Login
+    print r.text
+    print r.json['access_token']
+
+    # Creating a stripe Customer Token
+    StripeKey.objects.create(
+        api_key=r.json['access_token'],
+        user=request.user
+    )
+
+    # Creating a Recipient
+    stripe.Recipient.create(
+        name=request.user.first_name,
+        description=request.user.email,
+        type='individual',
+        api_key=r.json['access_token']
+    )
+
+    # Creating user as a customer as well
+    stripe.Customer.create(
+        description=request.user.email,
+        api_key=r.json['access_token']
+    )
+
     if request.method == "POST":
         form = CreateClassForm(request.POST, request.FILES)
         if form.is_valid():
@@ -334,6 +369,10 @@ def calendar(request, user_id):
     data = {'days':days, 'hours':hours, 'slots':slots_list, 'slots_list_json': slots_list_json, 'teacherid':user_id}
 
     return render(request, 'calendar.html', data)
+
+
+def stripe_setup(request):
+    return render(request, 'class_create/stripe_setup.html')
 
 
 # def edit_profile(request):

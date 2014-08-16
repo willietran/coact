@@ -60,6 +60,7 @@ urlpatterns = patterns('',
     # Payment Charging
     url(r'^charge/(?P<classroom_id>[0-9]+)$', 'marketplace.views.charge', name='charge'),
     url(r'^stripe_connect/$', 'marketplace.views.stripe_connect', name='stripe_connect'),
+    url(r'^stripe_setup/$', 'marketplace.views.stripe_setup', name='stripe_connect'),
 
     # Amazon S3 Image Uploading Test
     url(r'^account/$', 'marketplace.views.account', name='account'),
