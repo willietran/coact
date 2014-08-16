@@ -213,35 +213,18 @@ def charge(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
     classroom_data = {'classroom': classroom}
 
-    # Potential: Pull back the classroom teacher for this by doing classroom.teacher and then match it to the
-    # username in StripePayments
-
-    stripe_info = StripeKey.objects.get(user=classroom.teacher)
-    print "Printing Stripe Connect Key"
-    print stripe_info.api_key
+    stripe_info = StripeKey.objects.filter(user=classroom.teacher).latest('id')
 
     # Set your secret key: remember to change this to your live secret key in production
     # See your keys here https://dashboard.stripe.com/account
-    stripe.api_key = stripe_info.api_key
+    stripe.api_key = 'sk_test_eBoq5GKhL3wNB1PwDW8owedu'
 
     # Get the credit card details submitted by the form
     token = request.POST['stripeToken']
 
-    # # Create a Customer
-    # customer = stripe.Customer.create(
-    #     card=token,
-    #     description=request.user.email
-    # )
-    #
+    # Converting classroom cost to cents
     class_cost = classroom.cost*100
-    #
-    # # Charge the Customer instead of the card
-    # stripe.Charge.create(
-    #     amount=int(class_cost),  # in cents
-    #     currency="usd",
-    #     customer=customer.id
-    # )
-    #
+
     # Make a new payment transaction object for Payment History
     Payment.objects.create(
         charge_amount=int(classroom.cost),
@@ -256,12 +239,11 @@ def charge(request, classroom_id):
     currency = "usd"
     card = token
 
-    query_args = {'access_token': access_token,
-                  'amount': amount,
+    query_args = {'amount': amount,
                   'currency': currency,
                   'card': card}
 
-    r = requests.post(url, data=query_args)
+    r = requests.post(url, data=query_args, headers={'Authorization': 'Bearer {}'.format(access_token)})
 
     print "Printing access token..."
     print access_token
@@ -288,12 +270,27 @@ def stripe_connect(request):
     r = requests.post(url, data=query_args)
 
     # Accessing the access token that we got from the User OAuth Login
+    print r.text
     print r.json['access_token']
 
     # Creating a stripe Customer Token
     StripeKey.objects.create(
         api_key=r.json['access_token'],
         user=request.user
+    )
+
+    # Creating a Recipient
+    stripe.Recipient.create(
+        name=request.user.first_name,
+        description=request.user.email,
+        type='individual',
+        api_key=r.json['access_token']
+    )
+
+    # Creating user as a customer as well
+    stripe.Customer.create(
+        description=request.user.email,
+        api_key=r.json['access_token']
     )
 
     return render(request, 'stripe_login.html')
