@@ -65,6 +65,23 @@ def register(request):
 # View to create a new class
 @login_required()
 def create_class(request):
+    if request.method == "POST":
+        form = CreateClassForm(request.POST, request.FILES)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            project = form.cleaned_data['project']
+            description = form.cleaned_data['description']
+            short_description = form.cleaned_data['short_description']
+            teacher = request.user
+            screenshot = form.cleaned_data['screenshot']
+            cost = form.cleaned_data['cost']
+            Classroom.objects.create(title=title, project=project, description=description, teacher=teacher,
+                                     screenshot=screenshot, cost=cost, short_description=short_description)
+            return redirect("beta")
+        else:
+            return redirect("beta")
+    else:
+        form = CreateClassForm()
 
     print request
 
@@ -99,22 +116,6 @@ def create_class(request):
         description=request.user.email,
         api_key=r.json['access_token']
     )
-
-    if request.method == "POST":
-        form = CreateClassForm(request.POST, request.FILES)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            project = form.cleaned_data['project']
-            description = form.cleaned_data['description']
-            short_description = form.cleaned_data['short_description']
-            teacher = request.user
-            screenshot = form.cleaned_data['screenshot']
-            cost = form.cleaned_data['cost']
-            Classroom.objects.create(title=title, project=project, description=description, teacher=teacher,
-                                     screenshot=screenshot, cost=cost, short_description=short_description)
-            return redirect("beta")
-    else:
-        form = CreateClassForm()
 
     classroom = Classroom.objects.all()
     data = {"classroom_form": form, "classroom": classroom}
@@ -177,10 +178,9 @@ def edit_class(request, classroom_id):
         return redirect("error")
 
 
-# Allows a teacher to delet their own class.
+# Allows a teacher to delete their own class.
 def delete_class(request, classroom_id):
     classroom = Classroom.objects.get(id=classroom_id)
-    # classroom_data = {'classroom': classroom}
     if classroom.teacher == request.user:
         classroom.delete()
         return redirect("beta")
@@ -227,12 +227,15 @@ def view_profile(request, user_id):
 
 def dashboard(request, user_id):
     user = User.objects.get(id=user_id)
-    payment_history = Payment.objects.filter(student=request.user)
-    teacher_payments = Payment.objects.filter(classroom__teacher__username=request.user)
+    if user.id != request.user.id:
+        return redirect("beta")
+    else:
+        payment_history = Payment.objects.filter(student=request.user)
+        teacher_payments = Payment.objects.filter(classroom__teacher__username=request.user)
 
-    dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments}
+        dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments}
 
-    return render(request, "dashboard.html", dashboard_data)
+        return render(request, "dashboard.html", dashboard_data)
 
 
 # Viewing teacher's profiles
@@ -292,45 +295,6 @@ def landing_page(request):
     return render(request, 'landing.html')
 
 
-def stripe_connect(request):
-
-    print request
-
-    url = "https://connect.stripe.com/oauth/token"
-    client_secret = "sk_test_eBoq5GKhL3wNB1PwDW8owedu"
-    code = str(request.GET['code'])
-    grant_type = 'authorization_code'
-
-    query_args = {'client_secret': client_secret, 'code': code, 'grant_type': grant_type}
-    r = requests.post(url, data=query_args)
-
-    # Accessing the access token that we got from the User OAuth Login
-    print r.text
-    print r.json['access_token']
-
-    # Creating a stripe Customer Token
-    StripeKey.objects.create(
-        api_key=r.json['access_token'],
-        user=request.user
-    )
-
-    # Creating a Recipient
-    stripe.Recipient.create(
-        name=request.user.first_name,
-        description=request.user.email,
-        type='individual',
-        api_key=r.json['access_token']
-    )
-
-    # Creating user as a customer as well
-    stripe.Customer.create(
-        description=request.user.email,
-        api_key=r.json['access_token']
-    )
-
-    return render(request, 'stripe_login.html')
-
-
 def account(request):
     return render(request, 'account.html')
 
@@ -373,25 +337,6 @@ def calendar(request, user_id):
 
 def stripe_setup(request):
     return render(request, 'class_create/stripe_setup.html')
-
-
-# def edit_profile(request):
-#     if request.method == "POST":
-#         form = EditSkillsForm(request.POST)
-#         if form.is_valid():
-#             skill_1 = form.cleaned_data['skill_1']
-#             # skill_2 = form.cleaned_data['skill_2']
-#             # skill_3 = form.cleaned_data['skill_3']
-#             user = request.user
-#             # Get or Create
-#             Skill.objects.get_or_create(name=skill_1, user=user)
-#             return redirect("beta")
-#     else:
-#         form = EditSkillsForm
-#
-#     edit_skills = Skill.objects.all()
-#     data = {"edit_skills_form": form, "edit_skills": edit_skills}
-#     return render(request, "registration/edit_class.html")
 
 
 

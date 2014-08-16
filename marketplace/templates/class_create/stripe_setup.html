@@ -16,15 +16,25 @@ Setup Your Stripe Account | Coact
 
 {% block content %}
 
-    <div class="container">
+    <div class="wrapper-header">
+        <div class="container header-container">
+            <div class="row title-row">
+                <div class="col-md-12 title-column">
+                    <h1>Setting Up Your Payment Account</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container stripe-box">
         <div class="row">
-            <div class="col-md-12 stripe-head">
-                <h1>Setup Your Payment Account</h1>
+            <div class="col-md-8 col-md-offset-2 stripe-text">
+                <p>Please setup your stripe account so we know where to send the money you earn to. We use Stripe to make sure that you receive your earnings securely and confidently. Once you have setup your account by pressing the button below, you will be redirected to setup your dream class!</p>
+                <p>Stripe is trusted by thousands of companies all over the world. Many of which you likely already use!</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 stripe-text">
-                <p>Please setup your stripe account so we know where to send the money you earn to. We use Stripe to make sure that you receive your earnings securely and confidently. Once you have setup your account by pressing the button below, you will be redirected to setup your dream class!</p>
+            <div class="col-md-8 col-md-offset-2 stripe-button">
                 <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_4TamfC1v8Ik7Iehtch3Pw9hykMxjZARS&scope=read_write&state=1234" type="button"><img src="{% static 'img/blue.png' %}" alt="Stripe Button"></a>
             </div>
         </div>
