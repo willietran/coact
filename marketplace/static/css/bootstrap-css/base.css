@@ -105,13 +105,12 @@
 }
 
 .nav-username {
-    color: white !important;
     font-weight: lighter;
+    letter-spacing: .25rem;
 }
 
-.glyphicon-envelope {
-    color: white !important;
+.glyphicon-envelope, .name-header {
+    color: #d7d7d7 !important;
 }
-
 
 

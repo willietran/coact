@@ -70,7 +70,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle nav-username" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"><span style="color: #333333"> {{ request.user.username }}</span><span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle nav-username" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"><span class="name-header"> {{ request.user.username }}<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{% url 'dashboard' request.user.id %}">Dashboard</a></li>
             <li><a href="{% url 'view_profile' request.user.id %}">View Profile</a></li>
@@ -128,7 +128,8 @@
             <h2 class="form-signin-heading header-register">Pick Your Username</h2>
             <h4 class="subtitle-register">Hey there! Lets make a username, so we know what to call you</h4>
             <input id="id_username" maxlength="30" name="username" type="text" placeholder="Username" class="form-control">
-            <input id="id_name" maxlength="30" name="name" type="text" placeholder="Name" class="form-control">
+{#            <input id="id_name" maxlength="30" name="name" type="text" placeholder="Name" class="form-control">#}
+            <input id="id_first_name" maxlength="30" name="first_name" type="text" placeholder="Name" class="form-control">
             <input id="id_occupation" maxlength="30" name="occupation" type="text" class="form-control" placeholder="Occupation">
             <a href="#" class="btn btn-lg btn-primary btn-block usernameNext" id="usernameNext">Next: Email</a>
             <div class="progress">
