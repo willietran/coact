@@ -47,7 +47,6 @@ class Classroom(models.Model):
     teacher = models.ForeignKey(User, related_name='classroom_teacher')
     student = models.ManyToManyField(Learner, related_name='classroom_learner')
     screenshot = models.ImageField(upload_to='class_img', null=True)
-    api_key = models.CharField(max_length=100, null=True, default='0000')
 
     def __unicode__(self):
         return u"{}".format(self.title)

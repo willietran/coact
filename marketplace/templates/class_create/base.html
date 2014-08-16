@@ -124,32 +124,23 @@
     <form method="post" action="." enctype="multipart/form-data" id="classCreationForm">
         {% csrf_token %}
         <div class="basicInformation">
-{#            <h2 class="form-signin-heading header-class-create">Class Information</h2>#}
             <label for="id_title">Title</label>
-{#            <input id="id_title" maxlength="140" name="title" placeholder="Name of Your Class" type="text" class="form-control">#}
             {{ classroom_form.title }}
             <label for="id_project">Project</label>
-{#            <input id="id_project" maxlength="50" name="project" placeholder="What will you be building?" type="text" class="form-control">#}
             {{ classroom_form.project }}
             <label for="id_cost">Price Per Hour</label>
-{#            <input id="id_cost" step="any" type="number">#}
             {{ classroom_form.cost }}
             <label for="id_screenshot">Add an Image Of Your End Product</label>
             <input id="id_screenshot" name="screenshot" type="file" height="150px" width="150px">
-{#            {{ classroom_form.screenshot }}#}
             <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
         </div>
         <div class="shortDescription">
-{#            <h2 class="form-signin-heading header-class-create">Short Description</h2>#}
             <label for="id_short_description">Brief Description</label>
-{#            <textarea cols="40" id="id_short_description" name="short_description" placeholder="Brief Summary of Your Class" rows="10"></textarea>#}
             {{ classroom_form.short_description }}
         </div>
         <div class="longDescription">
-{#            <h2 class="form-signin-heading header-register">Full Description</h2>#}
             <label for="id_description">Detailed Description</label>
             <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="50"></textarea>
-{#            {{ classroom_form.description }}#}
         </div>
     </form>
 </div>

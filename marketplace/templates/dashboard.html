@@ -11,6 +11,18 @@
 {% endblock %}
 
 {% block head %}
+    <link rel="stylesheet" href="{% static 'liquidslider-master/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'liquidslider-master/css/liquid-slider.css' %}">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'liquidslider-master/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'liquidslider-master/js/jquery.touchSwipe.min.js' %}"></script>
+    <script src="{% static 'liquidslider-master/js/jquery.liquid-slider.min.js' %}"></script>
+    <script>
+        $(function(){
+             $('#slider-id').liquidSlider();
+        });
+    </script>
 
 {% endblock %}
 
@@ -31,67 +43,73 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 payment-history">
-            <h2>Important Announcements</h2>
-            <div class="announcements">
-                <ul>
-                    <li>
-                        <p>The site is about to be live! Thank you so much for being a part of something awesome!</p>
-                    </li>
-                    <li>
-                        <p>We are currently working on implementing multiple students in a single classroom. This will allow teachers to earn more and students to pay less. Also, wouldn't it be nice to work with a friend?</p>
-                    </li>
-                </ul>
+            <div class="liquid-slider" id="slider-id">
+                 <div>
+                    <h2 class="title">Announcements</h2>
+                    <ul>
+                        <li>
+                            <p>The site is about to be live! Thank you so much for being a part of something awesome!</p>
+                        </li>
+                        <li>
+                            <p>We are currently working on implementing multiple students in a single classroom. This will allow teachers to earn more and students to pay less. Also, wouldn't it be nice to work with a friend?</p>
+                        </li>
+                    </ul>
+                 </div>
+                 <div>
+                      <h2 class="title">Instructor</h2>
+                      <div class="instructor-payment">
+                        {% if teacher_payments.count != 0 %}
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Date Paid</th>
+                                <th>Class</th>
+                                <th>Student</th>
+                                <th>Amount Earned</th>
+                            </tr>
+                            {% for payment in teacher_payments %}
+                            <tr>
+                                <td>{{ payment.date }}</td>
+                                <td>{{ payment.classroom.title }}</td>
+                                <td>{{ payment.student }}</td>
+                                <td>{{ payment.classroom.cost }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {% else %}
+                            <p>You are not currently teaching any classes or have any students.</p>
+                        {% endif %}
+                        </div>
+                 </div>
+                 <div>
+                      <h2 class="title">Payment History</h2>
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Date Paid</th>
+                                <th>Classroom Name</th>
+                                <th>Teacher</th>
+                                <th>Teacher Username</th>
+                                <th>Amount Charged</th>
+                            </tr>
+                            {% for payment in payment_history %}
+                            <tr>
+                                <td>{{ payment.date }}</td>
+                                <td>{{ payment.classroom.title }}</td>
+                                <td>{{ payment.classroom.teacher.first_name }}</td>
+                                <td>{{ payment.classroom.teacher }}</td>
+                                <td>{{ payment.classroom.cost }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                 </div>
             </div>
 
-            <div class="instructor-payment">
-            {% if teacher_payments.count != 0 %}
-            <h2>Instructor Information</h2>
-            <table class="table table-hover">
-                <tr>
-                    <th>Date Paid</th>
-                    <th>Class</th>
-                    <th>Student</th>
-                    <th>Amount Earned</th>
-                </tr>
-                {% for payment in teacher_payments %}
-                <tr>
-                    <td>{{ payment.date }}</td>
-                    <td>{{ payment.classroom.title }}</td>
-                    <td>{{ payment.student }}</td>
-                    <td>{{ payment.classroom.cost }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% else %}
-                <p>You are not currently teaching any classes or have any students.</p>
-            {% endif %}
-            </div>
 
-            <h2>Payment History</h2>
-            <table class="table table-hover">
-                <tr>
-                    <th>Date Paid</th>
-                    <th>Classroom Name</th>
-                    <th>Teacher</th>
-                    <th>Teacher Username</th>
-                    <th>Amount Charged</th>
-                </tr>
-                {% for payment in payment_history %}
-                <tr>
-                    <td>{{ payment.date }}</td>
-                    <td>{{ payment.classroom.title }}</td>
-                    <td>{{ payment.classroom.teacher.first_name }}</td>
-                    <td>{{ payment.classroom.teacher }}</td>
-                    <td>{{ payment.classroom.cost }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <div class="col-md-3">
 
         </div>
     </div>
 </div>
+
+
 
 
 
