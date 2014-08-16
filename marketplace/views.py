@@ -27,7 +27,7 @@ def home(request):
 
     landing = EmailSignup.objects.all()
     data = {"landing_form": form, "landing": landing}
-    return render(request, "index.html", data)
+    return render(request, "old_html_files/index.html", data)
 
 
 # Home page for the beta access. Not the landing page to collect e-mail sign ups
@@ -41,7 +41,7 @@ def class_list(request):
     if request.method == 'GET':
         classroom = Classroom.objects.all()
         class_data = {"classroom": classroom}
-        return render(request, "class-list.html", class_data)
+        return render(request, "old_html_files/class-list.html", class_data)
 
 
 # Registration view
@@ -124,7 +124,7 @@ def create_class(request):
 
 # Confirmation page for after people create a new account
 def confirm(request):
-    return render(request, "confirm.html")
+    return render(request, "old_html_files/confirm.html")
 
 
 # View to allow people to view details in the class before signing up
@@ -148,7 +148,7 @@ def join_class(request, classroom_id):
         new_student = Learner.objects.create(name=request.user, hangout=request.user)
     classroom1.student.add(new_student)
 
-    return render(request, "join_class.html", classroom_data1)
+    return render(request, "old_html_files/join_class.html", classroom_data1)
 
 
 # Teacher's ability to edit the class that they created.
@@ -214,7 +214,7 @@ def create_review(request, classroom_id):
         else:
             form = ReviewForm(initial={'classroom': classroom.title})
         data = {"form": form, 'classroom': classroom}
-        return render(request, "create_review.html", data)
+        return render(request, "old_html_files/create_review.html", data)
 
 
 # Viewing people's profiles
@@ -289,10 +289,6 @@ def charge(request, classroom_id):
     print r.json
 
     return render(request, 'charge.html', classroom_data)
-
-
-def landing_page(request):
-    return render(request, 'landing.html')
 
 
 def account(request):

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'old_html_files/base.html' %}
 {% load staticfiles %}
 
 {% block title %}
@@ -13,23 +13,26 @@
 
 {% block content %}
 <div class="info-container">
-    <h1 class="user-name">{{ teacher }}</h1>
-    <img class="user-image" src="{{ teacher.image.url }}" alt='user image'>
-    <p class="user-about">{{ teacher.about }}</p>
+    <h1 class="user-name">{{ user }}</h1>
+    <img class="user-image" src="{{ user.image.url }}" alt='user image'>
+    <h3>About You</h3>
+    <p class="user-about">{{ user.about }}</p>
 {#    <a class="contact" href="{% url 'messages_compose_to' user %}">Send Me A Message</a>#}
 </div>
+
+
 <div class="helper">
-    <h1>Classes {{ teacher }} is teaching</h1>
+    <h1>Classes you are teaching</h1>
 </div>
 <div class="main-container">
-{% for class in teacher.classroom_teacher.all %}
+{% for class in user.classroom_teacher.all %}
     <div class="class1 clearfix">
         <div class="image">
             <img class="profile" src="{{ class.screenshot.url }}" alt="Profile picture" height="150" width="170">
         </div>
         <div class="details">
             <a href="{% url 'class_details' class.id %}" class="class-name">{{ class }}</a>
-            <h3 class="teacher">by: {{ class.teacher }}</a></h3>
+            <h3 class="teacher">by: {{ class.teacher }}</h3>
             <p class="short-description">{{ class.short_description }}</p>
         </div>
         <div class="cost">
@@ -38,4 +41,8 @@
     </div>
 {% endfor %}
 </div>
+
+    <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_4TamfC1v8Ik7Iehtch3Pw9hykMxjZARS
+"><input type="image" id="stripeImage" src="{% static 'img/blue.png' %}"></a>
+
 {% endblock %}
