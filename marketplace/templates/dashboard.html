@@ -26,6 +26,7 @@
 
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
+    // Line Graph
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -98,8 +99,8 @@
                             {% for payment in teacher_payments %}
                             <tr>
                                 <td>{{ payment.date }}</td>
-                                <td>{{ payment.classroom.title }}</td>
-                                <td>{{ payment.student }}</td>
+                                <td><a href='{% url 'class_details' payment.classroom.id %}'>{{ payment.classroom.title }}</a></td>
+                                <td><a href="{% url 'view_profile' payment.student.id %}">{{ payment.student }}</a></td>
                                 <td>{{ payment.classroom.cost }}</td>
                             </tr>
                             {% endfor %}
@@ -116,15 +117,13 @@
                                 <th>Date Paid</th>
                                 <th>Classroom Name</th>
                                 <th>Teacher</th>
-                                <th>Teacher Username</th>
                                 <th>Amount Charged</th>
                             </tr>
                             {% for payment in payment_history %}
                             <tr>
                                 <td>{{ payment.date }}</td>
-                                <td>{{ payment.classroom.title }}</td>
-                                <td>{{ payment.classroom.teacher.first_name }}</td>
-                                <td>{{ payment.classroom.teacher }}</td>
+                                <td><a href='{% url 'class_details' payment.classroom.id %}'>{{ payment.classroom.title }}</a></td>
+                                <td><a href="{% url 'view_teacher' payment.classroom.teacher.id %}">{{ payment.classroom.teacher.first_name }}</a></td>
                                 <td>{{ payment.classroom.cost }}</td>
                             </tr>
                             {% endfor %}

@@ -10,7 +10,9 @@
     <!-- JS Files -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'Parsley.js-2.0.3/dist/parsley.min.js' %}"></script>
     <script src="{% static 'js/create_class.js' %}"></script>
+
 
     <!-- Bootstrap Files -->
 
@@ -79,7 +81,7 @@
             <li><a href="{% url 'messages_compose' %}">Compose Message</a></li>
           </ul>
         <li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span></a></li>
-        <li><a href="{% url 'create_class' %}" id='create-class'>Start Teaching</a> </li>
+        <li><a href="{% url 'stripe_setup' %}" id='create-class'>Start Teaching</a> </li>
       </ul>
     </div>
     {% else %}
@@ -122,26 +124,26 @@
 -->
 
 <div class="col-sm-9 col-sm-offset-2 col-md-4 col-md-offset-3-main contentSection">
-    <form method="post" action="." enctype="multipart/form-data" id="classCreationForm">
+    <form method="post" action="." enctype="multipart/form-data" id="classCreationForm" data-parsley-validate>
         {% csrf_token %}
         <div class="basicInformation">
             <label for="id_title">Title</label>
-            {{ classroom_form.title }}
+            <input id="id_title" maxlength="140" name="title" placeholder="Name of Class" type="text" required>
             <label for="id_project">Project</label>
-            {{ classroom_form.project }}
+            <input id="id_project" maxlength="50" name="project" placeholder="What are you building?" type="text" required>
             <label for="id_cost">Price Per Hour</label>
-            {{ classroom_form.cost }}
+            <input id="id_cost" name="cost" step="0.01" type="number" data-validate="number,required" required>
             <label for="id_screenshot">Add an Image Of Your End Product</label>
-            <input id="id_screenshot" name="screenshot" type="file" height="150px" width="150px">
+            <input id="id_screenshot" name="screenshot" type="file" height="150px" width="150px" required>
             <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
         </div>
         <div class="shortDescription">
             <label for="id_short_description">Brief Description</label>
-            {{ classroom_form.short_description }}
+            <textarea cols="40" id="id_short_description" name="short_description" placeholder="Brief Summary of Your Class" rows="10" maxlength="140" required></textarea>
         </div>
         <div class="longDescription">
             <label for="id_description">Detailed Description</label>
-            <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="50"></textarea>
+            <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="50" required></textarea>
         </div>
     </form>
 </div>

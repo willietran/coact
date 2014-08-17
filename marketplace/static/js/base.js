@@ -5,7 +5,7 @@
 
 $(document).ready(function() {
 
-      $('.next').on('click', function () {
+  $('.next').on('click', function () {
     var current = $(this).data('currentBlock'),
       next = $(this).data('nextBlock');
 
