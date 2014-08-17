@@ -24,6 +24,30 @@
         });
     </script>
 
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales'],
+          ['May',  {{ may.count }}],
+          ['June',  {{ june.count }}],
+          ['July',  {{ july.count }}],
+          ['August',  {{ august.count }}],
+        ]);
+
+        var options = {
+          title: 'Class Performance',
+{#          curveType: 'function',#}
+          legend: {position: 'bottom'}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
 {% endblock %}
 
 
@@ -40,11 +64,12 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 payment-history">
             <div class="liquid-slider" id="slider-id">
-                 <div>
+                <div>
                     <h2 class="title">Announcements</h2>
                     <ul>
                         <li>
@@ -54,6 +79,10 @@
                             <p>We are currently working on implementing multiple students in a single classroom. This will allow teachers to earn more and students to pay less. Also, wouldn't it be nice to work with a friend?</p>
                         </li>
                     </ul>
+                 </div>
+                 <div>
+                    <h2 class="title">Analytics</h2>
+                    <div id="chart_div" style="width: 100%; height: 500px;"></div>
                  </div>
                  <div>
                       <h2 class="title">Instructor</h2>
