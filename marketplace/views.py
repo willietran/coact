@@ -1,6 +1,8 @@
 from datetime import datetime
 import json
 from django.contrib.auth.decorators import login_required
+from django.db import connection
+from django.db.models import Count, Sum
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
@@ -237,7 +239,8 @@ def dashboard(request, user_id):
         teacher_july = teacher_payments.filter(date__month='7')
         teacher_august = teacher_payments.filter(date__month='8')
 
-        dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments, 'may': teacher_may, 'june': teacher_june, 'july': teacher_july, 'august': teacher_august}
+        dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments,
+                          'may': teacher_may, 'june': teacher_june, 'july': teacher_july, 'august': teacher_august}
 
         return render(request, "dashboard.html", dashboard_data)
 

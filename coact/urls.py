@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     # User Registration
     url(r'^register/$', 'marketplace.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
     url(r'^confirm/$', 'marketplace.views.confirm', name='confirm'),
     (r'^accounts/', include('registration.backends.default.urls')),
 
@@ -46,7 +46,7 @@ urlpatterns = patterns('',
     url(r'^details/(?P<classroom_id>[0-9]+)/create_review/$', 'marketplace.views.create_review', name='create_review'),
 
     # Calendar
-    # url(r'^calendar/', include('calendarium.urls')),
+    url(r'^calendar/(?P<user_id>[0-9]+)/$', 'marketplace.views.calendar', name='calendar'),
 
     # View Profile
     url(r'^view/(?P<user_id>[0-9]+)/$', 'marketplace.views.view_profile', name='view_profile'),
@@ -63,7 +63,6 @@ urlpatterns = patterns('',
     # Amazon S3 Image Uploading Test
     url(r'^account/$', 'marketplace.views.account', name='account'),
 
-    url(r'^calendar/(?P<user_id>[0-9]+)/$', 'marketplace.views.calendar', name='calendar'),
 
 )
 

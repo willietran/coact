@@ -45,40 +45,41 @@ $(document).ready(function() {
     });
 
     $('#id_project').on('focus', function() {
-        $('.project-tip').show();
+        $('.project-tip').show('slow');
     });
 
     $('#id_project').focusout(function() {
-        $('.project-tip').hide();
+        $('.project-tip').hide('slow');
     });
 
     $('#id_cost').on('focus', function() {
-        $('.price-tip').show();
+        $('.price-tip').show('slow');
     });
 
     $('#id_cost').focusout(function() {
-        $('.price-tip').hide();
+        $('.price-tip').hide('slow');
     });
 
     $('#id_short_description').on('focus', function() {
-        $('.s-description-tip').show();
+        $('.s-description-tip').show('slow');
     });
 
     $('#id_short_description').focusout(function() {
-        $('.s-description-tip').hide();
+        $('.s-description-tip').hide('slow');
     });
 
     $('#id_description').on('focus', function() {
-        $('.description-tip').show();
+        $('.description-tip').show('slow');
     });
 
     $('#id_description').focusout(function() {
-        $('.description-tip').hide();
+        $('.description-tip').hide('slow');
     });
 
     enteredText = $('#id_description').val();
     numberOfLineBreaks = (enteredText.match(/\n/g)||[]).length;
     characterCount = enteredText.length + numberOfLineBreaks;
+
 
 
 });
