@@ -5,31 +5,29 @@
 
 $(document).ready(function() {
 
-    function validateFirstPart() {
-        if ($('#id_username').val().length < 0 && $('#id_name').val().length < 0) {
-            alert("Username and name must be filled");
-            return false;
-        } else {
-            return true;
-        }
-    }
+      $('.next').on('click', function () {
+    var current = $(this).data('currentBlock'),
+      next = $(this).data('nextBlock');
 
-    $(document).on('click', '#usernameNext', function() {
-        if(validateFirstPart()) {
-            $('.userName').hide();
-            $('.emailPassword').fadeIn('slow')
-        }
-    });
+    // only validate going forward. If current group is invalid, do not go further
+    // .parsley().validate() returns validation result AND show errors
+    if (next > current)
+      if (false === $('#register-form').parsley().validate('block' + current))
+        return;
 
-    $(document).on('click', '.emailPasswordNext', function() {
-        $('.emailPassword').hide();
-        $('.aboutSection').fadeIn('slow')
-    });
+    // validation was ok. We can go on next step.
+    $('.block' + current)
+      .removeClass('show')
+      .addClass('hidden');
 
-    $(document).on('click', '.aboutNext', function() {
-        $('.aboutSection').hide();
-        $('.imageSection').fadeIn('slow');
+    $('.block' + next)
+      .removeClass('hidden')
+      .addClass('show');
+
+    $(document).on('click', '#id_image', function() {
         $('.doneButton').show();
         $('.progressDone').show();
     });
+
+  });
 });

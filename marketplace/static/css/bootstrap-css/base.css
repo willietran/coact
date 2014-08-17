@@ -113,4 +113,9 @@
     color: #d7d7d7 !important;
 }
 
+.parsley-required, .parsley-type {
+    list-style-type: none;
+    color: #ffffff;
+}
+
 

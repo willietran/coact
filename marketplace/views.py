@@ -230,10 +230,14 @@ def dashboard(request, user_id):
     if user.id != request.user.id:
         return redirect("beta")
     else:
-        payment_history = Payment.objects.filter(student=request.user)
-        teacher_payments = Payment.objects.filter(classroom__teacher__username=request.user)
+        payment_history = Payment.objects.filter(student=request.user).order_by('-date')
+        teacher_payments = Payment.objects.filter(classroom__teacher__username=request.user).order_by('-date')
+        teacher_may = teacher_payments.filter(date__month='5')
+        teacher_june = teacher_payments.filter(date__month='6')
+        teacher_july = teacher_payments.filter(date__month='7')
+        teacher_august = teacher_payments.filter(date__month='8')
 
-        dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments}
+        dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments, 'may': teacher_may, 'june': teacher_june, 'july': teacher_july, 'august': teacher_august}
 
         return render(request, "dashboard.html", dashboard_data)
 
