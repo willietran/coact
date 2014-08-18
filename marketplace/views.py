@@ -1,8 +1,8 @@
 from datetime import datetime
 import json
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.db import connection
-from django.db.models import Count, Sum
+from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
@@ -51,7 +51,14 @@ def register(request):
     if request.method == 'POST':
         form = EmailUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            text_content = 'Thanks for signing up to Coact! Feel free to browse or start earning money by teaching ' \
+                           'a class!'
+            html_content = '<h2>{}! Thank you!</h2> <div><p>Feel free to browse or start earning money by teaching ' \
+                           'a class at www.coact.io</p></div>'.format(user.first_name)
+            msg = EmailMultiAlternatives("Welcome!", text_content, settings.DEFAULT_FROM_EMAIL, [user.email])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
             new_user = authenticate(username=request.POST['username'],
                                     password=request.POST['password1'])
             login(request, new_user)
@@ -70,6 +77,7 @@ def create_class(request):
     if request.method == "POST":
         form = CreateClassForm(request.POST, request.FILES)
         if form.is_valid():
+            # Create the Classroom
             title = form.cleaned_data['title']
             project = form.cleaned_data['project']
             description = form.cleaned_data['description']
@@ -79,6 +87,15 @@ def create_class(request):
             cost = form.cleaned_data['cost']
             Classroom.objects.create(title=title, project=project, description=description, teacher=teacher,
                                      screenshot=screenshot, cost=cost, short_description=short_description)
+            # Send the User an e-mail
+            text_content = 'Congratulations! Your class is now available for anyone to register!'
+            html_content = '<h2>Success! Classroom created!</h2> <div><p>{} is now available for any student to take.' \
+                           ' Start getting students to your site so you can earn money!</p></div>'.format(title)
+            msg = EmailMultiAlternatives("Classroom created!", text_content, settings.DEFAULT_FROM_EMAIL,
+                                         [request.user.email])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+
             return redirect("beta")
         else:
             return redirect("beta")
@@ -294,6 +311,26 @@ def charge(request, classroom_id):
     print access_token
     print r.status_code
     print r.json
+
+    # Send the recipient an e-mail
+    text_content = 'A new student has purchased one of your classes!'
+    html_content = '<h2>New student!</h2> <div><p>A new student has enrolled in {}. Send them a message to welcome ' \
+                   'them to the class and let them know how to prepare. Come check it out at www.coact.io.</p>' \
+                   '</div>'.format(classroom.title)
+    msg = EmailMultiAlternatives("A new student has enrolled in one of your classes!", text_content,
+                                 settings.DEFAULT_FROM_EMAIL, [classroom.teacher.email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+    # Send the student an e-mail
+    text_content = 'You have enrolled in {}!'.format(classroom.title)
+    html_content = '<h2>Thank you for enrolling in {}!</h2> <div><p>You should be receiving a message from {} shortly,' \
+                   ' but if you are so eager, feel free to send them an e-mail here, {}.</p>' \
+                   '</div>'.format(classroom.title, classroom.teacher.first_name, classroom.teacher.email)
+    msg = EmailMultiAlternatives("You have enrolled in a new class!", text_content, settings.DEFAULT_FROM_EMAIL,
+                                 [classroom.teacher.email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 
     return render(request, 'charge.html', classroom_data)
 
