@@ -129,10 +129,10 @@ except ImportError:
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'tran.william26@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'coactapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'willie1026'
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'tran.william26@gmail.com'
+DEFAULT_FROM_EMAIL = 'coactapp@gmail.com'
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
