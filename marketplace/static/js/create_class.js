@@ -37,11 +37,11 @@ $(document).ready(function() {
 
 
     $('#id_title').on('focus', function() {
-        $('.title-tip').show();
+        $('.title-tip').show('slow');
     });
 
     $('#id_title').focusout(function() {
-        $('.title-tip').hide();
+        $('.title-tip').hide('slow');
     });
 
     $('#id_project').on('focus', function() {
