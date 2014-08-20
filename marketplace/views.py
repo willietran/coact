@@ -114,6 +114,7 @@ def create_class(request):
 
     # Accessing the access token that we got from the User OAuth Login
     print r.text
+    print r.json
     print r.json['access_token']
 
     # Creating a stripe Customer Token
@@ -152,6 +153,13 @@ def class_details(request, classroom_id):
     cost_in_cents = classroom.cost*100
     classroom_data = {'classroom': classroom,
                       'cost_in_cents': cost_in_cents}
+
+    # Tracks which students have visited a page
+    try:
+        new_student = Learner.objects.get(name=request.user)
+    except Learner.DoesNotExist:
+        new_student = Learner.objects.create(name=request.user, hangout=request.user)
+    classroom.student.add(new_student)
 
     return render(request, "class_details-bs.html", classroom_data)
 
@@ -249,6 +257,7 @@ def dashboard(request, user_id):
     if user.id != request.user.id:
         return redirect("beta")
     else:
+        classroom = Classroom.objects.filter(teacher__id=request.user.id)
         payment_history = Payment.objects.filter(student=request.user).order_by('-date')
         teacher_payments = Payment.objects.filter(classroom__teacher__username=request.user).order_by('-date')
         teacher_may = teacher_payments.filter(date__month='5')
@@ -257,7 +266,8 @@ def dashboard(request, user_id):
         teacher_august = teacher_payments.filter(date__month='8')
 
         dashboard_data = {'user': user, 'payment_history': payment_history, 'teacher_payments': teacher_payments,
-                          'may': teacher_may, 'june': teacher_june, 'july': teacher_july, 'august': teacher_august}
+                          'may': teacher_may, 'june': teacher_june, 'july': teacher_july, 'august': teacher_august,
+                          'classroom': classroom}
 
         return render(request, "dashboard.html", dashboard_data)
 
