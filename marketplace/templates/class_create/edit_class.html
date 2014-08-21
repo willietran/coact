@@ -42,16 +42,6 @@
 
     {% endblock %}
 
-{#<script>#}
-{#  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){#}
-{#  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),#}
-{#  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)#}
-{#  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');#}
-{##}
-{#  ga('create', 'UA-53450139-1', 'auto');#}
-{#  ga('send', 'pageview');#}
-{##}
-{#</script>#}
 
 </head>
 <body>
@@ -80,13 +70,14 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"> {{ request.user.username }}<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'dashboard' request.user.id %}">Dashboard</a></li>
             <li><a href="{% url 'view_profile' request.user.id %}">View Profile</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
             <li class="divider"></li>
             <li><a href="{% url 'messages_compose' %}">Compose Message</a></li>
           </ul>
         <li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span></a></li>
-        <li><a href="{% url 'create_class' %}" id='create-class'>Start Teaching</a> </li>
+        <li><a href="{% url 'stripe_setup' %}" id='create-class'>Start Teaching</a> </li>
       </ul>
     </div>
     {% else %}
@@ -118,9 +109,21 @@
             <li><a class="longDescriptionLink" href="#">Long Description</a></li>
           </ul>
             <input type="submit" form="classCreationForm" class="btn btn-primary submitCreateButton" value="Done Editing">
+            <button class="btn btn-primary delete-button" data-toggle="modal" data-target=".delete-class">Delete Class</button>
         </div>
       </div>
  </div>
+
+<div class="modal fade delete-class" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content delete-class-content">
+        <h1>Are you sure you want to delete this class?</h1>
+        <hr>
+        <p>Once you delete your class, it will be <strong>permanently</strong> gone.</p>
+        <a href="{% url 'delete_class' classroom.id %}" class="delete-button-perm btn btn-primary" type="button">Delete Class</a>
+    </div>
+  </div>
+</div>
 
 <!--
 ******************************

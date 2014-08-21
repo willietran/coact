@@ -9,7 +9,7 @@ __author__ = 'WillieTran'
 
 class EmailUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    name = forms.CharField(max_length=30)
+    first_name = forms.CharField(max_length=30)
     about = forms.CharField(max_length=400,
                             widget=forms.Textarea(attrs={'placeholder': 'Tell a bit about yourself'}))
     image = forms.ImageField(required=True)
@@ -24,7 +24,7 @@ class EmailUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "name", "email", "password1", "password2", "about", "image")
+        fields = ("username", "first_name", "email", "password1", "password2", "about", "image", "occupation")
 
     def clean_username(self):
         # Since User.username is unique, this check is redundant,
@@ -38,6 +38,14 @@ class EmailUserCreationForm(UserCreationForm):
             self.error_messages['duplicate_username'],
             code='duplicate_username',
         )
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        try:
+            User.objects.get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError(u'Email Addresses Must Be Unique.')
 
 
 class LandingForm(forms.Form):

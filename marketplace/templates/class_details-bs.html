@@ -36,26 +36,12 @@
                     <img src="{% static 'img/somacro__45_300dpi_social_media_icons_by_vervex-d4fj7q9/no border/facebook500.png' %}" height="25">
                     <img src="{% static 'img/somacro__45_300dpi_social_media_icons_by_vervex-d4fj7q9/no border/twitter.png' %}" height="25">
                     <img src="{% static 'img/somacro__45_300dpi_social_media_icons_by_vervex-d4fj7q9/no border/tumblr.png' %}" height="25">
-{#                    <div id="fb-root"></div>#}
-{#                    <script>(function(d, s, id) {#}
-{#                      var js, fjs = d.getElementsByTagName(s)[0];#}
-{#                      if (d.getElementById(id)) return;#}
-{#                      js = d.createElement(s); js.id = id;#}
-{#                      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1396649297223814&version=v2.0";#}
-{#                      fjs.parentNode.insertBefore(js, fjs);#}
-{#                      }(document, 'script', 'facebook-jssdk'));#}
-{#                    </script>#}
-{#                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>#}
-{#                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="willietran_">Tweet</a>#}
-{#                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>#}
                 </div>
             </div>
         </div>
         <div class="col-md-3 col-md-offset-1 teacher-section">
             <h1 class="teacher-first_name">{{ classroom.teacher.first_name }}</h1>
-{#            <a href="{% url 'view_teacher' user.id %}">#}
                 <img class='teacher-image' src="{{ classroom.teacher.image.url }}" alt="teacher image" height="125" width="125">
-{#            </a>#}
             <p class="teacher-about">{{ classroom.teacher.about }}</p>
             <hr>
             {% if classroom.teacher == request.user %}

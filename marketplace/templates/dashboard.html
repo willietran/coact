@@ -1,0 +1,152 @@
+{% extends 'base-bs.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block css %}
+{% static 'css/bootstrap-css/view_profile.css' %}
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'liquidslider-master/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'liquidslider-master/css/liquid-slider.css' %}">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'liquidslider-master/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'liquidslider-master/js/jquery.touchSwipe.min.js' %}"></script>
+    <script src="{% static 'liquidslider-master/js/jquery.liquid-slider.min.js' %}"></script>
+    <script>
+        $(function(){
+             $('#slider-id').liquidSlider();
+        });
+    </script>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    // Line Graph
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales'],
+          ['May',  {{ may.count }}],
+          ['June',  {{ june.count }}],
+          ['July',  {{ july.count }}],
+          ['August',  {{ august.count }}],
+        ]);
+
+        var options = {
+          title: 'Class Performance',
+{#          curveType: 'function',#}
+          legend: {position: 'bottom'}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="wrapper-header">
+    <div class="container header-container">
+        <div class="row title-row">
+            <div class="col-md-12 title-column">
+                <h1>Welcome home, {{ request.user.first_name }}</h1>
+                <p>Here's what's going on around Coact</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 payment-history">
+            <div class="liquid-slider" id="slider-id">
+                <div>
+                    <h2 class="title">Announcements</h2>
+                    <ul>
+                        <li>
+                            <p>The site is about to be live! Thank you so much for being a part of something awesome!</p>
+                        </li>
+                        <li>
+                            <p>We are currently working on implementing multiple students in a single classroom. This will allow teachers to earn more and students to pay less. Also, wouldn't it be nice to work with a friend?</p>
+                        </li>
+                    </ul>
+                 </div>
+                 <div>
+                    <h2 class="title">Analytics</h2>
+                    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+                 </div>
+                 <div>
+                      <h2 class="title">Instructor</h2>
+                      <div class="instructor-payment">
+                        {% if teacher_payments.count != 0 %}
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Date Paid</th>
+                                <th>Class</th>
+                                <th>Student</th>
+                                <th>Amount Earned</th>
+                            </tr>
+                            {% for payment in teacher_payments %}
+                            <tr>
+                                <td>{{ payment.date }}</td>
+                                <td><a href='{% url 'class_details' payment.classroom.id %}'>{{ payment.classroom.title }}</a></td>
+                                <td><a href="{% url 'view_profile' payment.student.id %}">{{ payment.student }}</a></td>
+                                <td>{{ payment.classroom.cost }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {% else %}
+                            <p>You are not currently teaching any classes or have any students.</p>
+                        {% endif %}
+                        </div>
+                 </div>
+                 <div>
+                      <h2 class="title">Payment History</h2>
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Date Paid</th>
+                                <th>Classroom Name</th>
+                                <th>Teacher</th>
+                                <th>Amount Charged</th>
+                            </tr>
+                            {% for payment in payment_history %}
+                            <tr>
+                                <td>{{ payment.date }}</td>
+                                <td><a href='{% url 'class_details' payment.classroom.id %}'>{{ payment.classroom.title }}</a></td>
+                                <td><a href="{% url 'view_teacher' payment.classroom.teacher.id %}">{{ payment.classroom.teacher.first_name }}</a></td>
+                                <td>{{ payment.classroom.cost }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53450139-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+{% endblock %}

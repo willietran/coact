@@ -10,7 +10,9 @@
     <!-- JS Files -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'Parsley.js-2.0.3/dist/parsley.min.js' %}"></script>
     <script src="{% static 'js/create_class.js' %}"></script>
+
 
     <!-- Bootstrap Files -->
 
@@ -42,16 +44,7 @@
 
     {% endblock %}
 
-{#<script>#}
-{#  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){#}
-{#  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),#}
-{#  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)#}
-{#  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');#}
-{##}
-{#  ga('create', 'UA-53450139-1', 'auto');#}
-{#  ga('send', 'pageview');#}
-{##}
-{#</script>#}
+
 
 
 </head>
@@ -81,13 +74,14 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="profile-image" src="{{ request.user.image.url }}" height="25" width="25"> {{ request.user.username }}<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'dashboard' request.user.id %}">Dashboard</a></li>
             <li><a href="{% url 'view_profile' request.user.id %}">View Profile</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
             <li class="divider"></li>
             <li><a href="{% url 'messages_compose' %}">Compose Message</a></li>
           </ul>
         <li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span></a></li>
-        <li><a href="{% url 'create_class' %}" id='create-class'>Start Teaching</a> </li>
+        <li><a href="{% url 'stripe_setup' %}" id='create-class'>Start Teaching</a> </li>
       </ul>
     </div>
     {% else %}
@@ -130,35 +124,26 @@
 -->
 
 <div class="col-sm-9 col-sm-offset-2 col-md-4 col-md-offset-3-main contentSection">
-    <form method="post" action="." enctype="multipart/form-data" id="classCreationForm">
+    <form method="post" action="." enctype="multipart/form-data" id="classCreationForm" data-parsley-validate>
         {% csrf_token %}
         <div class="basicInformation">
-{#            <h2 class="form-signin-heading header-class-create">Class Information</h2>#}
             <label for="id_title">Title</label>
-{#            <input id="id_title" maxlength="140" name="title" placeholder="Name of Your Class" type="text" class="form-control">#}
-            {{ classroom_form.title }}
+            <input id="id_title" maxlength="140" name="title" placeholder="Name of Class" type="text" required>
             <label for="id_project">Project</label>
-{#            <input id="id_project" maxlength="50" name="project" placeholder="What will you be building?" type="text" class="form-control">#}
-            {{ classroom_form.project }}
+            <input id="id_project" maxlength="50" name="project" placeholder="What are you building?" type="text" required>
             <label for="id_cost">Price Per Hour</label>
-{#            <input id="id_cost" step="any" type="number">#}
-            {{ classroom_form.cost }}
+            <input id="id_cost" name="cost" step="0.01" type="number" data-validate="number,required" required>
             <label for="id_screenshot">Add an Image Of Your End Product</label>
-            <input id="id_screenshot" name="screenshot" type="file" height="150px" width="150px">
-{#            {{ classroom_form.screenshot }}#}
+            <input id="id_screenshot" name="screenshot" type="file" height="150px" width="150px" required>
             <img src="{% static 'img/image_add.png' %}" height="150" width="auto">
         </div>
         <div class="shortDescription">
-{#            <h2 class="form-signin-heading header-class-create">Short Description</h2>#}
             <label for="id_short_description">Brief Description</label>
-{#            <textarea cols="40" id="id_short_description" name="short_description" placeholder="Brief Summary of Your Class" rows="10"></textarea>#}
-            {{ classroom_form.short_description }}
+            <textarea cols="40" id="id_short_description" name="short_description" placeholder="Brief Summary of Your Class" rows="10" maxlength="140" required></textarea>
         </div>
         <div class="longDescription">
-{#            <h2 class="form-signin-heading header-register">Full Description</h2>#}
             <label for="id_description">Detailed Description</label>
-            <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="50"></textarea>
-{#            {{ classroom_form.description }}#}
+            <textarea cols="40" id="id_description" name="description" placeholder="Describe your class in full detail" rows="50" required></textarea>
         </div>
     </form>
 </div>
@@ -213,25 +198,13 @@
 </div>
 
 
-
-
-
-
-{#{% block content %}#}
-{##}
-{#{% endblock %}#}
-
-
-
 <!--
 ******************************
          FOOTER
 ******************************
 -->
 
-{#<footer>#}
-{#    <p>&copy; 2014 Coact, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>#}
-{#</footer>#}
+
 
 </body>
 </html>

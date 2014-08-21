@@ -1,0 +1,24 @@
+{% extends 'old_html_files/base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+Create a new class! | Coact
+{% endblock %}
+
+
+{% block css %}
+"{% static 'css/create_class.css' %}"
+{% endblock %}
+
+
+{% block content %}
+<h1>Create Class</h1>
+<div class="registration-wrapper">
+  <form enctype="multipart/form-data" method='POST'>
+    {% csrf_token %}
+      {{ classroom_form.as_p }}
+    <input id="submit" type="submit" value="Create Class" name="SubmitButton">
+  </form>
+</div>
+{% endblock %}

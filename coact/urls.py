@@ -11,12 +11,11 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^beta/$', 'marketplace.views.beta', name='beta'),
     url(r'^$', 'marketplace.views.beta', name='home'),
-    url(r'^landing_page/$', 'marketplace.views.landing_page', name='landing_page'),
 
     # User Registration
     url(r'^register/$', 'marketplace.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
     url(r'^confirm/$', 'marketplace.views.confirm', name='confirm'),
     (r'^accounts/', include('registration.backends.default.urls')),
 
@@ -47,21 +46,23 @@ urlpatterns = patterns('',
     url(r'^details/(?P<classroom_id>[0-9]+)/create_review/$', 'marketplace.views.create_review', name='create_review'),
 
     # Calendar
-    # url(r'^calendar/', include('calendarium.urls')),
+    url(r'^calendar/(?P<user_id>[0-9]+)/$', 'marketplace.views.calendar', name='calendar'),
 
     # View Profile
     url(r'^view/(?P<user_id>[0-9]+)/$', 'marketplace.views.view_profile', name='view_profile'),
     url(r'^view_teacher/(?P<user_id>[0-9]+)/$', 'marketplace.views.view_teacher', name='view_teacher'),
+    url(r'^dashboard/(?P<user_id>[0-9]+)/$', 'marketplace.views.dashboard', name='dashboard'),
 
     # Django-Messages
     url(r'^messages/', include('django_messages.urls')),
 
     # Payment Charging
     url(r'^charge/(?P<classroom_id>[0-9]+)$', 'marketplace.views.charge', name='charge'),
-    url(r'^stripe_connect/$', 'marketplace.views.stripe_connect', name='stripe_connect'),
+    url(r'^stripe_setup/$', 'marketplace.views.stripe_setup', name='stripe_setup'),
 
     # Amazon S3 Image Uploading Test
     url(r'^account/$', 'marketplace.views.account', name='account'),
+
 
 )
 
