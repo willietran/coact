@@ -32,6 +32,9 @@ urlpatterns = patterns('',
     name='password_reset_confirm'),
     url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
 
+    # You should make a urls.py in your marketplace app and include it here, to better organize your
+    # custom marketplace urls, vs Django's built-in urls or included installed django apps'
+
     # Classroom Creation
     url(r'^create_class/$', 'marketplace.views.create_class', name='create_class'),
     url(r'^class_list/$', 'marketplace.views.class_list', name='class_list'),
