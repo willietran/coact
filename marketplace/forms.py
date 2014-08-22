@@ -55,6 +55,8 @@ class LandingForm(forms.Form):
                            widget=forms.TextInput(attrs={'placeholder': 'Name'}))
 
 
+# Are the following two forms not easier to control as model forms? 
+# May simplify the saving process and remove some unnecessary code.
 class CreateClassForm(forms.Form):
     title = forms.CharField(max_length=140,
                             widget=forms.TextInput(attrs={'placeholder': 'Name of Class'}))
