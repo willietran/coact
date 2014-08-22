@@ -5,6 +5,8 @@ from django.db import models
 
 # Create your models here.
 
+# As your project grows bigger you may want to split it up into multiple django apps, usually you can tell by how many models are in one file
+# You could have a 'review' app or a 'ecommerce' app to split some of this out
 
 class EmailSignup(models.Model):
     email = models.EmailField()
@@ -52,6 +54,7 @@ class Classroom(models.Model):
         return u"{}".format(self.title)
 
 
+# unnecessary to have slot and calendar both reference each other, surprised this doesn't break anything?
 class Calendar(models.Model):
     teacher = models.ForeignKey(User, related_name='calendar_teacher')
     slot = models.ManyToManyField('Slot', related_name='calendar_slot')
