@@ -14,6 +14,8 @@ import requests
 from marketplace.forms import EmailUserCreationForm, LandingForm
 from marketplace.models import EmailSignup
 
+# All of your regular django Forms should implement a save function, that way the saving logic is left out of the views
+# and all stored in forms.py for better organization and reuse of the forms
 
 # Initial view just for the home page
 def home(request):
@@ -43,6 +45,7 @@ def class_list(request):
     if request.method == 'GET':
         classroom = Classroom.objects.all()
         class_data = {"classroom": classroom}
+        # Should try to keep a common syntax either '-' or '_' (preferably) for template folders and files
         return render(request, "old_html_files/class-list.html", class_data)
 
 
@@ -116,6 +119,8 @@ def create_class(request):
     print r.text
     print r.json
     print r.json['access_token']
+    
+    # There should be some Stripe error checking here incase something goes wrong
 
     # Creating a stripe Customer Token
     StripeKey.objects.create(
@@ -154,6 +159,7 @@ def class_details(request, classroom_id):
     classroom_data = {'classroom': classroom,
                       'cost_in_cents': cost_in_cents}
 
+    # Could use Learner.objects.get_or_create() here
     # Tracks which students have visited a page
     try:
         new_student = Learner.objects.get(name=request.user)
@@ -257,6 +263,7 @@ def dashboard(request, user_id):
     if user.id != request.user.id:
         return redirect("beta")
     else:
+        # can just do Classroom.objects.filter(teacher=request.user)
         classroom = Classroom.objects.filter(teacher__id=request.user.id)
         payment_history = Payment.objects.filter(student=request.user).order_by('-date')
         teacher_payments = Payment.objects.filter(classroom__teacher__username=request.user).order_by('-date')
@@ -274,6 +281,7 @@ def dashboard(request, user_id):
 
 # Viewing teacher's profiles
 def view_teacher(request, user_id):
+    # Will error if a non-existing teacher's id is used
     teacher = User.objects.get(id=user_id)
     teacher_data = {'teacher': teacher, 'id': user_id}
     return render(request, "view_teacher-bs.html", teacher_data)
