@@ -59,3 +59,5 @@ staticfiles
 .idea/
 /.idea/
 /.idea
+
+# You'll want to also ignore your static/media files, the files you uploaded locally shouldn't conflict with your deployed version
